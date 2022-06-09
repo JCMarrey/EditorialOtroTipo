@@ -14,7 +14,7 @@
     <div class="header-options">
         <div class="header-option">
             <i class="fas fa-shopping-cart icono-header"></i>
-            <p>Carrito</p>
+                <p>Carrito</p>
         </div>
         <div class="header-option">
             <i class="fa fa-map-marked icono-header" aria-hidden="true"></i>
