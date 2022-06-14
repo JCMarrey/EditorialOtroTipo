@@ -8,16 +8,32 @@
 }
 
 
-#firmaAutor{
-  background-color: #EDE75D;
-  color: #805721;
-  border-radius: 20px;
-}
 
 
-#textoPDF{
-  color: #717070;
+.containerProductos{
+  margin-top: 200px;
+  margin-right: 200px;
+  width: 2270px;
+  display: flex;
 }
+.catalogoP{
+  float: left;
+  width: 1400px;
+  height: auto;
+  margin-left: 400px;
+  transition: 0.4s;
+}
+
+#carrito{
+
+  margin-left: 113rem;
+  height: 120rem;
+  background-color: #E6E6E6;
+  position: absolute;
+  display: none;
+  width: 30rem;
+}
+
 
 #textoPDF a{
   text-decoration: none;
@@ -34,8 +50,7 @@
 .figure .card-img-top{
   width: 200px;
   height: 250px;
-  margin-left: 0px;
-  margin-top: 20px;
+  margin-left: -1.5rem;
   transition: all 500ms ease-out;
 }
 
@@ -46,11 +61,27 @@
   height: 100%;
   opacity: 0;
   visibility: hidden;
-  text-align: center;
   background-color: #F4F3F4;
+  margin-left: -2rem;
 }
 
-.container .figure:hover >.capa{
+.figure .capa #textoPDF{
+  color: #717070;
+  text-align: center;
+  margin-left: 2rem;
+}
+
+.figure .capa #firmaAutor{
+  background-color: #EDE75D;
+  color: #805721;
+  border-radius: 1.5rem;
+  margin-left: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+
+.containerProductos .figure:hover >.capa{
   opacity: 1;
   visibility: visible;
 }
@@ -238,6 +269,8 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
 }
 
 
+/*clase Juan*/
+
 
 
 .card{
@@ -249,7 +282,7 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
   background-color: #F4F3F4;
   background-clip: border-box;
   border: 1px solid rgb(0,0,0m,.125);
-  border-radius: 20px;
+  border-radius: 1.5rem;
   width: 17rem;
 }
 
@@ -263,8 +296,8 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
   background-color: #CB123F;
   border-color: #CB123F;
   border-style: solid;
-  border-radius: 35px;
-  margin-left: 10px;
+  border-radius: 2rem;
+  margin-left: 0.6rem;
   
 }
 
@@ -273,8 +306,8 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
   background-color: #3D97CB;
   border-color: #3D97CB;
   border-style: solid;
-  border-radius: 35px;
-  margin-left: 3px;
+  border-radius: 2.18rem;
+  margin-left: 0.18rem;
 }
 
 
@@ -293,38 +326,38 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
 }
 
 .container #seccion{
-  height: 300px;
+  height: 18.75rem;
 
 }
 
 .detallesLibro{
-  height: 500px;
+  height: 31.25rem;
   width: auto;
-  margin-top: 70px;
+  margin-top: 4.37rem;
   margin-left: 10%;
   
 }
 #asideIzq{
-  margin-left: 20px;
-  width: 300px; 
-  height: 500px;  
+  margin-left: 1.25;
+  width: 18.75rem; 
+  height: 31.25rem;  
   float: left;
 }
 
 #infoLibro{
-  width: 600px;
-  height: 500px;
+  width: 37.5rem;
+  height: 31.25rem;
   float: left;
   text-align: justify;
-  margin-left: 200px;
+  margin-left: 12.5rem;
 }
 
 #asideDer{
-  margin-right: 30px;
-  width: 400; 
-  height: 500px;  
+  margin-right: 1.87;
+  width: 25rem; 
+  height: 31.25rem;  
   float: left;
-  margin-left: 300px;
+  margin-left: 18.75rem;
 }
 
 #nombreLibro{
