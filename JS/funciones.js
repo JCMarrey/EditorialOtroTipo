@@ -1,18 +1,20 @@
 
 const carrito = document.getElementById('carrito');
-const productos = document.getElementById('btnComprar');
+const productos = document.getElementById('lista-productos');
 const listaProductos = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito'); 
+const verMas = document.getElementById('btnVermas');
 
 cargarEventos();
 
 
 function cargarEventos(){
+
     //se ejecuta cuando se presiona agregar carrito
     productos.addEventListener('click',(e) => {
        /* document.getElementById("carrito").classList.toggle('active');*/
-        comprarProducto(e);
-        
+            comprarProducto(e);
+       
     });
     carrito.addEventListener('click',(e) =>{
         eliminarProducto(e);
@@ -24,7 +26,7 @@ function cargarEventos(){
 }
 
 function comprarProducto(e){
-    e.preventDefault();
+    /*e.preventDefault();*/
     if(e.target.classList.contains('agregar-producto-c')){
         const producto = e.target.parentElement.parentElement;
         //enviamos el producto seleccionado para tomar sus datos
@@ -40,7 +42,7 @@ function leerDatosProductos(producto){
         imagen : producto.querySelector('img').src,
         titulo: producto.querySelector('h5').textContent,
         precio: producto.querySelector('span').textContent,
-        id: document.getElementById('producto-id').textContent,
+        id : producto.querySelector('li').textContent,
         cantidad: 1
     }
     console.log(infoProducto)
@@ -56,20 +58,24 @@ function insertarProductoCarrito(producto){
         <td>${producto.titulo}</td>
         <td>${producto.precio}</td>
         <td>
-            <a href="#" class="borrar-producto fas-fa-times.circle data-id ="${producto.id}">X</a>
+            <a href="#" class="borrar-producto fas-fa-times.circle">X
+                <p style="display:none";>${producto.id}</p>
+            </a>
         </td>
     `;
     listaProductos.appendChild(row);
+    guardarProductosLocalStorage(producto);
 }    
     
 function eliminarProducto(e){
-    e.preventDefault();
     let producto, productoID;
     if(e.target.classList.contains('borrar-producto')){
         e.target.parentElement.parentElement.remove();
         producto = e.target.parentElement.parentElement;
-        productoID = producto.querySelector('a').getAttribute('data-id');
+        productoID = producto.querySelector('p').textContent;
     }
+    eliminarProductoLocalStorage(productoID);
+   
 }
 function vaciarCarrito(e){
     e.preventDefault();
@@ -78,4 +84,42 @@ function vaciarCarrito(e){
 
     }
     return false;
+
 }
+
+//si hay producto los debe agregar...
+function obtenerProductosLocalStorage(){
+    let productoLS;
+
+    //verificar si hay algún producto en el LS
+    if(localStorage.getItem('productos') === null ){
+        productoLS = [];
+    }else{
+        productoLS = JSON.parse(localStorage.getItem('productos'));
+    }
+    return productoLS;
+}
+
+function guardarProductosLocalStorage(producto){
+    let productos = [];
+    productos=obtenerProductosLocalStorage();
+    productos.push(producto);
+    localStorage.setItem('productos',JSON.stringify(productos));
+
+}
+
+function eliminarProductoLocalStorage(productoID){
+    let productosLS;
+    console.log("idRecibido...",productoID);
+    productosLS = obtenerProductosLocalStorage();
+    productosLS.forEach(function(productoLS,index){
+        console.log("id de LS", productoLS.id);
+        console.log("id de productoID",productoID);
+        if(productoLS.id === productoID){
+            productosLS.splice(index,1);
+        }
+    });
+    //actualizamos el localStorage
+    localStorage.setItem('productos',JSON.stringify(productosLS));
+}
+
