@@ -13,7 +13,7 @@
   
     /* width */
     ::-webkit-scrollbar {
-      width: 5px;
+      width: 10px;
   }
   
   /* Track */
@@ -511,5 +511,81 @@
     color: var(--crema);
   }
   
-  
-  
+.header-Login{
+    display: flex;
+    justify-content: space-between;  
+  }
+
+.header-item-Login{
+    display: flex;
+    color: var(--rojoPrincipal);
+    padding: 4rem;
+    font-size: 1.6rem;
+}
+
+.header-item-Login>p{
+  margin-right: 5rem;
+}
+
+.icono-header-login{
+  margin-top: 1.5rem;
+  margin-right: 2rem;
+}
+
+.separador-admin{
+  height: 5rem;
+  background-color: var(--rojoPrincipal);
+}
+
+.header-Login>img{
+  margin: 2rem 5rem 3rem 3rem;
+}
+.fontAwesome {
+  font-family: 'Helvetica', FontAwesome, sans-serif;
+}
+
+.contenedor1-login{
+  display: flex;
+  justify-content: center;
+  background-color: #dddadd;
+  width: 35%;
+  margin: 5rem 0rem 5rem 45rem;
+  padding: 2rem 3rem 2rem 3rem;
+  border-radius: 2rem;
+}
+
+.contenedor2-login{
+  background-color: white;
+  padding: 2rem 7rem 7rem 7rem;
+  border-radius: 2rem;
+}
+
+.formField>input{
+  border-radius: 5rem;
+  width: 30rem;
+  height: 3.5rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  border: none;
+  background-color: #dddadd;
+
+}
+
+#btnLogIn{
+  background-color: var(--rojoPrincipal);
+  color: white;
+  border: none;
+  border-radius: 3rem;
+  padding: 1rem 0 1rem 0;
+  font-size: 1.6rem;
+  width: 18rem;
+}
+
+#btnLogIn:hover{
+  background-color: var(--rojoSecundario);
+}
+.form-login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
