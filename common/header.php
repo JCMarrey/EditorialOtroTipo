@@ -1,6 +1,6 @@
 <header class = "header">    
     
-    <a href="http://localhost/Editorial/EditorialOtroTipo/View/paginaPrincipal.php">
+    <a href="http://localhost/EditorialOtroTipo/View/paginaPrincipal.php">
         <img class="logo" src="../Icons/logo.svg" alt="Logo Editorial" width="500" height="600">
     </a>
 

@@ -13,186 +13,74 @@
     <link rel="stylesheet" href="../FontAwesome/css/all.css">
 
     <link rel="stylesheet" href="../common/Normalize.css">
+    
     <link rel="stylesheet" href="../common/estilos.css">
 
+    
     <title>Editorial Otro Tipo</title>
 </head>
 
 
 <body>
-   <?php require_once("../common/header.php"); ?>
-   <div class="container" id="lista-productos">
-      <div class="row row-cols-1 row-cols-md-3 g-4 text-center " >
-          <div class="col">
-            <div class="card" >
-                  <div class="figure">
-                      <div class="capa">
-                          <h4 id="firmaAutor">LibroFirmado</h3>
-                              <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur adipisicing elit. Nobis rerum fugiat labore laudantium! Eveniet dolore totam dolores officia obcaecati labore laborum a 
-                                  <a href="/View/detallesLibro.php">Ver más..</a>
-                              </p>
-                      </div>
-                      <img  class="card-img-top" src="/img/p1.jpg" class="card-img-top" alt="...">    
-                  </div>   
-                          
-              <div class="card-body">
-                <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                <p classs="card-text" id="autor">Autor</p>
-                  
-                <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                  <button class="btnS1"  type="button"><a href="#"></a>Leer un fragmento</button>
-                  <button class="btnS1" type="button"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                </div>
-                
-                <div class="d-grid gap-3 d-md-block">
-                  <button class="btnS2"  type="button"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;"><a href="#"></a> Comprar</button>   
-                </div>
-              </div>
+    <?php require_once("../common/header.php"); ?>
+
+    <div class="contenedor-main1">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+
             </div>
-          </div>
-          <div class="col">
-            <div class="card" >
-                  <div class="figure">
-                      <div class="capa">
-                          <h4 id="firmaAutor">LibroFirmado</h3>
-                              <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur adipisicing elit. Nobis rerum fugiat labore laudantium! Eveniet dolore totam dolores officia obcaecati labore laborum a 
-                                  <a href="#">Ver más..</a>
-                              </p>
-                      </div>
-                      <img  class="card-img-top" src="/img/p1.jpg" class="card-img-top" alt="...">    
-                  </div>   
-                          
-              <div class="card-body">
-                <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                <p classs="card-text" id="autor">Autor</p>
-                  
-                <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                  <button class="btnS1"  type="button"><a href="#"></a>Leer un fragmento</button>
-                  <button class="btnS1" type="button"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide1">
                 </div>
-                
-                <div class="d-grid gap-3 d-md-block">
-                  <button class="btnS2"  type="button"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;"><a href="#"></a> Comprar</button>   
+                <div class="carousel-item">
+                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide2">
                 </div>
-              </div>
+                <div class="carousel-item">
+                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide3">
+                </div>
+                <div class="carousel-item">
+                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide4">
+                </div>
+                <div class="carousel-item">
+                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide5">
+                </div>
+
             </div>
-          </div>
-          <div class="col">
-            <div class="card" >
-                  <div class="figure">
-                      <div class="capa">
-                          <h4 id="firmaAutor">LibroFirmado</h3>
-                              <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur adipisicing elit. Nobis rerum fugiat labore laudantium! Eveniet dolore totam dolores officia obcaecati labore laborum a 
-                                  <a href="#">Ver más..</a>
-                              </p>
-                      </div>
-                      <img  class="card-img-top" src="/img/p1.jpg" class="card-img-top" alt="...">    
-                  </div>   
-                          
-              <div class="card-body">
-                <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                <p classs="card-text" id="autor">Autor</p>
-                  
-                <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                  <button class="btnS1"  type="button"><a href="#"></a>Leer un fragmento</button>
-                  <button class="btnS1" type="button"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                </div>
-                
-                <div class="d-grid gap-3 d-md-block">
-                  <button class="btnS2"  type="button"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;"><a href="#"></a> Comprar</button>   
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card" >
-                  <div class="figure">
-                      <div class="capa">
-                          <h4 id="firmaAutor">LibroFirmado</h3>
-                              <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur adipisicing elit. Nobis rerum fugiat labore laudantium! Eveniet dolore totam dolores officia obcaecati labore laborum a 
-                                  <a href="#">Ver más..</a>
-                              </p>
-                      </div>
-                      <img  class="card-img-top" src="/img/p1.jpg" class="card-img-top" alt="...">    
-                  </div>   
-                          
-              <div class="card-body">
-                <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                <p classs="card-text" id="autor">Autor</p>
-                  
-                <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                  <button class="btnS1"  type="button"><a href="#"></a>Leer un fragmento</button>
-                  <button class="btnS1" type="button"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                </div>
-                
-                <div class="d-grid gap-3 d-md-block">
-                  <button class="btnS2"  type="button"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;"><a href="#"></a> Comprar</button>   
-                </div>
-              </div>
-            </div>
-          </div>
-      
-          <div class="col">
-            <div class="card" >
-                  <div class="figure">
-                      <div class="capa">
-                          <h4 id="firmaAutor">LibroFirmado</h3>
-                              <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur adipisicing elit. Nobis rerum fugiat labore laudantium! Eveniet dolore totam dolores officia obcaecati labore laborum a 
-                                  <a href="#">Ver más..</a>
-                              </p>
-                      </div>
-                      <img  class="card-img-top" src="/img/p1.jpg" class="card-img-top" alt="...">    
-                  </div>   
-                          
-              <div class="card-body">
-                <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                <p classs="card-text" id="autor">Autor</p>
-                  
-                <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                  <button class="btnS1"  type="button"><a href="#"></a>Leer un fragmento</button>
-                  <button class="btnS1" type="button"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                </div>
-                
-                <div class="d-grid gap-3 d-md-block">
-                  <button class="btnS2"  type="button"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;"><a href="#"></a> Comprar</button>   
-                </div>
-              </div>
-            </div>
-          </div>
-      
-          <div class="col">
-            <div class="card" >
-                  <div class="figure">
-                      <div class="capa">
-                          <h4 id="firmaAutor">LibroFirmado</h3>
-                              <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur adipisicing elit. Nobis rerum fugiat labore laudantium! Eveniet dolore totam dolores officia obcaecati labore laborum a 
-                                  <a href="#">Ver más..</a>
-                              </p>
-                      </div>
-                      <img  class="card-img-top" src="/img/p1.jpg" class="card-img-top" alt="...">    
-                  </div>   
-                          
-              <div class="card-body">
-                <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                <p classs="card-text" id="autor">Autor</p>
-                  
-                <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                  <button class="btnS1"  type="button"><a href="#"></a>Leer un fragmento</button>
-                  <button class="btnS1" type="button"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                </div>
-                
-                <div class="d-grid gap-3 d-md-block">
-                  <button class="btnS2"  type="button"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;"><a href="#"></a> Comprar</button>   
-                </div>
-              </div>
-            </div>
-          </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            
         </div>
+    
+        
+        <div class="contenedorIconos">
+            <a href="#" target="_blank" ><i class="fab fa-instagram iconoRedes"></i></a>
+            <a href="#" target="_blank" ><i class="fab fa-facebook-square iconoRedes"></i></a> 
+            <a href="#" target="_blank" ><i class="fab fa-twitter-square iconoRedes"></i></a>
+            <a href="#" target="_blank" ><i class="fab fa-youtube iconoRedes"></i></a>
+        </div>
+    </div>
 
+    <div id="contenedor-main2">
+        <img src="../img/p1.jpg" alt="" class="anuncios-main">
+        <img src="../img/p1.jpg" alt="" class="anuncios-main">
+    </div>
 
-
-  </div> 
-   
+    <?php require_once("../common/footer.php"); ?>
 
 </body>
 </html>
