@@ -68,16 +68,16 @@ a{
 
 
 .containerProductos{
-  margin-top: 200px;
-  margin-right: 200px;
-  width: 2270px;
+  margin-top: 12.5rem;
+  margin-right: 12.5rem;
+  width: 141.87rem;
   display: flex;
 }
 .catalogoP{
   float: left;
-  width: 1400px;
+  width: 87.5rem;
   height: auto;
-  margin-left: 400px;
+  margin-left: 25rem;
   transition: 0.4s;
 }
 
@@ -105,8 +105,8 @@ a{
 }
 
 .figure .card-img-top{
-  width: 200px;
-  height: 250px;
+  width: 12.5rem;
+  height: 15rem;
   margin-left: -1.5rem;
   transition: all 500ms ease-out;
 }
@@ -155,7 +155,7 @@ a{
   background-color: #F4F3F4;
   background-clip: border-box;
   border: 1px solid rgb(0,0,0m,.125);
-  border-radius: 20px;
+  border-radius: 1.25rem;
   width: 17rem;
 }
 
@@ -169,8 +169,8 @@ a{
   background-color: #CB123F;
   border-color: #CB123F;
   border-style: solid;
-  border-radius: 35px;
-  margin-left: 10px;
+  border-radius: 2.18rem;
+  margin-left: 0.6rem;
   
 }
 
@@ -179,8 +179,8 @@ a{
   background-color: #3D97CB;
   border-color: #3D97CB;
   border-style: solid;
-  border-radius: 35px;
-  margin-left: 3px;
+  border-radius: 2.18rem;
+  margin-left: 0.18px;
 }
 
 
@@ -197,9 +197,6 @@ a{
   width: 70%;
   display: flex;
 }
-
-
-
 
 
 /*Clases Rodrigo*/
@@ -329,7 +326,6 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
 
 }
 
-
 /*clase Juan*/
 
 
@@ -425,9 +421,9 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
   text-align: center;
 }
 .imgDetallesLibro{
-  width: 150px;
-  height: 250px;
-  margin-left: 80px;
+  width: 9.37rem;
+  height: 15.62rem;
+  margin-left: 5rem;
 }
 
 .btnS1D{
@@ -436,9 +432,9 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
   border-color: rgb(228, 172, 172);
   border-style: solid;
   border-radius: 35px;
-  margin-top: 15px;
-  margin-left: 50px;
-  margin-bottom: 10px;
+  margin-top: 1rem;
+  margin-left: 3.12rem;
+  margin-bottom: 0.6rem;
   opacity: 2;
   float: float;
   text-decoration:none;
@@ -454,9 +450,9 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
 #detallesLibroPrecio{
   padding-top: 5px;
   color: #CB123F;
-  margin-left: 80px;
-  margin-bottom: 10px;
-  padding-top: 15px;
+  margin-left: 5rem;
+  margin-bottom: 0.6rem;
+  padding-top: 1rem;
   
 }
 
@@ -465,14 +461,14 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
 #iconoColeccion,
 #iconoNumEd,
 #iconoPags{
-  width: 90px;
-  height: 80px;
+  width: 5.62rem;
+  height: 5rem;
 }
 
 #tablaDetalles{
   color: #717070;
-  margin-left: 3px;
-  height: 200px;
+  margin-left: 0.18rem;
+  height: 12.5rem;
 }
 
 #borderTabla{
@@ -480,6 +476,7 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
   border-radius: 1em;
   border-style: solid;
 }
+
 .carousel{
     width: 80%;
     margin: 6rem 5%;
@@ -549,4 +546,5 @@ body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
 .footer-Section>a:hover,
 .iconosFooter:hover{
   color: var(--crema);
-}
+
+
