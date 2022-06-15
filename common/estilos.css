@@ -1,6 +1,318 @@
-/*Clases Rodrigo*/
-
-.header{
+/*COLORES*/
+:root{
+    --rojoPrincipal: #CB123F;
+    --rojoSecundario: #BC1733;
+    --azulBotones: #3D97CB;
+    --fondoGris: #717070;
+    --searchBar: #E6E6E6;
+    --crema: #C68C68;
+    --cafe: #805721;
+    --grisCard: #f4f2f4;
+    --grisObscuro: #ACACAC;
+  }
+  
+    /* width */
+    ::-webkit-scrollbar {
+      width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px var(--rojoPrincipal) ; 
+      border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+      background: var(--rojoPrincipal); 
+      border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+      background: var(--rojoSecundario); 
+  }
+  
+  /*
+  ::-webkit-scrollbar {
+      display: none;
+  }
+  */
+  
+  html{
+      box-sizing: border-box;
+      font-size: 62.5%;
+  }
+  
+  body{
+      margin: 0;
+      padding: 0;
+      font-size: 1.5rem;
+  }
+  
+  *,*:before,*:after{
+      box-sizing: inherit;
+  }
+  
+  img{
+    max-width: 100%;
+    max-height: 25rem;
+  }
+  
+  a{
+    text-decoration: none;
+  }
+  
+  .containerProductos{
+      margin-top: 12.5rem;
+      margin-right: 12.5rem;
+      width: 141.87rem;
+      display: flex;
+    }
+  
+    .catalogoP{
+      float: left;
+      width: 87.5rem;
+      height: auto;
+      margin-left: 25rem;
+      transition: 0.4s;
+    }
+    
+  
+  #firmaAutor{
+    background-color: #EDE75D;
+    color: #805721;
+    border-radius: 20px;
+  }
+  
+  
+  #textoPDF{
+    color: #717070;
+  }
+  
+  #textoPDF a{
+    text-decoration: none;
+  }
+  
+  .figure{
+    position: relative;
+    height: 17rem;
+    width: 17rem;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .figure .card-img-top{
+    width: 200px;
+    height: 250px;
+    margin-left: 0px;
+    margin-top: 20px;
+    transition: all 500ms ease-out;
+  }
+  
+  .figure .capa{
+      position: absolute;
+      top:0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      background-color: #F4F3F4;
+      margin-left: -2rem;
+    }
+  
+  .container .figure:hover >.capa{
+    opacity: 1;
+    visibility: visible;
+  }
+  .figure .capa #textoPDF{
+      color: #717070;
+      text-align: center;
+      margin-left: 2rem;
+    }
+  
+    
+  .figure .capa #firmaAutor{
+      background-color: #EDE75D;
+      color: #805721;
+      border-radius: 1.5rem;
+      margin-left: 2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    
+    
+  
+  
+  /*clase Juan*/
+  
+  .card{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #F4F3F4;
+      background-clip: border-box;
+      border: 1px solid rgb(0,0,0m,.125);
+      border-radius: 1.5rem;
+      width: 17rem;
+    }
+    
+    .card-body{
+      padding: 1.25rem;
+      flex: 1 1 auto;
+    }
+    
+    .btnS1{
+      color: blanchedalmond;
+      background-color: #CB123F;
+      border-color: #CB123F;
+      border-style: solid;
+      border-radius: 2rem;
+      margin-left: 0.6rem;
+      
+    }
+    
+    .btnS2{
+      color: blanchedalmond;
+      background-color: #3D97CB;
+      border-color: #3D97CB;
+      border-style: solid;
+      border-radius: 2.18rem;
+      margin-left: 0.18rem;
+    }
+    
+    #carrito{
+  
+      margin-left: 113rem;
+      height: 120rem;
+      background-color: #E6E6E6;
+      position: absolute;
+      display: none;
+      width: 30rem;
+    }
+    
+    
+    
+    .card-title{
+      color:   #333333;
+    }
+    
+    #autor{
+      color: #808081;
+    }
+    
+    .container{
+      padding-top: 5rem;
+      width: 70%;
+      display: flex;
+    }
+    
+    .container #seccion{
+      height: 18.75rem;
+    
+    }
+    
+    .detallesLibro{
+      height: 31.25rem;
+      width: auto;
+      margin-top: 4.37rem;
+      margin-left: 10%;
+      
+    }
+    #asideIzq{
+      margin-left: 1.25;
+      width: 18.75rem; 
+      height: 31.25rem;  
+      float: left;
+    }
+    
+    #infoLibro{
+      width: 37.5rem;
+      height: 31.25rem;
+      float: left;
+      text-align: justify;
+      margin-left: 12.5rem;
+    }
+    
+    #asideDer{
+      margin-right: 1.87;
+      width: 25rem; 
+      height: 31.25rem;  
+      float: left;
+      margin-left: 18.75rem;
+    }
+    
+    #nombreLibro{
+      text-align: center;
+    }
+    .imgDetallesLibro{
+      width: 9.37rem;
+      height: 15.62rem;
+      margin-left: 5rem;
+    }
+    
+    .btnS1D{
+      color: #CB123F ;
+      background-color: rgb(228, 172, 172);
+      border-color: rgb(228, 172, 172);
+      border-style: solid;
+      border-radius: 35px;
+      margin-top: 1rem;
+      margin-left: 3.12rem;
+      margin-bottom: 0.6rem;
+      opacity: 2;
+      float: float;
+      text-decoration:none;
+    }
+    
+    .btnS1D:hover{
+      background-color: var(--rojoSecundario);
+      color: white;
+      border-color: #CB123F ;
+    }
+    
+    
+    #detallesLibroPrecio{
+      padding-top: 5px;
+      color: #CB123F;
+      margin-left: 5rem;
+      margin-bottom: 0.6rem;
+      padding-top: 1rem;
+      
+    }
+    
+    #iconoAutor,
+    #iconoISBN,
+    #iconoColeccion,
+    #iconoNumEd,
+    #iconoPags{
+      width: 5.62rem;
+      height: 5rem;
+    }
+    
+    #tablaDetalles{
+      color: #717070;
+      margin-left: 0.18rem;
+      height: 12.5rem;
+    }
+    
+    #borderTabla{
+      border-color: #717070;
+      border-radius: 1em;
+      border-style: solid;
+    }
+    
+    
+    
+  
+  
+  
+  
+  /*Clases Rodrigo*/
+  
+  .header{
     display: flex;
   }
   
@@ -195,4 +507,6 @@
   .iconosFooter:hover{
     color: var(--crema);
   }
+  
+  
   
