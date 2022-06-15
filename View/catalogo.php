@@ -76,7 +76,7 @@
               </div>
               <div class="col">
                 <div class="card" >          
-                  <div class="card-body" producto-id="1">
+                  <div class="card-body">
                     <div class="figure">
                           <div class="capa">
                               <h4 id="firmaAutor">LibroFirmado</h3>
@@ -99,7 +99,7 @@
                     
                     <div class="d-grid gap-3 d-md-block">
                       <button class="btnS2 agregar-producto-c"  type="button" id="btnComprar" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
-                      <p style="display:none"; id="producto-id">1</p>
+                      <p style="display:none"; id="producto-id">2</p>
                     </div>
                   </div>
                 </div>
@@ -129,7 +129,7 @@
                     
                     <div class="d-grid gap-3 d-md-block">
                       <button class="btnS2 agregar-producto-c"  type="button" id="btnComprar" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
-                      <p style="display:none"; id="producto-id">1</p>
+                      <p style="display:none"; id="producto-id">3</p>
                     </div>
                   </div>
                 </div>
