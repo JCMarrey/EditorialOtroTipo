@@ -1,0 +1,198 @@
+/*Clases Rodrigo*/
+
+.header{
+    display: flex;
+  }
+  
+  .logo{
+    margin: 6.8rem 8.1rem 6rem 7rem;
+    height: 8rem;
+    width: 8rem;
+  }
+  
+  .search-container{
+    margin: 8.5rem 2rem 7rem 0rem;
+    background-color: var(--searchBar);
+    padding: 0.7rem;
+    height: 4rem;
+    width: 40rem;
+    border: 1px solid var(--searchBar);
+    border-radius: 5rem;
+  }
+  
+  .search-input{
+    border: none;
+    width: 90%;
+    background-color: var(--searchBar);
+  }
+  
+  .icon-search{
+    color: var(--rojoPrincipal);
+    background-color: var(--searchBar);
+    border: none;
+    border-left: 1px solid #858484;
+  }
+  
+  .header-options{
+    display: flex;
+    margin: 8.5rem 5rem;
+    color: var(--rojoPrincipal);
+  }
+  
+  .header-option{
+    display: flex;
+    margin: 0 2rem;
+    padding: 0.7rem 0.7rem;
+    height: 4rem;
+    border: 1px solid white;
+    border-radius: 5rem;
+    width: auto;
+  }
+  
+  .header-option > img{
+    margin: 0 1rem;
+  }
+  
+  .header-option > p{
+    margin: 0 0.5rem;
+  }
+  
+  .header-option:hover{
+    background-color: var(--rojoSecundario);
+    color: white;
+  }
+  
+  .icono-header{
+    height: 0.3rem;
+    width: 0.3rem;
+    padding: 0.3rem;
+    margin-right: 2rem;
+  }
+  
+  .navBar{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--rojoPrincipal);
+    color: white;
+    padding: 1rem;
+  }
+  
+  .navItem{
+    border-left: 1px solid white;
+  }
+  
+  .navItem:first-of-type{
+    border: none;
+  }
+  
+  .navItem>a{
+    border: none;
+    text-decoration: none;
+    color: white;
+    padding: 0px 3.4rem;
+  }
+  
+  .navItem>a:hover,
+  #dropdownMenuButton1:hover{
+    color: var(--rojoPrincipal);
+    background-color: white;
+    border-radius: 1rem;
+    
+  }
+  
+  
+  #dropdownMenuButton1{
+    background-color: transparent;
+    border: none;
+    padding: 0px 3.4rem;
+    color: white;
+  }
+  
+  
+  .dropdown-item{
+    border-bottom: 1px solid #CB123F;
+    font-size: 1.5rem;
+  }
+  
+  
+  body > div > div:nth-child(3) > ul > li:nth-child(4) > a{
+    border: none;
+  }
+  
+  .dropdown-item:hover{
+    background-color: #CF9E7D;
+    color: white;
+  
+  }
+  
+  .carousel{
+      width: 80%;
+      margin: 6rem 5%;
+      height: 25rem;
+  }
+  
+  
+  .contenedor-main1{
+    display: flex;
+  }
+  
+  .contenedorIconos{
+    display: flex;
+    flex-direction: column;
+    margin: 10rem 5% 0 0.5%;
+    font-size: xx-large;
+  }
+  
+  .iconoRedes{
+    color: var(--crema);
+  }
+  
+  
+  .iconoRedes:hover{
+    color: var(--cafe);
+    
+  }
+  
+  #contenedor-main2{
+    margin-top: 10rem;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .d-block{
+    border-radius: 5rem;
+    
+  }
+  
+  .anuncios-main{
+    width: 30%; 
+  }
+  
+  .footer{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--grisCard);
+    margin-top: 4rem;
+    padding: 4rem;
+  }
+  
+  .footer-Section,
+  .footer-Section>a{
+    color: var(--grisObscuro);
+  }
+  
+  
+  .iconosFooter{
+    height: 0.3rem;
+    width: 0.3rem;
+    padding: 0.3rem;
+    margin-right: 5rem;
+    font-size: 3rem;
+  }
+  
+  
+  .footer-Section>a:hover,
+  .iconosFooter:hover{
+    color: var(--crema);
+  }
+  
