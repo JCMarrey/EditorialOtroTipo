@@ -41,12 +41,48 @@
       </div>
       <?php require_once("../common/header.php"); ?>
       
-      <div class="containerProductos" id="lista-productos">
+      <div class="containerProductos"  id="lista-productos">
           <div class="catalogoP">
-            <div class="row row-cols-1 row-cols-md-3 g-2 text-center " >
+            <div class="row row-cols-1 row-cols-md-3 g-2 text-center ">
               <div class="col">
                 <div class="card" >          
-                  <div class="card-body" producto-id="1">
+                  <div class="card-body">
+                    <div class="figure">
+                          <div class="capa">
+                              <h4 id="firmaAutor">LibroFirmado</h3>
+                                  <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur eniet dolore totam dolores officia obcaecati labore laborum a 
+                                      <button class="btnVermas" id="btnVermas" ><a href="/View/detallesLibro.php">Ver más..</a></button>  
+                                    <!---->
+                                  </p>
+                          </div>
+                          <img  class="card-img-top" src="/img/p1.jpg"  alt="...">    
+                    </div> 
+                    <div>
+                      <img  style="display:none" class="card-img-top" src="/img/p1.jpg"  alt="..."> 
+                      <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
+                      <p classs="card-text" id="autor">Autor</p>
+                      <p class="card-text" id="precio"  style="display:none;">$<span>500</span></p>
+                      <p class="card-text" id="pesoLibro" style="display:none;">kg</p>
+                        
+                      <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
+                        <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
+                        <button class="btnS1" type="button" id="btnReproducirAudio"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
+                      </div>
+                      
+                      <div class="d-grid gap-3 d-md-block">
+                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
+                        <ul id="idProducto" style="display:none";>
+                          <li>1<li>
+                        </ul>
+                        <!--<p class="idProducto" style="display:none"; id="producto-id">1</p>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card" >          
+                  <div class="card-body">
                     <div class="figure">
                           <div class="capa">
                               <h4 id="firmaAutor">LibroFirmado</h3>
@@ -55,21 +91,26 @@
                                     <!---->
                                   </p>
                           </div>
-                          <img  class="card-img-top" src="/img/p1.jpg"  alt="...">    
-                    </div>  
-                    <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                    <p classs="card-text" id="autor">Autor</p>
-                    <p class="card-text" id="precio"  style="display:none;">$<span>500</span></p>
-                    <p class="card-text" id="pesoLibro" style="display:none;">kg</p>
+                          <img  class="card-img-top" src="/img/p2.jpg"  alt="...">    
+                    </div> 
+                    <div>
+                    <img  style="display:none" class="card-img-top" src="/img/p2.jpg"  alt="..."> 
+                      <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
+                      <p classs="card-text" id="autor">Autor</p>
+                      <p class="card-text" id="precio"  style="display:none;">$<span>500</span></p>
+                      <p class="card-text" id="pesoLibro" style="display:none;">kg</p>
+                        
+                      <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
+                        <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
+                        <button class="btnS1" type="button" id="btnReproducirAudio"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
+                      </div>
                       
-                    <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                      <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
-                      <button class="btnS1" type="button" id="btnReproducirAudio"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                    </div>
-                    
-                    <div class="d-grid gap-3 d-md-block">
-                      <button class="btnS2 agregar-producto-c"  type="button" id="btnComprar" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
-                      <p style="display:none"; id="producto-id">1</p>
+                      <div class="d-grid gap-3 d-md-block">
+                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
+                        <ul id="idProducto" style="display:none";>
+                          <li>2<li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -77,7 +118,7 @@
 
               <div class="col">
                 <div class="card" >          
-                  <div class="card-body" producto-id="1">
+                  <div class="card-body">
                     <div class="figure">
                           <div class="capa">
                               <h4 id="firmaAutor">LibroFirmado</h3>
@@ -86,55 +127,26 @@
                                     <!---->
                                   </p>
                           </div>
-                          <img  class="card-img-top" src="/img/p1.jpg"  alt="...">    
-                    </div>  
-                    <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                    <p classs="card-text" id="autor">Autor</p>
-                    <p class="card-text" id="precio"  style="display:none;">$<span>500</span></p>
-                    <p class="card-text" id="pesoLibro" style="display:none;">kg</p>
+                          <img  class="card-img-top" src="/img/p3.jpg"  alt="...">    
+                    </div> 
+                    <div>
+                    <img  style="display:none" class="card-img-top" src="/img/p3.jpg"  alt="..."> 
+                      <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
+                      <p classs="card-text" id="autor">Autor</p>
+                      <p class="card-text" id="precio"  style="display:none;">$<span>500</span></p>
+                      <p class="card-text" id="pesoLibro" style="display:none;">kg</p>
+                        
+                      <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
+                        <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
+                        <button class="btnS1" type="button" id="btnReproducirAudio"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
+                      </div>
                       
-                    <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                      <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
-                      <button class="btnS1" type="button" id="btnReproducirAudio"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                    </div>
-                    
-                    <div class="d-grid gap-3 d-md-block">
-                      <button class="btnS2 agregar-producto-c"  type="button" id="btnComprar" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
-                      <p style="display:none"; id="producto-id">1</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-              <div class="col">
-                <div class="card" >          
-                  <div class="card-body" producto-id="1">
-                    <div class="figure">
-                          <div class="capa">
-                              <h4 id="firmaAutor">LibroFirmado</h3>
-                                  <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur eniet dolore totam dolores officia obcaecati labore laborum a 
-                                      <button class="btnVermas" ><a href="/View/detallesLibro.php">Ver más..</a></button>  
-                                    <!---->
-                                  </p>
-                          </div>
-                          <img  class="card-img-top" src="/img/p1.jpg"  alt="...">    
-                    </div>  
-                    <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                    <p classs="card-text" id="autor">Autor</p>
-                    <p class="card-text" id="precio"  style="display:none;">$<span>500</span></p>
-                    <p class="card-text" id="pesoLibro" style="display:none;">kg</p>
-                      
-                    <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                      <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
-                      <button class="btnS1" type="button" id="btnReproducirAudio"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                    </div>
-                    
-                    <div class="d-grid gap-3 d-md-block">
-                      <button class="btnS2 agregar-producto-c"  type="button" id="btnComprar" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
-                      <p style="display:none"; id="producto-id">1</p>
+                      <div class="d-grid gap-3 d-md-block">
+                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
+                        <ul id="idProducto" style="display:none";>
+                          <li>3<li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -144,8 +156,9 @@
             </div>   
           </div> 
           <!--div para sidebar de carrito-->
+      <script src="/JS/jquery-3.4.1.min.js"></script>
       <script src="/JS/animaciones.js" type="text/javascript"></script>
-      <script src="/JS/funciones.js" type="module"></script>
+      <script src="/JS/funciones.js"></script>
       <?php require_once("../common/footer.php"); ?>
     </body>
 </html>
