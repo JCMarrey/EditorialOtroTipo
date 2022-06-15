@@ -8,7 +8,7 @@ cargarEventos();
 
 
 function cargarEventos(){
-    //se ejecuta cuando se presioa agregar carrito
+    //se ejecuta cuando se presiona agregar carrito
     productos.addEventListener('click',(e) => {
        /* document.getElementById("carrito").classList.toggle('active');*/
         comprarProducto(e);
