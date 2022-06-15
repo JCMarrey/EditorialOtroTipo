@@ -65,9 +65,10 @@
   
   .containerProductos{
       margin-top: 12.5rem;
-      margin-right: 12.5rem;
-      width: 141.87rem;
+      margin-right: 15rem;
+      width: 150rem;
       display: flex;
+      margin-left: 40rem;
     }
   
     .catalogoP{
@@ -78,18 +79,6 @@
       transition: 0.4s;
     }
     
-  
-  #firmaAutor{
-    background-color: #EDE75D;
-    color: #805721;
-    border-radius: 20px;
-  }
-  
-  
-  #textoPDF{
-    color: #717070;
-  }
-  
   #textoPDF a{
     text-decoration: none;
   }
@@ -103,43 +92,42 @@
   }
   
   .figure .card-img-top{
-    width: 200px;
-    height: 250px;
-    margin-left: 0px;
-    margin-top: 20px;
+    width: 14rem;
+    height: 16rem;
+    margin-left: -1.5rem;
     transition: all 500ms ease-out;
   }
   
   .figure .capa{
-      position: absolute;
-      top:0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      visibility: hidden;
-      background-color: #F4F3F4;
-      margin-left: -2rem;
-    }
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    background-color: #F4F3F4;
+    margin-left: -2rem;
+  }
   
-  .container .figure:hover >.capa{
+.containerProductos .figure:hover >.capa{
     opacity: 1;
     visibility: visible;
-  }
-  .figure .capa #textoPDF{
-      color: #717070;
-      text-align: center;
-      margin-left: 2rem;
-    }
+}
+
+.figure .capa #textoPDF{
+  color: #717070;
+  text-align: center;
+  margin-left: 2rem;
+}
   
-    
-  .figure .capa #firmaAutor{
-      background-color: #EDE75D;
-      color: #805721;
-      border-radius: 1.5rem;
-      margin-left: 2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
+.figure .capa #firmaAutor{
+  background-color: #EDE75D;
+  color: #805721;
+  border-radius: 1.5rem;
+  margin-left: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
     
     
   
@@ -156,7 +144,9 @@
       background-clip: border-box;
       border: 1px solid rgb(0,0,0m,.125);
       border-radius: 1.5rem;
-      width: 17rem;
+      width: 25rem;
+      height: 36rem;
+      margin-block: 1rem;
     }
     
     .card-body{
@@ -169,7 +159,7 @@
       background-color: #CB123F;
       border-color: #CB123F;
       border-style: solid;
-      border-radius: 2rem;
+      border-radius: 2.18rem;
       margin-left: 0.6rem;
       
     }
@@ -185,7 +175,7 @@
     
     #carrito{
   
-      margin-left: 113rem;
+      margin-left: 200rem;
       height: 120rem;
       background-color: #E6E6E6;
       position: absolute;
@@ -194,13 +184,13 @@
     }
     
     
-    
-    .card-title{
+  .card-title{
       color:   #333333;
     }
     
     #autor{
       color: #808081;
+      font-size: x-large;
     }
     
     .container{
@@ -214,17 +204,20 @@
     
     }
     
+    .btnVermas{
+      font-size: relative;
+      border: none;
+    }
     .detallesLibro{
-      height: 31.25rem;
+      height: 40rem;
       width: auto;
-      margin-top: 4.37rem;
-      margin-left: 10%;
+      margin-top: 10rem;
+      margin-left: 15%;
       
     }
     #asideIzq{
-      margin-left: 1.25;
-      width: 18.75rem; 
-      height: 31.25rem;  
+      width: 30rem; 
+      height: 40rem;  
       float: left;
     }
     
@@ -233,7 +226,7 @@
       height: 31.25rem;
       float: left;
       text-align: justify;
-      margin-left: 12.5rem;
+      margin-left: 30rem;
     }
     
     #asideDer{
@@ -241,16 +234,17 @@
       width: 25rem; 
       height: 31.25rem;  
       float: left;
-      margin-left: 18.75rem;
+      margin-left: 40rem;
     }
     
     #nombreLibro{
       text-align: center;
+      font-size: medium;
     }
     .imgDetallesLibro{
-      width: 9.37rem;
-      height: 15.62rem;
-      margin-left: 5rem;
+      width: 15rem;
+      height: 18rem;
+      margin-left: 7rem;
     }
     
     .btnS1D{
@@ -260,7 +254,7 @@
       border-style: solid;
       border-radius: 35px;
       margin-top: 1rem;
-      margin-left: 3.12rem;
+      margin-left: 6rem;
       margin-bottom: 0.6rem;
       opacity: 2;
       float: float;
@@ -277,9 +271,10 @@
     #detallesLibroPrecio{
       padding-top: 5px;
       color: #CB123F;
-      margin-left: 5rem;
+      margin-left: 8rem;
       margin-bottom: 0.6rem;
       padding-top: 1rem;
+      font-size: x-large;
       
     }
     
@@ -288,20 +283,30 @@
     #iconoColeccion,
     #iconoNumEd,
     #iconoPags{
-      width: 5.62rem;
-      height: 5rem;
+      width: 9rem;
+      height: 7rem;
     }
     
+.btn-group{
+  height: 4rem;
+}
+
+#detallesLibroCantidad{
+  font-size: large;
+}
+
     #tablaDetalles{
       color: #717070;
       margin-left: 0.18rem;
       height: 12.5rem;
+      width: 40rem;
     }
     
     #borderTabla{
       border-color: #717070;
       border-radius: 1em;
       border-style: solid;
+      width: 40rem;
     }
     
     
