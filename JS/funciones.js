@@ -47,7 +47,32 @@ function leerDatosProductos(producto){
         id : producto.querySelector('li').textContent,
         cantidad: 1
     }
-    insertarProductoCarrito(infoProducto);
+    //verificar sí el libro existe
+    let librosLS = obtenerProductosLocalStorage();
+    let auxLibro;
+
+
+    librosLS.forEach(function(libroLS,index){
+        if(libroLS.id === infoProducto.id){
+            //index = librosLS.indexOf(libroLS);
+            //librosLS[index].cantidad += 1;
+            infoProducto.cantidad = libroLS.cantidad; 
+            infoProducto.cantidad += 1;
+            auxLibro = libroLS.id;
+            listaProductos.removeChild(listaProductos.childNodes[index]);
+            librosLS.splice(index,1);
+        }
+    });
+    //actualizamos LocalStorage
+    localStorage.setItem('productos',JSON.stringify(librosLS));
+
+    if(auxLibro === infoProducto.id){
+        //console.log("cantidadLibro",infoProducto.cantidad);
+        insertarProductoCarrito(infoProducto);
+        //leerProductosLocalStorage();
+    }else{
+        insertarProductoCarrito(infoProducto);
+    }
     
 }
 function insertarProductoCarrito(producto){
@@ -64,13 +89,14 @@ function insertarProductoCarrito(producto){
             <td>${producto.precio= producto.precio*producto.cantidad}
             <td>
                 <a href="#" class="borrar-producto fas-fa-times.circle">X
-                    <p style="display:none";>${producto.id}</p>
+                    <p style="display:none"; id="idCarritoP">${producto.id}</p>
                 </a>
             </td>
     `; 
     listaProductos.appendChild(row);
     guardarProductosLocalStorage(producto);
-}    
+}   
+
 
 function eliminarProducto(e){
     let producto, productoID;
@@ -82,6 +108,7 @@ function eliminarProducto(e){
     eliminarProductoLocalStorage(productoID);
    
 }
+
 function vaciarCarrito(e){
     e.preventDefault();
     while(listaProductos.firstChild){
@@ -116,7 +143,6 @@ function guardarProductosLocalStorage(producto){
 
 function eliminarProductoLocalStorage(productoID){
     let productosLS;
-    console.log("idRecibido...",productoID);
     productosLS = obtenerProductosLocalStorage();
     productosLS.forEach(function(productoLS,index){
         console.log("id de LS", productoLS.id);
@@ -145,7 +171,7 @@ function leerProductosLocalStorage(){
             <td>${producto.precio}</td>
             <td>
                 <a href="#" class="borrar-producto fas-fa-times.circle">X
-                    <p style="display:none";>${producto.id}</p>
+                    <p style="display:none";  id="idCarritoP">${producto.id}</p>
                 </a>
             </td>
         `;
