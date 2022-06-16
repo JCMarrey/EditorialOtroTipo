@@ -23,6 +23,8 @@ function cargarEventos(){
     vaciarCarritoBtn.addEventListener('click',(e) =>{
         vaciarCarrito(e);
     });
+
+    document.addEventListener('DOMContentLoaded',leerProductosLocalStorage());
 }
 
 function comprarProducto(e){
@@ -45,28 +47,31 @@ function leerDatosProductos(producto){
         id : producto.querySelector('li').textContent,
         cantidad: 1
     }
-    console.log(infoProducto)
     insertarProductoCarrito(infoProducto);
+    
 }
 function insertarProductoCarrito(producto){
+
     const row = document.createElement('tr');
     row.innerHTML=`
-        <td></td>
-        <td>
-            <img src="${producto.imagen}" width=100>
-        </td>
-        <td>${producto.titulo}</td>
-        <td>${producto.precio}</td>
-        <td>
-            <a href="#" class="borrar-producto fas-fa-times.circle">X
-                <p style="display:none";>${producto.id}</p>
-            </a>
-        </td>
-    `;
+            <td></td>
+            <td>
+                <img src="${producto.imagen}" width=100>
+            </td>
+            <td>${producto.titulo}</td>
+            <td>${producto.precio}</td>
+            <td>${producto.cantidad}</td>
+            <td>${producto.precio= producto.precio*producto.cantidad}
+            <td>
+                <a href="#" class="borrar-producto fas-fa-times.circle">X
+                    <p style="display:none";>${producto.id}</p>
+                </a>
+            </td>
+    `; 
     listaProductos.appendChild(row);
     guardarProductosLocalStorage(producto);
 }    
-    
+
 function eliminarProducto(e){
     let producto, productoID;
     if(e.target.classList.contains('borrar-producto')){
@@ -83,6 +88,7 @@ function vaciarCarrito(e){
         listaProductos.removeChild(listaProductos.firstChild);
 
     }
+    vaciarLocalStorage();
     return false;
 
 }
@@ -123,3 +129,30 @@ function eliminarProductoLocalStorage(productoID){
     localStorage.setItem('productos',JSON.stringify(productosLS));
 }
 
+function leerProductosLocalStorage(){
+    let productosLS;
+    productosLS = obtenerProductosLocalStorage();
+    productosLS.forEach(function(producto){
+        const row = document.createElement('tr');
+        row.innerHTML=`
+            <td></td>
+            <td>
+                <img src="${producto.imagen}" width=100>
+            </td>
+            <td>${producto.titulo}</td>
+            <td>${producto.precio}</td>
+            <td>${producto.cantidad}</td>
+            <td>${producto.precio}</td>
+            <td>
+                <a href="#" class="borrar-producto fas-fa-times.circle">X
+                    <p style="display:none";>${producto.id}</p>
+                </a>
+            </td>
+        `;
+        listaProductos.appendChild(row);
+    });
+}
+
+function vaciarLocalStorage(){
+    localStorage.clear();
+}
