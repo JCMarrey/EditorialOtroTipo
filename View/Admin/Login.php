@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../common/Normalize.css">
     <link rel="stylesheet" href="../../common/estilos.css">
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 
@@ -29,24 +30,49 @@
 
     <div class="contenedor1-login">
         <div class="contenedor2-login">
-            <form action="" class="form-login">
+            <form action="LoginVerify.php" method="POST" class="form-login">
                 
                 <div class="formField">
-                    <input type="text" name="userName" id="userName" placeholder="Nombre Usuario">
+                    <input type="text" name="user" id="userName" placeholder="Nombre Usuario">
                 </div>
 
                 <div class="formField">
-                    <input type="password" name="userPass" id="userPass" placeholder="Contraseña">
+                    <input type="password" name="pass" id="userPass" placeholder="Contraseña">
                 </div>
 
-                <button id="btnLogIn">Iniciar sesión</button>
+                <input type="submit" name="Login" id="btnLogIn" value="Ingresar">
 
             </form>
         </div>
     </div>
 
 
+    <?php if(!empty($_GET)): ?>
+        <?php  if($_GET['r'] == 1): ?>
+            <script>
+                swal("Recuerda","Todos los campos son obligatorios, no pueden estar vacios",'info');
+            </script>
+        <?php endif; ?>
 
+        <?php if($_GET['r'] == 2): ?>
+            <script>
+                swal("Acceso denegado","La contraseña es incorrecta, vuelve a intentarlo",'error');
+            </script>
+        <?php endif; ?>
+
+        <?php if($_GET['r'] == 3): ?>
+            <script>
+                swal("Acceso denegado","El nombre de usuario no existe, vuelve a intentarlo",'error');
+            </script>
+        <?php endif; ?>
+
+        <?php if($_GET['r'] == 4): ?>
+            <script>
+                swal("Acceso denegado","Necesitas iniciar sesion para ingresar a la pagina",'error');
+            </script>
+        <?php endif; ?>
+
+    <?php endif; ?>
 
 
 
