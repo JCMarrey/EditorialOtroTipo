@@ -20,7 +20,7 @@
         if($conexion->affected_rows == 1){
             $usuario = mysqli_fetch_assoc($resultado);
             //password_verify($pass, $usuario['PassWord'])
-            if(strcmp($pass,$usuario['pass'])){
+            if(strcmp($pass,$usuario['Pass']) === 0){
                 
                 session_start();
                 $_SESSION['usuario'] = $usuario;
@@ -34,6 +34,8 @@
         }
         
 
+    }else{
+        header('Location: http://localhost/EditorialOtroTipo/View/Admin/Login.php?r=4');
     }
 
 

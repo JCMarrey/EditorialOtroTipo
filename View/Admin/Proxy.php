@@ -1,0 +1,141 @@
+<?php 
+    error_reporting(E_ALL ^ E_NOTICE); 
+    session_start();  
+
+
+    if(isset($_SESSION['usuario'])){
+
+        require_once('Conexion.php');
+   
+        if(strcmp($_POST['accion'],'viewLibro') == 0){
+
+            $isbn = $_POST['ISBN'];
+
+            $sql = "SELECT * FROM deotrotipo.libro WHERE ISBN = ?"; // SQL with parameters
+            $stmt = $conexion->prepare($sql); 
+            $stmt->bind_param("s", $isbn);
+            $stmt->execute();
+            $result = $stmt->get_result(); // get the mysqli result
+            $user = $result->fetch_assoc(); 
+            
+            echo json_encode($user);
+            
+
+        }
+
+        if(strcmp($_POST['accion'],'addLibro') == 0){
+            
+            $titulo = $_POST['TITULO']; 
+            $sinopsis = $_POST['SINOPSIS']; 
+            $precio = $_POST['PRECIO']; 
+            $autor = $_POST['AUTOR']; 
+            $isbn = $_POST['ISBN']; 
+            $tema = $_POST['TEMA']; 
+            $tipo = $_POST['TIPO']; 
+            $coleccion = $_POST['COLECCION']; 
+            $aedicion = $_POST['AEDICION']; 
+            $edicion = $_POST['EDICION']; 
+            $paginas = $_POST['PAGINAS']; 
+            $peso = $_POST['PESO']; 
+            $firma = $_POST['FIRMA']; 
+            $img = $_POST['IMAGEN']; 
+            $cap1 = $_POST['CAPITULO1']; 
+            $costo = $_POST['COSTO']; 
+            $idActual = 0;
+            try{
+                    $stmt = $conexion->prepare("INSERT INTO `deotrotipo`.`libro` (`idLibro`, `Titulo`, `Sinopsis`, `Precio`, `Autor`, `ISBN`, `Tema`, `Tipo`, `Coleccion`, `AEdicion`, `Edicion`, `Paginas`, `Peso`, `Firma`, `Imagen`, `Capitulo1`, `Costo`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                    $stmt->bind_param('issdsssssisidsssd', $idActual, $titulo, $sinopsis, $precio, $autor, $isbn, $tema, $tipo, $coleccion, $aedicion, $edicion, $paginas, $peso, $firma, $img, $cap1, $costo );
+                    $stmt->execute();
+                    if($stmt->affected_rows == 1){
+                        $respuesta = array (
+                            'id' => $stmt->insert_id,
+                            'respuesta' => 'correcto'
+                        );
+                    }else{
+                        $respuesta = array (
+                            'respuesta' => 'incorrecto'
+                        );
+                    }
+                    $stmt->close();
+                    //$conexion->close();
+            }catch(Exception $e){
+                    $respuesta = array(
+                        'respuesta' => $e->getMessage()
+                    );
+            }
+            echo json_encode($respuesta);
+
+        }
+
+        if(strcmp($_POST['accion'],'editLibro') == 0){
+            
+            $titulo = $_POST['TITULO']; 
+            $sinopsis = $_POST['SINOPSIS']; 
+            $precio = $_POST['PRECIO']; 
+            $autor = $_POST['AUTOR']; 
+            $isbn = $_POST['ISBN']; 
+            $tema = $_POST['TEMA']; 
+            $tipo = $_POST['TIPO']; 
+            $coleccion = $_POST['COLECCION']; 
+            $aedicion = $_POST['AEDICION']; 
+            $edicion = $_POST['EDICION']; 
+            $paginas = $_POST['PAGINAS']; 
+            $peso = $_POST['PESO']; 
+            $firma = $_POST['FIRMA']; 
+            $img = $_POST['IMAGEN']; 
+            $cap1 = $_POST['CAPITULO1']; 
+            $costo = $_POST['COSTO']; 
+  
+        
+        
+            $stmt = $conexion->prepare("UPDATE `deotrotipo`.`libro` SET `Titulo` = ?, `Sinopsis` = ?, `Precio` = ?, `Autor` = ?, `ISBN` = ?, `Tema` = ?, `Tipo` = ?, `Coleccion` = ?, `AEdicion` = ?, `Edicion` = ?, `Paginas` = ?, `Peso` = ?, `Firma` = ?, `Imagen` = ?, `Capitulo1` = ?, `Costo` = ? WHERE (`ISBN` = ?);");
+            $stmt->bind_param('ssdsssssisidsssds',  $titulo, $sinopsis, $precio, $autor, $isbn, $tema, $tipo, $coleccion, $aedicion, $edicion, $paginas, $peso, $firma, $img, $cap1, $costo, $isbn);
+            $res = $stmt->execute();
+            if($res){
+                $respuesta = array (
+                    'id' => $stmt->insert_id,
+                    'respuesta' => 'correcto'
+                );
+            }else{
+                $respuesta = array (
+                    'respuesta' => 'incorrecto'
+                );
+            }
+                    
+         
+            echo json_encode($respuesta);
+
+        }
+      
+        if(strcmp($_POST['accion'],'deleteLibro') == 0){
+            
+           
+  
+            $isbn = $_POST['ISBN'];
+            
+                $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`libro` WHERE ISBN = ?");
+                $stmt->bind_param('s',$isbn);
+                $res = $stmt->execute();
+
+                if($res){
+                    $respuesta = array (
+                        'id' => $stmt->insert_id,
+                        'respuesta' => 'correcto'
+                    );
+                }else{
+                    $respuesta = array (
+                        'respuesta' => 'incorrecto'
+                    );
+                }
+                    
+         
+            echo json_encode($respuesta);
+        }
+        
+        $conexion->close();
+
+    }else{
+        header('Location: http://localhost/EditorialOtroTipo/View/Admin/Login.php?r=4');
+    }
+
+?>

@@ -72,6 +72,12 @@
             </script>
         <?php endif; ?>
 
+        <?php if($_GET['r'] == 5): ?>
+            <script>
+                swal("Hasta luego!","Se cerró la sesión correctamente.",'success');
+            </script>
+        <?php endif; ?>
+
     <?php endif; ?>
 
 
