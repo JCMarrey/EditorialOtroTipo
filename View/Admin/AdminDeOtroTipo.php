@@ -97,10 +97,10 @@
                 <div id="tab-catalogo">
 
                     <div class="search-container-Admin">
-                        <form action="#">
-                            <input type="text" placeholder="Buscar en catálogo" class="rounded search-input-Admin" name="search">
-                            <button type="submit" class ="icon-search"><i class="fa fa-search"></i></button>
-                        </form>
+                        
+                            <input  id="Criterio-busqueda" type="text" placeholder="Buscar en catálogo" class="rounded search-input-Admin" name="search">
+                            <button type="submit" id="busca-Libro" class ="icon-search"><i class="fa fa-search"></i></button>
+                        
                     </div>
 
                     <div id="btnAdd-catalogo">

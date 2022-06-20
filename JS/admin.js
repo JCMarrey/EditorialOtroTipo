@@ -4,11 +4,14 @@ $(document).ready(function () {
 
     selectedTabsEfect();
     document.getElementById("systemName").innerHTML = "Catálogo";
+    const inputBuscador = document.querySelector("#Criterio-busqueda");
+    inputBuscador.addEventListener('input', buscarLibro);
+
     addLibro();
     viewLibro();
     editLibro();
     deleteLibro();
-
+    buscarLibro();
 });
 
 
@@ -236,13 +239,7 @@ function editLibro(){
                     xhr.send(infoEditLibro);
 
                 }
-
 //------------------------------------------------------------------------------------
-
-
-
-
-
             }
         }
         //Enviar los datos
@@ -419,3 +416,19 @@ function mostrarNotificacion(mensaje,clase){
         },4000);
     },100);
 }
+
+function buscarLibro(){
+    const busqueda = new RegExp(document.getElementById('Criterio-busqueda').value, "i");
+    const registros = document.querySelectorAll('tbody tr');
+    console.log(registros);
+    registros.forEach(registro =>{
+        registro.style.display = 'none';
+        if(registro.childNodes[3].textContent.replace(/\s/g, " ").search(busqueda) != -1 ){
+            registro.style.display = 'table-row';
+            
+        }
+    });
+}
+
+
+
