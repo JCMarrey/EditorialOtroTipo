@@ -50,10 +50,8 @@
   
     <body>
 
-
-
       <div id="carrito">
-        <table id="lista-carrito" class="table">
+        <table id="lista-carrito" class="table" >
           <thead>
             <tr>
               <th>
@@ -130,8 +128,26 @@
                       <div class="figure">
                           <div class="capa">
                               <h4 id="firmaAutor">LibroFirmado</h3>
-                                  <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur eniet dolore totam dolores officia obcaecati labore laborum a 
-                                      <button class="btnVermas" id="btnVermas" ><a href="/View/detallesLibro.php">Ver más..</a></button>  
+                                  <p id="textoPDF">
+
+                                    <?php
+                                        $sufijo = "...";
+                                        $Sinopsis = $row['Sinopsis'];
+                                        $AuxTexto = "";
+                                        $contents=file_get_contents($Sinopsis);
+                                        $lines=explode("\n",$contents);
+                                        foreach($lines as $line){
+                                            $AuxTexto = $AuxTexto . $line;
+                                        }
+                                        //cadena de 30 carácteres...
+                                        if( strlen($AuxTexto) > 100 ){
+                                            $AuxTexto = substr($AuxTexto,0,100) .$sufijo;
+                                            echo $AuxTexto;
+                                        }else{
+                                          echo $AuxTexto;  
+                                        }            
+                                    ?>
+                                      <button class="btnVermas" id="btnVermas" ><a href="/View/detallesLibro.php?idLibro=<?php echo $row['idLibro']; ?>">Ver más..</a></button>  
                                     <!---->
                                   </p>
                           </div>
@@ -164,7 +180,9 @@
                 </div>
             </div>  
             <?php } ?>
-
+          </div>
+        </div>
+      </div>
              
           <!--div para sidebar de carrito-->
       

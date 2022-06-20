@@ -197,7 +197,7 @@ function vaciarLocalStorage(){
     localStorage.clear();
 }
 
-/*
+
 
 function procesarPedido(e){
     e.preventDefault();
@@ -214,7 +214,7 @@ function procesarPedido(e){
         location.href = "/View/compra.php";
     }   
 }
-
+/*
 
 function buscarLibros(libros){
     $.ajax({

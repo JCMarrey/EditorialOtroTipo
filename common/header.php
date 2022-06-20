@@ -37,7 +37,7 @@
 <div class="navBar">
     
         <div class="navItem"><a href="">Quienes somos</a></div>
-        <div class="navItem"><a href="">Catálogo</a></div>
+        <div class="navItem"><a href="/View/catalogo.php">Catálogo</a></div>
 
         
 
