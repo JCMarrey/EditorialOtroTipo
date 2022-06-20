@@ -1,3 +1,31 @@
+<?php
+
+  require '../config/Database.php';
+
+  $db = new Database();
+
+  $con = $db->conectar();
+
+  //seleccionamos todos los libros
+
+  //$sql = $con->prepare("SELECT*FROM deotrotipo.libro");
+
+  
+//verificamos que lleva una categoría en el URL
+  if(isset($_GET['categoria'])){
+      $categoria = $_GET['categoria'];
+      $sql_libros= $con->prepare("SELECT*FROM deotrotipo.libro WHERE Coleccion='$categoria'");
+      //SELECT*FROM deotrotipo.libro WHERE Coleccion = "Ficción De Otro Tipo";
+      $sql_libros->execute();
+      $result = $sql_libros->fetchAll(PDO::FETCH_ASSOC);
+  }else{
+    $sql_libros = $con->query("SELECT*FROM deotrotipo.libro");
+    $sql_libros->execute();
+    $result = $sql_libros->fetchAll(PDO::FETCH_ASSOC);
+  }
+  
+?>
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -14,13 +42,16 @@
   
         <link rel="stylesheet" href="../common/Normalize.css">
         <link rel="stylesheet" href="../common/estilos.css">
-  
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
         <title>Editorial Otro Tipo</title>
-
     </head>
   
     <body>
+
+
+
       <div id="carrito">
         <table id="lista-carrito" class="table">
           <thead>
@@ -42,14 +73,61 @@
         <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
       </div>
       <?php require_once("../common/header.php"); ?>
+
+
+      <div class="filtros">
+        <ul class="list-group">
+          <li class="list-group-item">Filtrar por:</li>
+            <li class="list-group-item">Categoria
+                  <div class="btn-group dropend">
+                      <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+                        <span>+</span>
+                      </button>
+                      <ul class="dropdown-menu"  style="text-decoration: none;">
+                       <!-- <li><a class="dropdown-item" href="#">Independientes De Otro Tipo</a></li>
+                        <li><a class="dropdown-item" href="#">Poesía</a></li>
+                        <li><a class="dropdown-item" href="#">FAS</a></li>
+                        <li><a class="dropdown-item" href="#">Didáctico</a></li>
+                        <li><a class="dropdown-item" href="#">Ficción</a></li>
+                        <li><a class="dropdown-item" href="#">Novedad</a></li>-->
+
+                        <?php	
+                        foreach($result as $row){
+                          $categoria=$row['Coleccion'];
+                        ?>
+                           
+                           <li><a class="dropdown-item" href="catalogo.php?categoria=<?php echo $categoria;?>"><?php echo $categoria?></a></li>
+                          
+                        <?php    
+                        }
+                        ?>
+                          <li><a class="dropdown-item" href="catalogo.php">Todos los libros</a></li>-->
+                      </ul>
+                  </div>
+            </li>
+            <li class="list-group-item">Precio</li>
+            <li class="list-group-item">Firma
+              <div class="btn-group dropend">
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+                          <span>+</span>
+                        </button>
+                        <ul class="dropdown-menu"  style="text-decoration: none;">
+                          <li><a class="dropdown-item" href="#">Con autógrafo</a></li>
+                          <li><a class="dropdown-item" href="#">Sin autógrafo</a></li>
+                        </ul>
+                  </div>
+            </li>
+        </ul>        
+      </div>
       
       <div class="containerProductos"  id="lista-productos">
           <div class="catalogoP">
             <div class="row row-cols-1 row-cols-md-3 g-2 text-center ">
-              <div class="col">
-                <div class="card" >          
-                  <div class="card-body">
-                    <div class="figure">
+              <?php  foreach($result as $row) { ?>
+                <div class="col">
+                  <div class="card" >          
+                    <div class="card-body">
+                      <div class="figure">
                           <div class="capa">
                               <h4 id="firmaAutor">LibroFirmado</h3>
                                   <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur eniet dolore totam dolores officia obcaecati labore laborum a 
@@ -57,14 +135,17 @@
                                     <!---->
                                   </p>
                           </div>
-                          <img  class="card-img-top" src="/img/p1.jpg"  alt="...">    
+                          
+                         <!-- <img  class="card-img-top" src="/img/p1.jpg"  alt="...">    -->
+     
+                        <img  class="card-img-top" src="<?php echo  $row['Imagen']; ?>" > 
                     </div> 
                     <div>
-                      <img  style="display:none" class="card-img-top" src="/img/p1.jpg"  alt="..."> 
-                      <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                      <p classs="card-text" id="autor">Autor</p>
-                      <p class="card-text" id="precio"  style="display:none;">$<span>500</span></p>
-                      <p class="card-text" id="pesoLibro" style="display:none;">kg</p>
+                      <img  style="display:none" class="card-img-top" src="<?php echo $row['Imagen']; ?>"> 
+                      <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
+                      <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
+                      <p class="card-text" id="precio"  style="display:none;">$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
+                      <p class="card-text" id="pesoLibro" style="display:none;"><?php echo $row['Peso']?></p>
                         
                       <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
                         <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
@@ -74,93 +155,22 @@
                       <div class="d-grid gap-3 d-md-block">
                         <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
                         <ul id="idProducto" style="display:none";>
-                          <li>1<li>
+                          <li><?php echo $row['idLibro'] ?><li>
                         </ul>
                         <!--<p class="idProducto" style="display:none"; id="producto-id">1</p>-->
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col">
-                <div class="card" >          
-                  <div class="card-body">
-                    <div class="figure">
-                          <div class="capa">
-                              <h4 id="firmaAutor">LibroFirmado</h3>
-                                  <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur eniet dolore totam dolores officia obcaecati labore laborum a 
-                                      <button class="btnVermas" ><a href="/View/detallesLibro.php">Ver más..</a></button>  
-                                    <!---->
-                                  </p>
-                          </div>
-                          <img  class="card-img-top" src="/img/p2.jpg"  alt="...">    
-                    </div> 
-                    <div>
-                    <img  style="display:none" class="card-img-top" src="/img/p2.jpg"  alt="..."> 
-                      <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                      <p classs="card-text" id="autor">Autor</p>
-                      <p class="card-text" id="precio"  style="display:none;">$<span>500</span></p>
-                      <p class="card-text" id="pesoLibro" style="display:none;">kg</p>
-                        
-                      <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                        <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
-                        <button class="btnS1" type="button" id="btnReproducirAudio"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                      </div>
-                      
-                      <div class="d-grid gap-3 d-md-block">
-                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
-                        <ul id="idProducto" style="display:none";>
-                          <li>2<li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>  
+            <?php } ?>
 
-              <div class="col">
-                <div class="card" >          
-                  <div class="card-body">
-                    <div class="figure">
-                          <div class="capa">
-                              <h4 id="firmaAutor">LibroFirmado</h3>
-                                  <p id="textoPDF">Lorem ddipsum dolor sit amet consectetur eniet dolore totam dolores officia obcaecati labore laborum a 
-                                      <button class="btnVermas" ><a href="/View/detallesLibro.php">Ver más..</a></button>  
-                                    <!---->
-                                  </p>
-                          </div>
-                          <img  class="card-img-top" src="/img/p3.jpg"  alt="...">    
-                    </div> 
-                    <div>
-                    <img  style="display:none" class="card-img-top" src="/img/p3.jpg"  alt="..."> 
-                      <h5 class="card-title" id="nombreLibro">NombreLibro</h5>
-                      <p classs="card-text" id="autor">Autor</p>
-                      <p class="card-text" id="precio"  style="display:none;">$<span>500</span></p>
-                      <p class="card-text" id="pesoLibro" style="display:none;">kg</p>
-                        
-                      <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                        <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
-                        <button class="btnS1" type="button" id="btnReproducirAudio"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
-                      </div>
-                      
-                      <div class="d-grid gap-3 d-md-block">
-                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
-                        <ul id="idProducto" style="display:none";>
-                          <li>3<li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              </div>
-            </div>   
-          </div> 
+             
           <!--div para sidebar de carrito-->
-      <script src="/JS/jquery-3.4.1.min.js"></script>
+      
       <script src="/JS/animaciones.js" type="text/javascript"></script>
-      <script src="/JS/funciones.js"></script>
+      <script src="/JS/funciones.js"></script>          
+      <script src="/JS/jquery-3.4.1.min.js"></script>
       <?php require_once("../common/footer.php"); ?>
     </body>
 </html>

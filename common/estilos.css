@@ -133,6 +133,16 @@
   
   
   /*clase Juan*/
+
+
+  .filtros{
+    width: 20rem;
+    margin-top: 12.5rem;
+    margin-left: 15rem;
+    float: left;
+    display: flex;
+    flex-direction: column;
+  }
   
   .card{
       position: relative;
@@ -145,7 +155,7 @@
       border: 1px solid rgb(0,0,0m,.125);
       border-radius: 1.5rem;
       width: 25rem;
-      height: 36rem;
+      height: 38rem;
       margin-block: 1rem;
     }
     
@@ -175,14 +185,13 @@
     
     #carrito{
   
-      margin-left: 200rem;
-      height: 120rem;
+      margin-left: 180rem;
+      height: 150rem;
       background-color: #E6E6E6;
       position: absolute;
       display: none;
-      width: 30rem;
+      width: 50rem;
     }
-    
     
   .card-title{
       color:   #333333;

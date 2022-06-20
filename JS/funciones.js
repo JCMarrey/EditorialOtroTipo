@@ -1,9 +1,9 @@
-
 const carrito = document.getElementById('carrito');
 const productos = document.getElementById('lista-productos');
 const listaProductos = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito'); 
 const verMas = document.getElementById('btnVermas');
+const procesarPedidoBtn= document.getElementById('procesar-pedido');
 
 cargarEventos();
 
@@ -12,7 +12,6 @@ function cargarEventos(){
 
     //se ejecuta cuando se presiona agregar carrito
     productos.addEventListener('click',(e) => {
-       /* document.getElementById("carrito").classList.toggle('active');*/
             comprarProducto(e);
        
     });
@@ -25,6 +24,21 @@ function cargarEventos(){
     });
 
     document.addEventListener('DOMContentLoaded',leerProductosLocalStorage());
+
+    procesarPedidoBtn.addEventListener('click',(e)=>{
+                procesarPedido(e);
+    })
+
+    $(document).on('keyup','#busqueda',function(){
+        var valorBusqueda = $(this).val();
+        if(valorBusqueda != ""){
+            buscarLibros(valorBusqueda);
+        }else{
+            buscarLibros();
+        }
+    
+    });
+
 }
 
 function comprarProducto(e){
@@ -182,3 +196,36 @@ function leerProductosLocalStorage(){
 function vaciarLocalStorage(){
     localStorage.clear();
 }
+
+/*
+
+function procesarPedido(e){
+    e.preventDefault();
+
+    if(obtenerProductosLocalStorage().length === 0){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Tu carrito esta vacío, agrega un producto por favor',
+            time : 2000,
+            showConfirmButton: false
+          })
+    }else{
+        location.href = "/View/compra.php";
+    }   
+}
+
+
+function buscarLibros(libros){
+    $.ajax({
+        url : 'busquedaLibros.php',
+        type : 'POST',
+        dataType : 'php',
+        data : {libros: libros},
+    })
+    .done(function(resultado){
+
+        $("#listaBusqueda").html(resultado);
+    })
+}*/
+

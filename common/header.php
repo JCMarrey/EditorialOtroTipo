@@ -6,7 +6,7 @@
 
     <div class="search-container">
         <form action="#">
-            <input type="text" placeholder="Buscar en catálogo" class="rounded search-input" name="search">
+            <input type="text" placeholder="Buscar en catálogo" class="rounded search-input" name="search" id="busqueda">
             <button type="submit" class ="icon-search"><i class="fa fa-search"></i></button>
         </form>
     </div>
