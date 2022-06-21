@@ -29,15 +29,6 @@ function cargarEventos(){
                 procesarPedido(e);
     })
 
-    $(document).on('keyup','#busqueda',function(){
-        var valorBusqueda = $(this).val();
-        if(valorBusqueda != ""){
-            buscarLibros(valorBusqueda);
-        }else{
-            buscarLibros();
-        }
-    
-    });
 
 }
 
@@ -214,6 +205,18 @@ function procesarPedido(e){
         location.href = "/View/compra.php";
     }   
 }
+
+function leerPDF(){
+  console.log("clcik...");
+  var url =  $('#btnLeerF').val();
+  console.log(url);
+}
+
+
+
+
+
+
 /*
 
 function buscarLibros(libros){

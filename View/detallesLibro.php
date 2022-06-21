@@ -34,7 +34,7 @@ if($idLibro == ''){
     $sql_detalleLibro->execute([$idLibro]);
     //verificamos que exista al menos 1 elemento con ese ID:
     if($sql_detalleLibro->fetchColumn() >0){
-        $sql_detalleLibro= $con->prepare("SELECT Titulo, Precio, Imagen, Sinopsis, Autor, ISBN, Coleccion, Edicion, Paginas FROM deotrotipo.libro WHERE idLibro=? ");
+        $sql_detalleLibro= $con->prepare("SELECT Titulo, Precio, Imagen, Sinopsis, Autor, ISBN, Coleccion, Edicion, Paginas , Audio FROM deotrotipo.libro WHERE idLibro=? ");
         $sql_detalleLibro->execute([$idLibro]);
         $row = $sql_detalleLibro->fetch(PDO::FETCH_ASSOC);
 
@@ -47,6 +47,7 @@ if($idLibro == ''){
         $Coleccion = $row['Coleccion'];
         $Edicion = $row['Edicion'];
         $Paginas = $row['Paginas'];
+        $Audio = $row['Audio'];
 
 
         $AuxTexto = "";
@@ -119,7 +120,16 @@ if($idLibro == ''){
             </div>
         </div>
         <div id="infoLibro">
+            
             <p id="textoPDF"><?php echo $AuxTexto ?></p>
+          
+            <div class="audio" id="audio">
+                    <p> Narrativa del libro.... </p>
+                    <audio controls autoplay>
+                        <source src="<?php echo $Audio ?>" type="audio/wav">
+                        Tu navegador no es compatible con el audio...
+                    </audio>
+            </div>
         </div>    
         <div id="asideDer">
             <div id="borderTabla">

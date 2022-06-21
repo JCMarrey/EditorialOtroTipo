@@ -135,6 +135,14 @@
   /*clase Juan*/
 
 
+
+
+  .audio{
+    margin-top: 5rem;
+    
+
+  }
+
   .filtros{
     width: 20rem;
     margin-top: 12.5rem;
@@ -164,7 +172,8 @@
       flex: 1 1 auto;
     }
     
-    .btnS1{
+
+.btnS1{
       color: blanchedalmond;
       background-color: #CB123F;
       border-color: #CB123F;
@@ -172,21 +181,21 @@
       border-radius: 2.18rem;
       margin-left: 0.6rem;
       
-    }
+}
     
-    .btnS2{
+.btnS2{
       color: blanchedalmond;
       background-color: #3D97CB;
       border-color: #3D97CB;
       border-style: solid;
       border-radius: 2.18rem;
       margin-left: 0.18rem;
-    }
+}
     
     #carrito{
       margin-top: 0;
       margin-left: 180rem;
-      height: 113vh;
+      height: 100%;
       background-color: #E6E6E6;
       position: absolute;
       display: none;
@@ -236,7 +245,7 @@
       height: 31.25rem;
       float: left;
       text-align: justify;
-      margin-left: 20rem;
+      margin-left: 15rem;
     }
     
     #asideDer{
@@ -244,7 +253,7 @@
       width: 30rem; 
       height: 31.25rem;  
       float: left;
-      margin-left: 30rem;
+      margin-left: 10rem;
     }
     
     #nombreLibro{

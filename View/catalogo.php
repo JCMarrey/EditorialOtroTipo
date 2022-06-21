@@ -162,10 +162,13 @@
                       <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
                       <p class="card-text" id="precio"  style="display:none;">$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
                       <p class="card-text" id="pesoLibro" style="display:none;"><?php echo $row['Peso']?></p>
+                      
+                      <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">                    
+                        <!--<button class="btnS1"  type="button" id="btnLeerF"><a style="text-decoration: none;" target="_blank" href="/sinopsis/cuarta de forros Amar en otro idioma.pdf">Leer un fragmento</a></button>-->
                         
-                      <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">
-                        <button class="btnS1"  type="button" id="btnLeerF"><a href="https://es-la.facebook.com/"></a>Leer un fragmento</button>
-                        <button class="btnS1" type="button" id="btnReproducirAudio"><a href="https://es-la.facebook.com/" ><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
+                        <button class="btnS1"  type="button" id="btnLeerF"><a style="text-decoration: none; color: blanchedalmond;" target="_blank" href="<?php echo $row['Capitulo1'];  ?>">Leer un fragmento</a></button>                  
+                        <button class="btnS1" type="button" id="btnReproducirAudio"><a  href="detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>"><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
+                        
                       </div>
                       
                       <div class="d-grid gap-3 d-md-block">
@@ -183,9 +186,9 @@
           </div>
         </div>
       </div>
-             
+                                         
           <!--div para sidebar de carrito-->
-      
+
       <script src="/JS/animaciones.js" type="text/javascript"></script>
       <script src="/JS/funciones.js"></script>          
       <script src="/JS/jquery-3.4.1.min.js"></script>
