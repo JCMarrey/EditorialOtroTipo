@@ -91,11 +91,13 @@ function insertarProductoCarrito(producto){
             <td>${producto.titulo}</td>
             <td>${producto.precio}</td>
             <td>${producto.cantidad}</td>
-            <td>${producto.precio= producto.precio*producto.cantidad}
+            <td>${producto.precio*producto.cantidad}
+            
             <td>
-                <a href="#" class="borrar-producto fas-fa-times.circle">X
+                
+                    <i class="fa-solid fa-x"></i>
                     <p style="display:none"; id="idCarritoP">${producto.id}</p>
-                </a>
+                
             </td>
     `; 
     listaProductos.appendChild(row);

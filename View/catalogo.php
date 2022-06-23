@@ -6,23 +6,20 @@
 
   $con = $db->conectar();
 
-  //seleccionamos todos los libros
 
-  //$sql = $con->prepare("SELECT*FROM deotrotipo.libro");
 
-  
-//verificamos que lleva una categoría en el URL
+
   if(isset($_GET['categoria'])){
-      $categoria = $_GET['categoria'];
-      $sql_libros= $con->prepare("SELECT*FROM deotrotipo.libro WHERE Coleccion='$categoria'");
-      //SELECT*FROM deotrotipo.libro WHERE Coleccion = "Ficción De Otro Tipo";
-      $sql_libros->execute();
-      $result = $sql_libros->fetchAll(PDO::FETCH_ASSOC);
-  }else{
-    $sql_libros = $con->query("SELECT*FROM deotrotipo.libro");
+    $categoria = $_GET['categoria'];
+    $sql_libros= $con->prepare("SELECT*FROM deotrotipo.libro WHERE Coleccion='$categoria'");
     $sql_libros->execute();
     $result = $sql_libros->fetchAll(PDO::FETCH_ASSOC);
-  }
+}else{
+  $sql_libros = $con->query("SELECT*FROM deotrotipo.libro");
+  $sql_libros->execute();
+  $result = $sql_libros->fetchAll(PDO::FETCH_ASSOC);
+}
+
   
 ?>
 
@@ -50,27 +47,9 @@
   
     <body>
 
-      <div id="carrito">
-        <table id="lista-carrito" class="table" >
-          <thead>
-            <tr>
-              <th>
-                <button class="btnS2"  type="button" onclick="Ocultar()"  id="btnOcultarNB" >X</button>
-              </th>
-              <th>Imagen</th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
-        <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
-      </div>
+
       <?php require_once("../common/header.php"); ?>
+      <?php require_once("../common/carritoModal.php"); ?>
 
 
       <div class="filtros">
@@ -82,15 +61,13 @@
                         <span>+</span>
                       </button>
                       <ul class="dropdown-menu"  style="text-decoration: none;">
-                       <!-- <li><a class="dropdown-item" href="#">Independientes De Otro Tipo</a></li>
-                        <li><a class="dropdown-item" href="#">Poesía</a></li>
-                        <li><a class="dropdown-item" href="#">FAS</a></li>
-                        <li><a class="dropdown-item" href="#">Didáctico</a></li>
-                        <li><a class="dropdown-item" href="#">Ficción</a></li>
-                        <li><a class="dropdown-item" href="#">Novedad</a></li>-->
 
-                        <?php	
-                        foreach($result as $row){
+                        <?php
+                           $sql_categorias = $con->prepare("SELECT DISTINCT Coleccion FROM deotrotipo.libro");
+                           $sql_categorias->execute();
+                           $resultCate = $sql_categorias->fetchAll(PDO::FETCH_ASSOC); 
+                        
+                        foreach($resultCate as $row){
                           $categoria=$row['Coleccion'];
                         ?>
                            
@@ -117,7 +94,9 @@
             </li>
         </ul>        
       </div>
-      
+
+
+
       <div class="containerProductos"  id="lista-productos">
           <div class="catalogoP">
             <div class="row row-cols-1 row-cols-md-3 g-2 text-center ">
@@ -151,8 +130,6 @@
                                     <!---->
                                   </p>
                           </div>
-                          
-                         <!-- <img  class="card-img-top" src="/img/p1.jpg"  alt="...">    -->
      
                         <img  class="card-img-top" src="<?php echo  $row['Imagen']; ?>" > 
                     </div> 

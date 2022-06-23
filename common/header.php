@@ -13,8 +13,10 @@
 
     <div class="header-options">
         <div class="header-option">
-            <i class="fas fa-shopping-cart icono-header"></i>
-                <p>Carrito</p>
+            <a type="button" onclick="Mostrar()">
+                 <i class="fas fa-shopping-cart icono-header"></i>
+            </a>
+            <p>Carrito</p>
         </div>
         <div class="header-option">
             <i class="fa fa-map-marked icono-header" aria-hidden="true"></i>

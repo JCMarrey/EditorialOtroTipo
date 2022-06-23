@@ -182,6 +182,14 @@
       margin-left: 0.6rem;
       
 }
+
+
+#vaciar-carrito,
+#procesar-pedido{
+  width: 10rem;
+  font-size: larger
+  
+}
     
 .btnS2{
       color: blanchedalmond;
@@ -194,12 +202,12 @@
     
     #carrito{
       margin-top: 0;
-      margin-left: 180rem;
+      margin-left: 175rem;
       height: 100%;
       background-color: #E6E6E6;
       position: absolute;
       display: none;
-      width: 50rem;
+      width: 55rem;
       z-index: 1;
     }
     
@@ -227,29 +235,68 @@
       font-size: relative;
       border: none;
     }
-    .detallesLibro{
+
+#TextoCarritoCompras{
+  text-align: center;
+}
+
+.modalContenidoLibro{
+  float: left;
+}
+.modalContenidoLibro{
+  text-align: center;
+  font-size: medium;
+  margin-left: 2rem;
+
+}
+.imgModal{
+  width: 15rem;
+  height: 18rem;
+}
+
+.modalTabla{
+  margin-top: 3rem;
+  float: left;
+  height: auto;
+  width: 40rem;
+  margin-left: 10rem;
+}
+
+
+.btn-tiendas{
+  width: auto;
+  float: left;
+  height: 10rem;
+  margin-left: 10rem;
+  text-align: center;
+}
+
+
+.detallesLibro{
       height: 65rem;
       width: auto;
       margin-top: 10rem;
       margin-left: 10%;
-      
-    }
-    #asideIzq{
+}
+.asideIzq{
       width: 30rem; 
       height: 40rem;  
       float: left;
-    }
+      margin-left: 0rem;
+      text-align: center;
+
+}
     
     #infoLibro{
-      width: 70rem;
+      width: 50rem;
       height: 31.25rem;
       float: left;
       text-align: justify;
-      margin-left: 15rem;
+      margin-left: 10rem;
     }
     
     #asideDer{
-      margin-right: 1.87;
+      margin-right: 0;
       width: 30rem; 
       height: 31.25rem;  
       float: left;

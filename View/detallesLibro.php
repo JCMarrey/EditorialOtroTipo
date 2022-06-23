@@ -6,23 +6,6 @@
 
   $con = $db->conectar();
 
-  //seleccionamos todos los libros
-
-  //$sql = $con->prepare("SELECT*FROM deotrotipo.libro");
-
-  
-//verificamos que lleva una categoría en el URL
-
-
-  /*if(isset($_GET['idLibro'])){
-      $idLibro = $_GET['idLibro'];
-      $sql_detalleLibro= $con->prepare("SELECT*FROM deotrotipo.libro WHERE idLibro='$idLibro'");
-      //SELECT*FROM deotrotipo.libro WHERE Coleccion = "Ficción De Otro Tipo";
-      $sql_libros->execute();
-      $result = $sql_libros->fetchAll(PDO::FETCH_ASSOC);
-  }
-*/
-//si existe de manda el id, caso contrario se queda en el menú...
 $idLibro = isset($_GET['idLibro']) ?  $_GET['idLibro'] : '';
 
 if($idLibro == ''){
@@ -34,7 +17,7 @@ if($idLibro == ''){
     $sql_detalleLibro->execute([$idLibro]);
     //verificamos que exista al menos 1 elemento con ese ID:
     if($sql_detalleLibro->fetchColumn() >0){
-        $sql_detalleLibro= $con->prepare("SELECT Titulo, Precio, Imagen, Sinopsis, Autor, ISBN, Coleccion, Edicion, Paginas , Audio FROM deotrotipo.libro WHERE idLibro=? ");
+        $sql_detalleLibro= $con->prepare("SELECT Titulo, Precio, Imagen, Sinopsis, Autor, ISBN, Coleccion, Edicion, Paginas , Audio , Gandhi, Sotano, Porrua, CarlosFuentes, Amazon FROM deotrotipo.libro WHERE idLibro=? ");
         $sql_detalleLibro->execute([$idLibro]);
         $row = $sql_detalleLibro->fetch(PDO::FETCH_ASSOC);
 
@@ -49,13 +32,28 @@ if($idLibro == ''){
         $Paginas = $row['Paginas'];
         $Audio = $row['Audio'];
 
-
         $AuxTexto = "";
         $contents=file_get_contents($Sinopsis);
         $lines=explode("\n",$contents);
         foreach($lines as $line){
          $AuxTexto = $AuxTexto . $line;
-        }    
+        }
+        
+        $Amazon = $row['Amazon'];
+        $Porrua = $row['Porrua'];
+        $CarlosFuentes = $row['CarlosFuentes'];
+        $Gandhi = $row['Gandhi'];
+        $Sotano = $row['Sotano'];
+
+        function evaluar($link){
+            $estilos = ["Comprar","green"];
+            if($link === NULL){
+                return  $estilos =["No disponible","BECABC"];
+            }else{
+                return $estilos;
+            }
+        }
+
     }
         
 }
@@ -79,53 +77,150 @@ if($idLibro == ''){
     <link rel="stylesheet" href="../common/Normalize.css">
     <link rel="stylesheet" href="../common/estilos.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>Editorial Otro Tipo</title>
 </head>
 
 
 <body>
    <?php require_once("../common/header.php"); ?>
+   <?php require_once("../common/carritoModal.php"); ?>
    <div class="detallesLibro">
-        <div id="asideIzq">
-            <div>
-                <img class="imgDetallesLibro" src="<?php echo $Imagen ?>" alt="...">
-            </div>
-            <div id="nombreLibro" style="padding-bottom: 30px; padding-top: 30px;">
-                <?php echo $Titulo ?>
-            </div>
-            <div>
-                <div class="d-grid gap-3 d-md-block">
-                    <ul style="background-color: #F4F3F4; border-radius:10px;">
-                    <div id="detallesLibroPrecio">$<?php  echo $Precio?></div> 
-                    <div class="btn-group" role="group" aria-label="Basic outlined example"">
-                        <button type="button" class="btn btn-outline-primary" id="aumentarC">-</button>
-                        <input id="detallesLibroCantidad" type="number" min="1" pattern="^[0-9]+" value="1">
-                        <button type="button" class="btn btn-outline-primary" id="disminuirC">+</button>
-                    </div>
+        <div class="asideIzq" id="lista-productos">
+                    <div class="card-body">
+                        <img  class="rounded mx-auto d-block" src="<?php echo  $row['Imagen']; ?>" > 
+                    </div> 
+                      <img  style="display:none" class="card-img-top" src="<?php echo $row['Imagen']; ?>"> 
+                      <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
+                      <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
+                      <p class="card-text" id="precio"  style="font-size: 4rem;" >$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
+                      <p class="card-text" id="pesoLibro" style="display:none;"><?php echo $row['Peso']?></p>
 
-                    <!--<div class="d-grid gap-3 d-md-block">
-                        <button class="btnS1D agregar-producto-c" type="button" onclick="Mostrar()">Comprar</button>
-                        <ul class="fas fa-shopping-cart icono-header" id="idProducto" style="display:none";>
-                          <li><?php echo $row['idLibro'] ?><li>
+                      <div>
+                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
+                        <ul id="idProducto" style="display:none";>
+                          <li><?php echo $idLibro ?><li>
                         </ul>
-                        <p class="idProducto" style="display:none"; id="producto-id">1</p>
-                    </div>-->
 
-                    <a  class="btnS1D"  type="button" onclick="Mostrar()">
-                            <i class="fas fa-shopping-cart icono-header"></i>
-                            Añadir al carrito             
-                    </a>
-                    </ul>
+                     </div>
+        </div>            
+           <!-- Button trigger modal -->
+
+        <div class="btn-tiendas">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTiendas">
+                <h3>Puedes encontrarlo en (Dar Click)</h3>
+            </button>
+        </div>
+
+    <!---MODAL PARA VER LAS TIENDAS--->
+
+        <!-- Modal -->
+    <div class="modal fade" id="modalTiendas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="exampleModalLabel">Editorial De Otro Tipo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modalContenidoLibro">
+                        <div id="nombreAutor" style="padding-bottom: 30px; padding-top: 30px;">
+                            <?php echo $Autor ?>
+                        </div>
+                        <div>
+                            <img class="imgModal" src="<?php echo $Imagen ?>" alt="...">
+                        </div>
+                        <div id="modalTitulo" style="padding-bottom: 30px; padding-top: 30px;">
+                            <?php echo $Titulo ?>
+                        </div>
+                        
+                            
+                        <div id="modalPrecio" style="font-size: 5rem">$<?php  echo $Precio?></div> 
+                    </div>
+                    <div class="modalTabla">
+                      
+                        <table class="table table-borderless"  >
+                            <tittle> <h3>Elige tu tienda favorita:<h3> </tittle>
+                            <tbody>
+                                <tr>
+                                    <td id="iconoGandhi">
+                                        <img src="/Icons/logo-gandhi.jpg" alt = "... ">
+                                    </td>
+                                
+                                    <td id="Gandhi">
+                                        <?php 
+                                                $cadena = evaluar($Gandhi);
+                                                implode(", ", $cadena);
+                                        ?>
+                                        <a href="<?php echo $Gandhi ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="iconoSotano">
+                                        <img src="/Icons/logo-sotano.jpg" alt="" >
+                                    </td>
+                                
+                                    <td id="Sotano">
+                                        <?php 
+                                                $cadena = evaluar($Sotano);
+                                                implode(", ", $cadena);
+                                        ?>
+                                        <a href="<?php echo $Sotano ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="iconoPorrua">
+                                        <img src="/Icons/logo-porrua.jpg" alt="" >
+                                    </td>
+                                    <td id="Porrua">
+                                        <?php 
+                                                $cadena = evaluar($Porrua);
+                                                implode(", ", $cadena);
+                                        ?>
+                                        <a href="<?php echo $Porrua ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="iconoAmazon">
+                                        <img src="/Icons/logo-amazon.png" alt="" >
+                                    </td>
+                                    
+                                    <td id="Amazon">
+                                        <?php 
+                                            $cadena = evaluar($Amazon);
+                                            implode(", ", $cadena);
+                                        ?>
+                                        <a href="<?php echo $Amazon ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="iconoCarlosFuentes">
+                                        <img src="/Icons/logo-carlos-fuentes.png" alt="" >
+                                    </td>
+                                    
+                                    <td id="CarlosFuentes">
+                                        <?php 
+                                                $cadena = evaluar($CarlosFuentes);
+                                                implode(", ", $cadena);
+                                        ?>
+                                        <a href="<?php echo $CarlosFuentes ?>" tanget="_blank" class="btn  btn-lg btn-primary"  tabindex="-1"  aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>    
                 </div>
             </div>
         </div>
+    </div>
         <div id="infoLibro">
             
             <p id="textoPDF"><?php echo $AuxTexto ?></p>
           
             <div class="audio" id="audio">
                     <p> Narrativa del libro.... </p>
-                    <audio controls autoplay>
+                    <audio controls>
                         <source src="<?php echo $Audio ?>" type="audio/wav">
                         Tu navegador no es compatible con el audio...
                     </audio>
