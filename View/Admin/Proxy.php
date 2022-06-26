@@ -26,7 +26,6 @@
         if(strcmp($_POST['accion'],'addLibro') == 0){
             
             $titulo = $_POST['TITULO']; 
-            $sinopsis = $_POST['SINOPSIS']; 
             $precio = $_POST['PRECIO']; 
             $autor = $_POST['AUTOR']; 
             $isbn = $_POST['ISBN']; 
@@ -38,10 +37,34 @@
             $paginas = $_POST['PAGINAS']; 
             $peso = $_POST['PESO']; 
             $firma = $_POST['FIRMA']; 
-            $img = $_POST['IMAGEN']; 
-            $cap1 = $_POST['CAPITULO1']; 
             $costo = $_POST['COSTO']; 
             $idActual = 0;
+
+           
+            $img = $_POST['IMAGEN']; /////
+            $cap1 = $_POST['CAPITULO1']; ///
+
+            $sinopsis = $_FILES['archSinopsis']['name'];
+            //$sinopsis = $_POST['SINOPSIS']; ///
+            $tipoSinopsis = $_FILES['archSinopsis']['type'];
+            $sizeSinopsis = $_FILES['archSinopsis']['size'];
+            
+            //Archivo de maximo 10 MB
+            if($sizeSinopsis<=11000000){
+    
+               
+                    $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Libros/$isbn/";
+                
+                    if(!file_exists($carpetaDestino)){
+                        mkdir($carpetaDestino); 
+                        //move_uploaded_file($_FILES['archSinopsis']['tmp_name'],$carpetaDestino.$sinopsis);
+                    }
+                    move_uploaded_file($_FILES['archSinopsis']['tmp_name'],$carpetaDestino.$sinopsis);
+                
+          
+           
+            }
+
             try{
                     $stmt = $conexion->prepare("INSERT INTO `deotrotipo`.`libro` (`idLibro`, `Titulo`, `Sinopsis`, `Precio`, `Autor`, `ISBN`, `Tema`, `Tipo`, `Coleccion`, `AEdicion`, `Edicion`, `Paginas`, `Peso`, `Firma`, `Imagen`, `Capitulo1`, `Costo`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
                     $stmt->bind_param('issdsssssisidsssd', $idActual, $titulo, $sinopsis, $precio, $autor, $isbn, $tema, $tipo, $coleccion, $aedicion, $edicion, $paginas, $peso, $firma, $img, $cap1, $costo );
@@ -109,26 +132,27 @@
       
         if(strcmp($_POST['accion'],'deleteLibro') == 0){
             
-           
-  
             $isbn = $_POST['ISBN'];
+            $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Libros/$isbn/";
             
-                $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`libro` WHERE ISBN = ?");
-                $stmt->bind_param('s',$isbn);
-                $res = $stmt->execute();
+            $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`libro` WHERE ISBN = ?");
+            $stmt->bind_param('s',$isbn);
+            $res = $stmt->execute();
 
-                if($res){
-                    $respuesta = array (
-                        'id' => $stmt->insert_id,
-                        'respuesta' => 'correcto'
-                    );
-                }else{
-                    $respuesta = array (
-                        'respuesta' => 'incorrecto'
-                    );
-                }
-                    
-         
+            if($res){
+                array_map('unlink', glob("$carpetaDestino*.*"));
+                rmdir($carpetaDestino);
+                $respuesta = array (
+                    'id' => $stmt->insert_id,
+                    'respuesta' => 'correcto'
+                );
+            }else{
+                $respuesta = array (
+                    'respuesta' => 'incorrecto'
+                );
+            }
+                
+        
             echo json_encode($respuesta);
         }
         

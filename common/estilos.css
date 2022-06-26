@@ -833,3 +833,9 @@
 .visible{
   opacity: 1;
 }
+
+.esp-form-field{
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}

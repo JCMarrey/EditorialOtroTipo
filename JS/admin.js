@@ -31,8 +31,8 @@ function addLibro(){
         const paginas = $('#addL-Form-Paginas').val();
         const peso = $('#addL-Form-Peso').val();
         const firma = $('#addL-Form-Firma').val();
-        const imagen = $('#addL-Form-Imagen').val();
-        const capitulo1 = $('#addL-Form-Capitulo1').val();
+        const imagen = $('#addL-Form-Imagen').val().replace(/C:\\fakepath\\/i, '');
+        const capitulo1 = $('#addL-Form-Capitulo1').val().replace(/C:\\fakepath\\/i, '');
         const costo = $('#addL-Form-Costo').val();
 
 
@@ -56,29 +56,13 @@ function addLibro(){
         infoAddLibro.append('CAPITULO1', capitulo1);
         infoAddLibro.append('COSTO', costo);
 
+        console.log(sinopsis);
+        console.log(imagen);
+        console.log(capitulo1);
+
         
         
 
-        //Es necesario hace un AJAX para agregar el registro a la BD
-
-        //Llamado a AJAX (Crear el objeto)
-        const xhr = new XMLHttpRequest();
-        //Abrir la conexion
-        xhr.open('POST', '../Admin/Proxy.php', true);
-        //ProcesarRespuesta
-        xhr.onload = function(){
-            if(this.status === 200){  
-                //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
-                //const respuesta = JSON.parse(xhr.responseText);
-                //console.log(xhr.responseText);
-                //console.log("Se insertó el registro en la BD");
-                $("#ModalAddLibro").modal('hide');
-                location.assign('http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=1');
-            }
-        }
-        //Enviar los datos
-        xhr.send(infoAddLibro);
-        
         
 
     };
@@ -103,8 +87,7 @@ function viewLibro(){
         xhr.onload = function(){
             if(this.status === 200){  
                 //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
-                
-                console.log(xhr.responseText);
+            
                 var data=xhr.responseText;
                 var jsonResponse = JSON.parse(data);
        
@@ -125,6 +108,35 @@ function viewLibro(){
                 $("#viewL-Form-Capitulo1").attr('value',jsonResponse["Capitulo1"]);
                 $("#viewL-Form-Costo").attr('value',jsonResponse["Costo"]);
 
+                $("#viewL-Form-Sinopsis").attr('value',jsonResponse["Sinopsis"]);
+                $("#viewL-Form-Imagen").attr('value',jsonResponse["Imagen"]);
+                $("#viewL-Form-Capitulo1").attr('value',jsonResponse["Capitulo1"]);
+                $("#viewL-Form-Audio").attr('value',jsonResponse["Audio"]);
+                
+                if(jsonResponse["Firma"] === "FIRMADO" || jsonResponse["Firma"] === "on"){
+                    $("#viewL-Form-Firma").prop('checked', true); 
+                }
+
+                if(jsonResponse["Gandhi"] === "DISPONIBLE"){
+                    $("#viewL-Form-Gandhi").prop('checked', true); 
+                }
+                
+                if(jsonResponse["Porrua"] === "DISPONIBLE"){
+                    $("#viewL-Form-Porrua").prop('checked', true); 
+                }
+
+                if(jsonResponse["CarlosFuentes"] === "DISPONIBLE"){
+                    $("#viewL-Form-CarlosFuentes").prop('checked', true); 
+                }
+
+                if(jsonResponse["Sotano"] === "DISPONIBLE"){
+                    $("#viewL-Form-Sotano").prop('checked', true); 
+                }
+
+                if(jsonResponse["Amazon"] === "DISPONIBLE"){
+                    $("#viewL-Form-Amazon").prop('checked', true); 
+                }
+
             }
         }
         //Enviar los datos
@@ -138,9 +150,9 @@ function editLibro(){
 
         const isbnLibro = e.target.parentNode.id;
 
-        const infoViewLibro = new FormData();
-        infoViewLibro.append('accion','viewLibro');
-        infoViewLibro.append('ISBN',isbnLibro);
+        const infoEditLibro = new FormData();
+        infoEditLibro.append('accion','viewLibro');
+        infoEditLibro.append('ISBN',isbnLibro);
         
         //Es necesario hace un AJAX para agregar el registro a la BD
 
@@ -155,11 +167,14 @@ function editLibro(){
                 var data=xhr.responseText;
                 var jsonResponse = JSON.parse(data);
        
+                
+                $("#editL-Form-idLibro").attr('value',jsonResponse["idLibro"]);
                 $("#editL-Form-Titulo").attr('value',jsonResponse["Titulo"]);
-                $("#editL-Form-Sinopsis").attr('value',jsonResponse["Sinopsis"]);
+               
                 $("#editL-Form-Precio").attr('value',jsonResponse["Precio"]);
                 $("#editL-Form-Autor").attr('value',jsonResponse["Autor"]);
                 $("#editL-Form-ISBN").attr('value',jsonResponse["ISBN"]);
+                $("#editL-Form-ISBNF").attr('value',jsonResponse["ISBN"]);
                 $("#editL-Form-Tema").attr('value',jsonResponse["Tema"]);
                 $("#editL-Form-Tipo").attr('value',jsonResponse["Tipo"]);
                 $("#editL-Form-Coleccion").attr('value',jsonResponse["Coleccion"]);
@@ -169,81 +184,38 @@ function editLibro(){
                 $("#editL-Form-Peso").attr('value',jsonResponse["Peso"]);
                 $("#editL-Form-Firma").attr('value',jsonResponse["Firma"]);
                 $("#editL-Form-Imagen").attr('value',jsonResponse["Imagen"]);
-                $("#editL-Form-Capitulo1").attr('value',jsonResponse["Capitulo1"]);
+   
                 $("#editL-Form-Costo").attr('value',jsonResponse["Costo"]);
 
-
-
-//------------------------------------------------------------------------------------
-                document.getElementById("btn-modal-edit-Libro").onclick = function(){
-
-                    const titulo = $('#editL-Form-Titulo').val();
-                    const sinopsis = $('#editL-Form-Sinopsis').val();
-                    const precio = $('#editL-Form-Precio').val();
-                    const autor = $('#editL-Form-Autor').val();
-                    const isbn = $('#editL-Form-ISBN').val();
-                    const tema = $('#editL-Form-Tema').val();
-                    const tipo = $('#editL-Form-Tipo').val();
-                    const coleccion = $('#editL-Form-Coleccion').val();
-                    const aEdicion = $('#editL-Form-AEdicion').val();
-                    const edicion = $('#editL-Form-Edicion').val();
-                    const paginas = $('#editL-Form-Paginas').val();
-                    const peso = $('#editL-Form-Peso').val();
-                    const firma = $('#editL-Form-Firma').val();
-                    const imagen = $('#editL-Form-Imagen').val();
-                    const capitulo1 = $('#editL-Form-Capitulo1').val();
-                    const costo = $('#editL-Form-Costo').val();
-
-
-                    const infoEditLibro = new FormData();
-                    infoEditLibro.append('accion','editLibro');
-
-                    infoEditLibro.append('TITULO',titulo);
-                    infoEditLibro.append('SINOPSIS',sinopsis);
-                    infoEditLibro.append('PRECIO',precio);
-                    infoEditLibro.append('AUTOR',autor);
-                    infoEditLibro.append('ISBN',isbn);
-                    infoEditLibro.append('TEMA',tema);
-                    infoEditLibro.append('TIPO',tipo);
-                    infoEditLibro.append('COLECCION',coleccion);
-                    infoEditLibro.append('AEDICION',aEdicion);
-                    infoEditLibro.append('EDICION', edicion);
-                    infoEditLibro.append('PAGINAS', paginas);
-                    infoEditLibro.append('PESO', peso);
-                    infoEditLibro.append('FIRMA', firma);
-                    infoEditLibro.append('IMAGEN', imagen);
-                    infoEditLibro.append('CAPITULO1', capitulo1);
-                    infoEditLibro.append('COSTO', costo);
-
-
-
-
-                    //Es necesario hace un AJAX para agregar el registro a la BD
-
-                    //Llamado a AJAX (Crear el objeto)
-                    const xhr = new XMLHttpRequest();
-                    //Abrir la conexion
-                    xhr.open('POST', '../Admin/Proxy.php', true);
-                    //ProcesarRespuesta
-                    xhr.onload = function(){
-                        if(this.status === 200){  
-                            //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
-                            //const respuesta = JSON.parse(xhr.responseText);
-                            //console.log(xhr.responseText);
-                            
-                            $("#ModalEditLibro").modal('hide');
-                            location.assign('http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=2');
-                        }
-                    }
-                    //Enviar los datos
-                    xhr.send(infoEditLibro);
-
+                
+                if(jsonResponse["Firma"] === "FIRMADO" || jsonResponse["Firma"] === "on"){
+                    $("#editL-Form-Firma").prop('checked', true); 
                 }
-//------------------------------------------------------------------------------------
+
+                if(jsonResponse["Gandhi"] === "DISPONIBLE"){
+                    $("#editL-Form-Gandhi").prop('checked', true); 
+                }
+                
+                if(jsonResponse["Porrua"] === "DISPONIBLE"){
+                    $("#editL-Form-Porrua").prop('checked', true); 
+                }
+
+                if(jsonResponse["CarlosFuentes"] === "DISPONIBLE"){
+                    $("#editL-Form-CarlosFuentes").prop('checked', true); 
+                }
+
+                if(jsonResponse["Sotano"] === "DISPONIBLE"){
+                    $("#editL-Form-Sotano").prop('checked', true); 
+                }
+
+                if(jsonResponse["Amazon"] === "DISPONIBLE"){
+                    $("#editL-Form-Amazon").prop('checked', true); 
+                }
+
             }
         }
         //Enviar los datos
-        xhr.send(infoViewLibro);
+        xhr.send(infoEditLibro);
         
  
     });
@@ -420,7 +392,6 @@ function mostrarNotificacion(mensaje,clase){
 function buscarLibro(){
     const busqueda = new RegExp(document.getElementById('Criterio-busqueda').value, "i");
     const registros = document.querySelectorAll('tbody tr');
-    console.log(registros);
     registros.forEach(registro =>{
         registro.style.display = 'none';
         if(registro.childNodes[3].textContent.replace(/\s/g, " ").search(busqueda) != -1 ){

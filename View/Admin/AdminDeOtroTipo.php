@@ -175,6 +175,18 @@
                 </script>
             <?php endif; ?>
 
+            <?php  if($_GET['r'] == 4): ?>
+                <script>
+                    swal("Error","No se pudo agregar el libro al catálogo" , 'error');
+                </script>
+            <?php endif; ?>
+
+            <?php  if($_GET['r'] == 5): ?>
+                <script>
+                    swal("Error","No se pudo Modificar el libro." , 'error');
+                </script>
+            <?php endif; ?>
+
         <?php endif; ?>
 
 
