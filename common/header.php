@@ -61,7 +61,7 @@
         </script>
 
         <div class="navItem"><a href="">Novedades</a></div>
-        <div class="navItem"><a href="">Autores</a></div>
+        <div class="navItem"><a href="http://localhost/EditorialOtroTipo/View/Autores.php">Autores</a></div>
         <div class="navItem"><a href="">Diálogos con el autor</a></div>
         <div class="navItem"><a href="">Noticias</a></div>
         <div class="navItem"><a href="">Convocatorias</a></div>

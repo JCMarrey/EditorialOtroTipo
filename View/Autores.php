@@ -17,20 +17,23 @@
     <link rel="stylesheet" href="../common/estilos.css">
 
     
-    <title>Editorial Otro Tipo</title>
+    <title>Autores</title>
 </head>
 
 
 <body>
     <?php require_once("../common/header.php"); ?>
 
-    <div class="contenedor-main1">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="contenedor-Autores">
+
+        <h3 class="titulo-Autores" >Autores</h3>
+
+        <div id="carouselExampleIndicators" class="carousel carousel-G slide" data-bs-ride="true">
 
             <div class="carousel-inner">
                 <?php
                     require_once('Admin/Conexion.php');
-                    $query = "SELECT Archivo FROM deotrotipo.media WHERE tipo = 'CARRUSEL';";
+                    $query = "SELECT Archivo FROM deotrotipo.media WHERE tipo = 'SEMBLANZA';";
                     $resultado = mysqli_query($conexion,$query);
                     $contador=0;
                     $numRegistros = mysqli_num_rows($resultado );
@@ -40,11 +43,11 @@
                     <?php if($contador==0): ?>
                         <?php $contador++; ?>
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="/EditorialOtroTipo/Media/CarruselMain/<?= $registro['Archivo']; ?>" alt="Banner Principal">
+                                <img class="d-block w-100" src="/EditorialOtroTipo/Media/Semblanzas/<?= $registro['Archivo']; ?>" alt="Banner Principal">
                             </div>
                     <?php else: ?>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="/EditorialOtroTipo/Media/CarruselMain/<?= $registro['Archivo']; ?>" alt="Banner Principal">
+                            <img class="d-block w-100" src="/EditorialOtroTipo/Media/Semblanzas/<?= $registro['Archivo']; ?>" alt="Banner Principal">
                         </div>
                     <?php endif;?>
                 <?php endwhile;?>
@@ -74,27 +77,9 @@
             </div>
             
         </div>
-    
-        
-        <div class="contenedorIconos">
-            <a href="#" target="_blank" ><i class="fab fa-instagram iconoRedes"></i></a>
-            <a href="#" target="_blank" ><i class="fab fa-facebook-square iconoRedes"></i></a> 
-            <a href="#" target="_blank" ><i class="fab fa-twitter-square iconoRedes"></i></a>
-            <a href="#" target="_blank" ><i class="fab fa-youtube iconoRedes"></i></a>
-        </div>
     </div>
 
-    <div id="contenedor-main2">
-        <?php
-            $query = "SELECT * FROM deotrotipo.media WHERE tipo != 'CARRUSEL' AND tipo != 'SEMBLANZA';";
-            $resultado = mysqli_query($conexion,$query);
-        ?>
-            
-        <?php while($registro = mysqli_fetch_assoc($resultado)):?>
-            <iframe width="420" height="345" class="anuncios-main" src="<?=$registro['Archivo']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <?php endwhile;?>
 
-    </div>
 
     <?php require_once("../common/footer.php"); ?>
 

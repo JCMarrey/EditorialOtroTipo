@@ -156,6 +156,105 @@
             echo json_encode($respuesta);
         }
         
+        if(strcmp($_POST['accion'],'viewArchivo') == 0){
+
+            $id = $_POST['ID'];
+
+            $sql = "SELECT * FROM deotrotipo.media WHERE idMedia = ?"; // SQL with parameters
+            $stmt = $conexion->prepare($sql); 
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+           
+            $result = $stmt->get_result(); // get the mysqli result
+            $user = $result->fetch_assoc(); 
+            
+          
+            
+            echo json_encode($user);
+            
+
+        }
+
+        if(strcmp($_POST['accion'],'deleteArchivo') == 0){
+            
+            $id = $_POST['ID'];
+            $tipo = $_POST['TIPO'];
+            $name = $_POST['NAME'];
+
+            
+            $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Media/";
+
+            if(strcmp($tipo,"CARRUSEL") == 0){
+                $carpetaDestino = $carpetaDestino.'CarruselMain/';
+            }elseif(strcmp($tipo,"SEMBLANZA") == 0){
+                $carpetaDestino = $carpetaDestino.'Semblanzas/';
+            }
+            
+            $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`media` WHERE idMedia = ?");
+            $stmt->bind_param('i',$id);
+            $res = $stmt->execute();
+
+            if($res){
+                unlink($carpetaDestino.$name);
+                $respuesta = array (
+                    'id' => $stmt->insert_id,
+                    'respuesta' => 'correcto'
+                );
+            }else{
+                $respuesta = array (
+                    'respuesta' => 'incorrecto'
+                );
+            }
+                
+        
+            echo json_encode($respuesta);
+        }
+
+        if(strcmp($_POST['accion'],'viewEvento') == 0){
+
+            $id = $_POST['ID'];
+
+            $sql = "SELECT * FROM deotrotipo.evento WHERE idEvento = ?"; // SQL with parameters
+            $stmt = $conexion->prepare($sql); 
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result(); // get the mysqli result
+            $user = $result->fetch_assoc(); 
+            
+            
+
+            echo json_encode($user);
+            
+
+        }
+
+        if(strcmp($_POST['accion'],'deleteEvento') == 0){
+            
+            $id = $_POST['ID'];
+            $name = $_POST['NAME'];
+            
+            $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Media/Eventos/";
+            
+            $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`evento` WHERE idEvento = ?");
+            $stmt->bind_param('i',$id);
+            $res = $stmt->execute();
+
+            if($res){
+                unlink($carpetaDestino.$name);
+                $respuesta = array (
+                    'id' => $stmt->insert_id,
+                    'respuesta' => 'correcto'
+                );
+            }else{
+                $respuesta = array (
+                    'respuesta' => 'incorrecto'
+                );
+            }
+                
+        
+            echo json_encode($respuesta);
+        }
+
         $conexion->close();
 
     }else{
