@@ -1,9 +1,11 @@
-
 const carrito = document.getElementById('carrito');
 const productos = document.getElementById('lista-productos');
 const listaProductos = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito'); 
 const verMas = document.getElementById('btnVermas');
+const procesarPedidoBtn= document.getElementById('procesar-pedido');
+
+
 
 cargarEventos();
 
@@ -12,7 +14,6 @@ function cargarEventos(){
 
     //se ejecuta cuando se presiona agregar carrito
     productos.addEventListener('click',(e) => {
-       /* document.getElementById("carrito").classList.toggle('active');*/
             comprarProducto(e);
        
     });
@@ -25,6 +26,12 @@ function cargarEventos(){
     });
 
     document.addEventListener('DOMContentLoaded',leerProductosLocalStorage());
+
+    procesarPedidoBtn.addEventListener('click',(e)=>{
+                procesarPedido(e);
+    });
+
+
 }
 
 function comprarProducto(e){
@@ -32,7 +39,6 @@ function comprarProducto(e){
     if(e.target.classList.contains('agregar-producto-c')){
         const producto = e.target.parentElement.parentElement;
         //enviamos el producto seleccionado para tomar sus datos
-        console.log(producto);
         leerDatosProductos(producto);
     }
 }
@@ -40,14 +46,38 @@ function comprarProducto(e){
 //Leer datos del producto
 function leerDatosProductos(producto){
     //nuevo objeto para cargar producto a la tabla..
+    console.log(producto);
     const infoProducto = {
         imagen : producto.querySelector('img').src,
         titulo: producto.querySelector('h5').textContent,
         precio: producto.querySelector('span').textContent,
         id : producto.querySelector('li').textContent,
+        pesoLibro: producto.querySelector('h2').textContent,
         cantidad: 1
     }
-    insertarProductoCarrito(infoProducto);
+    //verificar sí el libro existe
+    let librosLS = obtenerProductosLocalStorage();
+    let auxLibro;
+
+
+    librosLS.forEach(function(libroLS,index){
+        if(libroLS.id === infoProducto.id){
+            infoProducto.cantidad = libroLS.cantidad; 
+            infoProducto.cantidad += 1;
+            auxLibro = libroLS.id;
+            listaProductos.removeChild(listaProductos.childNodes[index]);
+            librosLS.splice(index,1);
+        }
+    });
+    localStorage.setItem('productos',JSON.stringify(librosLS));
+
+    if(auxLibro === infoProducto.id){
+        //console.log("cantidadLibro",infoProducto.cantidad);
+        insertarProductoCarrito(infoProducto);
+        //leerProductosLocalStorage();
+    }else{
+        insertarProductoCarrito(infoProducto);
+    }
     
 }
 function insertarProductoCarrito(producto){
@@ -61,16 +91,20 @@ function insertarProductoCarrito(producto){
             <td>${producto.titulo}</td>
             <td>${producto.precio}</td>
             <td>${producto.cantidad}</td>
-            <td>${producto.precio= producto.precio*producto.cantidad}
+            <td>${producto.precio*producto.cantidad}
+            
             <td>
-                <a href="#" class="borrar-producto fas-fa-times.circle">X
-                    <p style="display:none";>${producto.id}</p>
-                </a>
+                
+                    <i class="fa-solid fa-x"></i>
+                    <p style="display:none"; id="idCarritoP">${producto.id}</p>
+                
             </td>
+
     `; 
     listaProductos.appendChild(row);
     guardarProductosLocalStorage(producto);
-}    
+}   
+
 
 function eliminarProducto(e){
     let producto, productoID;
@@ -80,8 +114,9 @@ function eliminarProducto(e){
         productoID = producto.querySelector('p').textContent;
     }
     eliminarProductoLocalStorage(productoID);
-   
+   calcularTotal();
 }
+
 function vaciarCarrito(e){
     e.preventDefault();
     while(listaProductos.firstChild){
@@ -116,7 +151,6 @@ function guardarProductosLocalStorage(producto){
 
 function eliminarProductoLocalStorage(productoID){
     let productosLS;
-    console.log("idRecibido...",productoID);
     productosLS = obtenerProductosLocalStorage();
     productosLS.forEach(function(productoLS,index){
         console.log("id de LS", productoLS.id);
@@ -145,7 +179,7 @@ function leerProductosLocalStorage(){
             <td>${producto.precio}</td>
             <td>
                 <a href="#" class="borrar-producto fas-fa-times.circle">X
-                    <p style="display:none";>${producto.id}</p>
+                    <p style="display:none";  id="idCarritoP">${producto.id}</p>
                 </a>
             </td>
         `;
@@ -155,4 +189,114 @@ function leerProductosLocalStorage(){
 
 function vaciarLocalStorage(){
     localStorage.clear();
+}
+
+function leerPDF(){
+    console.log("clcik...");
+    var url =  $('#btnLeerF').val();
+    console.log(url);
+  }
+
+function procesarPedido(e){
+    e.preventDefault();
+
+    if(obtenerProductosLocalStorage().length === 0){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Tu carrito esta vacío, agrega un producto por favor',
+            time : 2000,
+            showConfirmButton: false
+          })
+    }else{
+        location.href = "/View/carrito.php";
+    }   
+}
+
+function calcularTotal(estadoSeleccionado){
+
+    $estado = estadoSeleccionado;
+    console.log("estado..",$estado);
+
+    let productosLS;
+    let total = 0, subtotal = 0, pesoEnvio = 200;
+    let precioEnvio = 0 ;
+    productosLS = obtenerProductosLocalStorage();
+    for(let i = 0 ; i < productosLS.length; i++){
+        let subtotalProducto = Number(productosLS[i].precio * productosLS[i].cantidad);
+        subtotal = subtotal + subtotalProducto;
+        pesoEnvio += Number(productosLS[i].pesoLibro*productosLS[i].cantidad); 
+        console.log(pesoEnvio);
+    }
+   /* if(pesoEnvio === 200){
+        precioEnvio = 0;
+    }
+    else if(pesoEnvio >=1000  && $estado === 'Ciudad de Mexico'){
+        console.log("límite de libros---");
+        precioEnvio = 300;
+    }else if(pesoEnvio <1000  && $estado === 'Ciudad de Mexico'){
+        precioEnvio = 200;; //si es menor a 5000 el peso de envío la tarifa estándar será de 120;
+    }else if(pesoEnvio >=1000  && $estado != 'Ciudad de Mexico' ){
+        precioEnvio = 500;
+    }else if(pesoEnvio <1000  && $estado != 'Ciudad de Mexico'){
+        precioEnvio = 400;
+    }*/
+
+    if(pesoEnvio === 200){
+        precioEnvio = 0;
+    }else{
+        if($estado == 'Ciudad de Mexico'){
+            if(pesoEnvio >=1000){
+                precioEnvio = 300;
+            }else{
+                //el peso es menor  a 1000
+                precioEnvio = 200;;
+            }
+        }else{
+            if(pesoEnvio >=1000){
+                precioEnvio = 500;
+            }else{
+                //el peso es menor  a 1000
+                precioEnvio = 400;
+            }
+        }   
+
+    }
+
+    console.log("precioEnvio..",precioEnvio);
+    total =  precioEnvio + subtotal;
+    console.log("total..",total);
+    document.getElementById('subtotal').innerHTML = "$/ "+subtotal;
+    document.getElementById('costoEnvio').innerHTML = "$/  "+precioEnvio;
+    document.getElementById('totalEnvio').innerHTML = "$/ "+total;
+}
+
+function cambiarCantidad(e){
+
+    let librosLS = obtenerProductosLocalStorage();
+    let auxLibro;
+    let producto = e.target.parentElement.parentElement;
+    let productoID = producto.querySelector('p').textContent;
+
+    librosLS.forEach(function(libroLS,index){
+        if(libroLS.id === productoID){
+            if(e.target.classList.contains('disminuir-cantidad')){
+                console.log("disminuir... cantidad",libroLS.cantidad);
+                //auxLibro = libroLS[index];
+                libroLS.cantidad -=1;
+                console.log("disminuir... cantidad",libroLS.cantidad);
+                
+                localStorage.setItem('productos',JSON.stringify(librosLS));
+                location.reload();
+                
+            }
+            if(e.target.classList.contains('aumentar-cantidad')){
+                libroLS.cantidad +=1;
+                console.log("aumentar... cantidad",libroLS.cantidad);
+                localStorage.setItem('productos',JSON.stringify(librosLS));
+                location.reload();
+            }   
+        }
+    });
+
 }

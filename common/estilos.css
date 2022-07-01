@@ -133,6 +133,44 @@
   
   
   /*clase Juan*/
+
+#verMasP{
+  color: white;
+}
+
+.botonVermas{
+  width: 15rem;
+  margin-top: 5rem;
+  color: white;
+  margin-left: 49%;
+}
+
+.botonVermasF{
+  background-color: #41de6d;
+  border-radius: 10rem;
+  border-color: #41de6d ;
+}
+#txtVerMas{
+  color: white;
+  font-size: 2rem;
+ 
+}
+
+
+  .audio{
+    margin-top: 5rem;
+    
+
+  }
+
+  .filtros{
+    width: 20rem;
+    margin-top: 12.5rem;
+    margin-left: 15rem;
+    float: left;
+    display: flex;
+    flex-direction: column;
+  }
   
   .card{
       position: relative;
@@ -145,44 +183,79 @@
       border: 1px solid rgb(0,0,0m,.125);
       border-radius: 1.5rem;
       width: 25rem;
-      height: 36rem;
+      height: 38rem;
       margin-block: 1rem;
     }
     
-    .card-body{
+.card-body{
       padding: 1.25rem;
       flex: 1 1 auto;
-    }
+}
     
-    .btnS1{
-      color: blanchedalmond;
-      background-color: #CB123F;
-      border-color: #CB123F;
-      border-style: solid;
-      border-radius: 2.18rem;
-      margin-left: 0.6rem;
-      
-    }
+#btnLeerF{
+  color: blanchedalmond;
+  background-color: #CB123F;
+  border-color: #CB123F;
+  border-style: solid;
+  border-radius: 2.18rem;
+  margin-left: 0.6rem;
+  padding: 0.7rem;
+}
+
+
+.btnS1{
+
+  color: blanchedalmond;
+  background-color: #CB123F;
+  border-color: #CB123F;
+  border-style: solid;
+  border-radius: 2.18rem;
+  margin-left: 0.6rem;
+}
+
+
+#vaciar-carrito,
+#procesar-pedido{
+  width: 10rem;
+  font-size: larger
+  
+}
+
+
+#imgComprar{
+  width: 10rem;
+  height: auto;
+  margin-right: 0.5rem;
+  padding: 0.3rem;
+  float: left;
+}
+
+
+#comprarTXT{
+  float: left;
+  padding-top: 0.5rem;
+}
+
     
-    .btnS2{
+.btnS2{
       color: blanchedalmond;
       background-color: #3D97CB;
       border-color: #3D97CB;
       border-style: solid;
       border-radius: 2.18rem;
       margin-left: 0.18rem;
-    }
+}
     
     #carrito{
-  
-      margin-left: 200rem;
-      height: 120rem;
+      margin-top: 0;
+      margin-left: 175rem;
+      height: 100%;
       background-color: #E6E6E6;
       position: absolute;
       display: none;
-      width: 30rem;
+      width: 55rem;
+      z-index: 1;
     }
-    
     
   .card-title{
       color:   #333333;
@@ -208,33 +281,72 @@
       font-size: relative;
       border: none;
     }
-    .detallesLibro{
-      height: 40rem;
+
+#TextoCarritoCompras{
+  text-align: center;
+}
+
+.modalContenidoLibro{
+  float: left;
+}
+.modalContenidoLibro{
+  text-align: center;
+  font-size: medium;
+  margin-left: 2rem;
+
+}
+.imgModal{
+  width: 15rem;
+  height: 18rem;
+}
+
+.modalTabla{
+  margin-top: 3rem;
+  float: left;
+  height: auto;
+  width: 40rem;
+  margin-left: 15rem;
+}
+
+
+.btn-tiendas{
+  width: auto;
+  float: left;
+  height: 10rem;
+  margin-left: 10rem;
+  text-align: center;
+}
+
+
+.detallesLibro{
+      height: 65rem;
       width: auto;
       margin-top: 10rem;
-      margin-left: 15%;
-      
-    }
-    #asideIzq{
+      margin-left: 10%;
+}
+.asideIzq{
       width: 30rem; 
       height: 40rem;  
       float: left;
-    }
+      margin-left: 0rem;
+      text-align: center;
+
+}
     
     #infoLibro{
-      width: 37.5rem;
+      width: 50rem;
       height: 31.25rem;
       float: left;
       text-align: justify;
-      margin-left: 30rem;
+      margin-left: 10rem;
     }
     
     #asideDer{
-      margin-right: 1.87;
-      width: 25rem; 
+      margin-right: 0;
+      width: 30rem; 
       height: 31.25rem;  
       float: left;
-      margin-left: 40rem;
+      margin-left: 10rem;
     }
     
     #nombreLibro{
@@ -309,7 +421,10 @@
       width: 40rem;
     }
     
-    
+  .card{
+    border-style: solid;
+    border-color: white ;
+  }
     
   
   
@@ -323,8 +438,8 @@
   
   .logo{
     margin: 6.8rem 8.1rem 6rem 7rem;
-    height: 8rem;
-    width: 8rem;
+    height: 9rem;
+    width: 9rem;
   }
   
   .search-container{
@@ -336,6 +451,7 @@
     border: 1px solid var(--searchBar);
     border-radius: 5rem;
   }
+  
   
   .search-input{
     border: none;
@@ -352,10 +468,45 @@
   
   .header-options{
     display: flex;
-    margin: 8.5rem 5rem;
+    margin: 8.8rem 5rem;
+    margin-left: 10%;
     color: var(--rojoPrincipal);
   }
-  
+
+  /*Julieta clase header-option1*/  
+
+  .header-option1{
+    display: flex;
+    margin-top: -3px;
+    margin-right: 30px;
+    padding-top: 11px;
+    margin-left: 15%;
+    color: #ffff;
+    width: 220px;
+    padding-left: 22px;
+    border-radius: 35px;
+    background-color: var(--rojoPrincipal);
+    border: none;
+  }
+
+  /*clase header-option1 hover julieta*/
+  .header-option1:hover{
+    display: flex;
+    margin-top: -3px;
+    margin-right: 30px;
+    padding-top: 11px;
+    margin-left: 15%;
+    color: var(--rojoPrincipal);
+    width: 220px;
+    padding-left: 22px;
+    border-radius: 35px;
+    background-color: #ffff;
+    border-style: solid;
+    border-color: #CB123F ;
+    border-width: 1px;
+  }
+
+
   .header-option{
     display: flex;
     margin: 0 2rem;
