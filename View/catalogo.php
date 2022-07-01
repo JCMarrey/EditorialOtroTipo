@@ -152,9 +152,13 @@
                         
                       </div>
                       <div class="d-grid gap-3 d-md-block">
+                        <!--
                         <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()">
-                          <img  id="imgComprar" src="/Icons/carrito.svg" alt="..." style="width: 22px;" >
-                            <p id="comprarTXT">Comprar</p>
+                          <img class="agregar-producto-c" id="imgComprar" src="/Icons/carrito.svg" alt="..." style="width: 22px;" >
+                            <p class=" agregar-producto-c" id="comprarTXT">Comprar</p>
+                        </button>-->
+                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()">
+                          <img  class="agregar-producto-B" src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar
                         </button>
                         <ul id="idProducto" style="display:none";>
                           <li><?php echo $row['idLibro'] ?><li>
