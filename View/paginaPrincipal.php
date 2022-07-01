@@ -26,6 +26,7 @@
     <?php require_once("../common/head.php"); ?>
 <body>
     <?php require_once("../common/header.php"); ?>
+    <?php require_once("../common/carritoModal.php"); ?>
     <div class="contenedor-main1">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
 
@@ -131,10 +132,10 @@
                                       </p>
                               </div>
          
-                            <img  class="card-img-top" src="<?php echo  $row['Imagen']; ?>" > 
+                            <img  class="card-img-top" src="<?= '../Libros/'.$row['ISBN'].'/'.$row['Imagen']; ?>" > 
                         </div> 
                         <div>
-                          <img  style="display:none" class="card-img-top" src="<?php echo $row['Imagen']; ?>"> 
+                          <img  style="display:none" class="card-img-top" src="<?php echo '../Libros/'.$row['ISBN'].'/'.$row['Imagen']; ?>"> 
                           <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
                           <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
                           <p class="card-text" id="precio"  style="display:none;">$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
@@ -145,7 +146,7 @@
                             
                             <button   type="button" id="btnLeerF"><a style="text-decoration: none; color: blanchedalmond;" target="_blank" href="<?php echo $row['Capitulo1'];  ?>">Leer un fragmento</a></button>                  
                             
-                            <button class="btnS1" type="button" id="btnReproducirAudio"><a  href="detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>"><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
+                            <button class="btnS1" type="button" id="btnReproducirAudio"><a  href="detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>"><img src="/EditorialOtroTipo/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
                             
                           </div>
                           <div class="d-grid gap-3 d-md-block">
@@ -170,14 +171,13 @@
 
           <div class="botonVermas" >
             <button class = "botonVermasF">
-              <a id="txtVerMas" type="button"  href="/View/catalogo.php" >Ver más libros<a/>
+              <a id="txtVerMas" type="button"  href="/View/catalogo.php" >Ver más libros</a>
             </button> 
           </div>
 
-      <script src="/JS/animaciones.js" type="text/javascript" defer></script>
-      <script src="/JS/funciones.js" defer></script>
-      <script src="/JS/compra.js" defer></script>     
-      <script src="/JS/jquery-3.4.1.min.js"></script>
+      <script src="/EditorialOtroTipo/JS/animaciones.js" type="text/javascript" defer></script>
+      <script src="/EditorialOtroTipo/JS/funciones.js" defer></script>    
+      <script src="/EditorialOtroTipo/JS/jquery-3.4.1.min.js"></script>
       <?php require_once("../common/footer.php"); ?>
 </body>
 
