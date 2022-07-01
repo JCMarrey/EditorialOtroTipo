@@ -61,7 +61,7 @@
   
   img{
     max-width: 100%;
-    max-height: 25rem;
+   
   }
   
   a{
@@ -452,16 +452,27 @@
       margin: 6rem 5%;
       height: 25rem;
   }
+
+  .carousel-G{
+    width: 90%;
+    margin: 2rem 5% 8rem 5%;
+    height: 94rem;
+  }
   
   
   .contenedor-main1{
     display: flex;
   }
   
+  .contenedor-Autores{
+    display: flex;
+    flex-direction: column;
+  }
+
   .contenedorIconos{
     display: flex;
     flex-direction: column;
-    margin: 10rem 5% 0 0.5%;
+    margin: 8rem 5% 0 0.5%;
     font-size: xx-large;
   }
   
@@ -643,10 +654,13 @@
   color: white;
 }
 
-
-
 .active{
   background-color: var(--rojoSecundario);
+  color: white;
+}
+
+#carouselExampleIndicators > div.carousel-inner > div.carousel-item.active{
+  background-color: transparent;
   color: white;
 }
 
@@ -694,36 +708,32 @@
   width: 100%;
 }
 
-#tab-catalogo{
+#tab-catalogo,
+#tab-pagina,
+#tab-eventos,
+#tab-usuarios,
+#tab-blog{
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
 
 }
-#tab-eventos{
-  background-color: black;
-}
+
 #tab-estadisticas{
   background-color: blue;
 }
-#tab-blog{
-  background-color: green;
-}
-#tab-pagina{
-  background-color: teal;
-}
-#tab-usuarios{
-  background-color: violet;
-}
+
+
+
 
 .search-container-Admin{
-    margin-bottom: 3rem;
-    background-color: var(--searchBar);
-    padding: 0.7rem;
-    width: 100rem;
-    border: 1px solid var(--searchBar);
-    border-radius: 5rem;
+  margin-bottom: 3rem;
+  background-color: var(--searchBar);
+  padding: 0.7rem;
+  width: 100rem;
+  border: 1px solid var(--searchBar);
+  border-radius: 5rem;
 }
 
 
@@ -733,12 +743,18 @@
   background-color: var(--searchBar);
 }
 
-#btnAdd-catalogo{
+#btnAdd-catalogo,
+#btnAdd-Media,
+#btnAdd-Evento,
+.btnAdd{
   width: inherit;
   margin-bottom: 2rem;
 }
 
-#btnAdd-catalogo>button{
+#btnAdd-catalogo>button,
+#btnAdd-Media>button,
+#btnAdd-Evento>button,
+.btnAdd>button{
   border: 1px solid var(--rojoSecundario);
   color: var(--rojoSecundario);
   border-radius: 5rem;
@@ -746,7 +762,10 @@
   background-color: white;
 }
 
-#btnAdd-catalogo>button:hover{
+#btnAdd-catalogo>button:hover,
+#btnAdd-Media>button:hover,
+#btnAdd-Evento>button:hover,
+.btnAdd>button:hover{
   background-color: var(--rojoSecundario);
   color: white;
 }
@@ -760,27 +779,45 @@
   margin: 0 0.5rem;
 }
 
-.icon-view{
+.iconos-Acciones{
+  cursor: pointer;
+}
+
+.fa-eye {
   color: #3D97CB;
 }
 
-.icon-edit{
+.icon-edit-Libro,
+.icon-edit-Archivo,
+.icon-edit-Evento,
+.fa-edit {
   color: green;
 }
 
-.icon-delete{
+.icon-delete,
+.icon-delete-Archivo,
+.icon-delete-Evento,
+.fa-trash{
   color: var(--rojoSecundario);
 }
 
-.icon-view:hover{
+.icon-view:hover,
+.view-Media:hover,
+.fa-eye:hover{
   color: #2b7097;
 }
 
-.icon-edit:hover{
+.icon-edit:hover,
+.icon-edit-Archivo:hover,
+.icon-edit-Evento:hover,
+.fa-edit:hover{
   color: rgb(1, 95, 1);
 }
 
-.icon-delete:hover{
+.icon-delete:hover,
+.icon-delete-Archivo:hover,
+.icon-delete-Evento:hover,
+.fa-trash:hover{
   color: #961329;
 }
 
@@ -819,8 +856,8 @@
   color: green;
 }
 .error{
-  background-color: var(--rojo);
-  color: var(--negro);
+  background-color: var(--rojoSecundario);
+  color: white;
 }
 .warning{
   background-color: var(--amarillo);
@@ -838,4 +875,47 @@
   display: flex;
   align-items: center;
   margin: 2rem 0;
+}
+
+
+#tabs-Pagina-Principal{
+  width: 100%;
+}
+
+.nav-tabs-Pagina-Principal{
+  background-color: var(--grisObscuro);
+  margin-bottom: 2rem;
+}
+
+.titulo-Autores{
+  color: var(--rojoPrincipal);
+  margin: 3rem 0 0 7rem;
+  font-size: 2rem;
+}
+
+.evento{
+  display: flex;
+  width: 100%;
+  margin: 2rem 7rem;
+}
+
+.info-evento{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px 5rem;
+}
+
+.img-Evento{
+  width: 250rem;
+  height: 25rem;
+}
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor-Blog{
+  overflow: auto;
+  display: grid;
 }

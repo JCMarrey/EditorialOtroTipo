@@ -50,14 +50,14 @@
             $cap1 = $_FILES['archCap1']['name'];
             $tipoCap1 = $_FILES['archCap1']['type'];
             $sizeCap1 = $_FILES['archCap1']['size'];
-            if($sizeImg<=11000000){
+            if($sizeCap1<=11000000){
                 move_uploaded_file($_FILES['archCap1']['tmp_name'],$carpetaDestino.$cap1);
             }
             
             $audio = $_FILES['archAudio']['name'];
             $tipoAudio = $_FILES['archAudio']['type'];
             $sizeAudio = $_FILES['archAudio']['size'];
-            if($sizeImg<=11000000){
+            if($sizeAudio<=11000000){
                 move_uploaded_file($_FILES['archAudio']['tmp_name'],$carpetaDestino.$audio);
             }
             

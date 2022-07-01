@@ -7,11 +7,27 @@ $(document).ready(function () {
     const inputBuscador = document.querySelector("#Criterio-busqueda");
     inputBuscador.addEventListener('input', buscarLibro);
 
+    selectedTabsEfectTabsPagina();
     addLibro();
     viewLibro();
     editLibro();
     deleteLibro();
     buscarLibro();
+
+    viewArchivo();
+    editArchivo();
+    deleteArchivo();
+
+    viewEvento();
+    editEvento();
+    deleteEvento();
+
+    viewUsuario();
+    editUsuario();
+    deleteUsuario();
+
+    viewBlog();
+
 });
 
 
@@ -69,7 +85,7 @@ function addLibro(){
 }
 
 function viewLibro(){
-    $('.icon-view').on('click', function(e){
+    $('.icon-view-Libro').on('click', function(e){
 
         const isbnLibro = e.target.parentNode.id;
 
@@ -146,7 +162,7 @@ function viewLibro(){
 }
 
 function editLibro(){
-    $('.icon-edit').on('click', function(e){
+    $('.icon-edit-Libro').on('click', function(e){
 
         const isbnLibro = e.target.parentNode.id;
 
@@ -331,7 +347,7 @@ function selectedTabsEfect(){
 
         case 4:{
             if(!$('#controller-tab-pagina').hasClass("active")){
-                document.getElementById("systemName").innerHTML = "Pagina";
+                document.getElementById("systemName").innerHTML = "Carrusel Principal y Semblanzas";
                 $('#controller-tab-catalogo').removeClass("active");
                 $('#controller-tab-eventos').removeClass("active");
                 $('#controller-tab-estadisticas').removeClass("active");
@@ -368,6 +384,36 @@ function selectedTabsEfect(){
    
 }
 
+function selectedTabsEfectTabsPagina(){
+    $('#tabs-Pagina-Principal').tabs();
+
+    $('#controller-tab-Carrusel-Main').addClass("active"); 
+        
+    $('.nav-tabs-Pagina-Principal').click(function(){
+       
+    switch ($("#tabs-Pagina-Principal").tabs('option','active')){
+
+        case 0: {
+            if(!$('#controller-tab-Carrusel-Main').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Carrusel Principal y Semblanzas";
+                $('#controller-tab-Videos-Main').removeClass("active");
+                $('#controller-tab-Carrusel-Main').addClass("active"); 
+            }
+            break;
+        }
+
+        case 1: {
+            if(!$('#controller-tab-Videos-Main').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Pagina Principal - Videos";
+                $('#controller-tab-Carrusel-Main').removeClass("active");
+                $('#controller-tab-Videos-Main').addClass("active");
+            }
+            break;
+        }        
+    }  
+   });
+}
+
 function mostrarNotificacion(mensaje,clase){
     const notificacion = document.createElement('div');
     const barraLateral = document.querySelector('#contenedor-Nav-Admin-id');
@@ -401,5 +447,457 @@ function buscarLibro(){
     });
 }
 
+function viewArchivo(){
+    $('.view-Media').on('click', function(e){
+
+        const idArchivo = e.target.parentNode.id;
+
+
+        const infoViewLibro = new FormData();
+        infoViewLibro.append('accion','viewArchivo');
+        infoViewLibro.append('ID',idArchivo);
+        
+        //Es necesario hace un AJAX para agregar el registro a la BD
+
+        //Llamado a AJAX (Crear el objeto)
+        const xhr = new XMLHttpRequest();
+        //Abrir la conexion
+        xhr.open('POST', '../Admin/Proxy.php', true);
+        //ProcesarRespuesta
+        xhr.onload = function(){
+            if(this.status === 200){  
+                //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                var data=xhr.responseText;
+                var jsonResponse = JSON.parse(data);
+       
+                $("#viewM-Form-Tipo").attr('value',jsonResponse["Tipo"]);
+                $("#viewM-Form-Archivo").attr('value',jsonResponse["Archivo"]);
+            }
+        }
+        //Enviar los datos
+        xhr.send(infoViewLibro);
+
+    });
+}
+
+function editArchivo(){
+    $('.icon-edit-Archivo').on('click', function(e){
+
+        const idArchivo = e.target.parentNode.id;
+
+        const infoEditLibro = new FormData();
+        infoEditLibro.append('accion','viewArchivo');
+        infoEditLibro.append('ID',idArchivo);
+        
+        console.log(idArchivo);
+
+        //Es necesario hace un AJAX para agregar el registro a la BD
+
+        //Llamado a AJAX (Crear el objeto)
+        const xhr = new XMLHttpRequest();
+        //Abrir la conexion
+        xhr.open('POST', '../Admin/Proxy.php', true);
+        //ProcesarRespuesta
+        xhr.onload = function(){
+            if(this.status === 200){  
+                var data=xhr.responseText;
+                var jsonResponse = JSON.parse(data);
+                $('#editM-Form-idArchivo').attr('value',jsonResponse["idMedia"]) ;
+                $('#editM-Form-nameArchivo').attr('value',jsonResponse["Archivo"]) ;
+                $('#editM-Form-Tipo').attr('value',jsonResponse["Tipo"]) ;
+                $('#editM-Form-tipoArchivo').attr('value',jsonResponse["Tipo"]) ;
+               
+            }
+        }
+        //Enviar los datos
+        xhr.send(infoEditLibro);
+        
+ 
+    });
+}
+
+function deleteArchivo(){
+    $('.icon-delete-Archivo').on('click', function(e){
+        swal({
+            title: "¿Eliminar Archivo?",
+            text: "Recuerda que si eliminas este registro se eliminará del catálogo tambien para los usuarios.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+
+                const id = e.target.parentNode.id;
+                const tipo = e.target.id ;
+                const nameArchivo = e.target.previousElementSibling.previousElementSibling.parentNode.previousElementSibling.innerHTML;
+
+                const infoDeleteArchivo = new FormData();
+                infoDeleteArchivo.append('accion','deleteArchivo');
+                infoDeleteArchivo.append('ID',id);
+                infoDeleteArchivo.append('TIPO',tipo);
+                infoDeleteArchivo.append('NAME',nameArchivo);
+
+                
+                //Es necesario hace un AJAX para agregar el registro a la BD
+                //Llamado a AJAX (Crear el objeto)
+                const xhr = new XMLHttpRequest();
+                //Abrir la conexion
+                xhr.open('POST', '../Admin/Proxy.php', true);
+                //ProcesarRespuesta
+                xhr.onload = function(){
+                    if(this.status === 200){  
+                        //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                        //console.log(xhr.responseText);
+                        //var data=xhr.responseText;
+                        //var jsonResponse = JSON.parse(data);
+
+                        location.assign('http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=3');
+                    }
+                }
+                //Enviar los datos
+                xhr.send(infoDeleteArchivo);
+
+                
+            } else {
+              swal("Se canceló la operación.");
+            }
+          });
+    });
+}
+
+function viewEvento(){
+    $('.view-Evento').on('click', function(e){
+
+        const idEvento = e.target.parentNode.id;
+
+
+        const infoViewLibro = new FormData();
+        infoViewLibro.append('accion','viewEvento');
+        infoViewLibro.append('ID',idEvento);
+        
+        //Es necesario hace un AJAX para agregar el registro a la BD
+
+        //Llamado a AJAX (Crear el objeto)
+        const xhr = new XMLHttpRequest();
+        //Abrir la conexion
+        xhr.open('POST', '../Admin/Proxy.php', true);
+        //ProcesarRespuesta
+        xhr.onload = function(){
+            if(this.status === 200){  
+                //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                var data=xhr.responseText;
+                var jsonResponse = JSON.parse(data);
+       
+                $("#viewE-Form-Evento-Fecha").attr('value',jsonResponse["Fecha"]);
+                $("#viewE-Form-Evento-INFO").html(jsonResponse["info"]);
+                $("#viewE-Form-Evento-Banner").attr('value',jsonResponse["img"]);
+            }
+        }
+        //Enviar los datos
+        xhr.send(infoViewLibro);
+
+    });
+}
+
+function editEvento(){
+    $('.icon-edit-Evento').on('click', function(e){
+
+        const idArchivo = e.target.parentNode.id;
+
+        const infoEditLibro = new FormData();
+        infoEditLibro.append('accion','viewEvento');
+        infoEditLibro.append('ID',idArchivo);
+        
+        console.log(idArchivo);
+
+        //Es necesario hace un AJAX para agregar el registro a la BD
+
+        //Llamado a AJAX (Crear el objeto)
+        const xhr = new XMLHttpRequest();
+        //Abrir la conexion
+        xhr.open('POST', '../Admin/Proxy.php', true);
+        //ProcesarRespuesta
+        xhr.onload = function(){
+            if(this.status === 200){  
+                var data=xhr.responseText;
+                console.log(xhr.responseText);
+                var jsonResponse = JSON.parse(data);
+
+                $('#editE-Form-idEvento').attr('value',jsonResponse["idEvento"]) ;
+
+                $('#editE-Form-nameArchivo-Viejo').attr('value',jsonResponse["img"]) ;                
+                
+                $('#editE-Form-Evento-INFO').html(jsonResponse["info"]) ;
+
+                $('#editE-Form-Evento-Fecha').attr('value',jsonResponse["Fecha"]) ;
+               
+            }
+        }
+        //Enviar los datos
+        xhr.send(infoEditLibro);
+        
+ 
+    });
+}
+
+function deleteEvento(){
+    $('.icon-delete-Evento').on('click', function(e){
+        swal({
+            title: "¿Eliminar Archivo?",
+            text: "Recuerda que si eliminas este registro se eliminará de la base de datos y tambien para los usuarios.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+
+                const id = e.target.parentNode.id;
+                const name = e.target.id ;
+
+                const infoDeleteArchivo = new FormData();
+                infoDeleteArchivo.append('accion','deleteEvento');
+                infoDeleteArchivo.append('ID',id);
+                infoDeleteArchivo.append('NAME',name);
+
+                
+                //Es necesario hace un AJAX para agregar el registro a la BD
+                //Llamado a AJAX (Crear el objeto)
+                const xhr = new XMLHttpRequest();
+                //Abrir la conexion
+                xhr.open('POST', '../Admin/Proxy.php', true);
+                //ProcesarRespuesta
+                xhr.onload = function(){
+                    if(this.status === 200){  
+                        //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                        //console.log(xhr.responseText);
+                        //var data=xhr.responseText;
+                        //var jsonResponse = JSON.parse(data);
+
+                        location.assign('http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=3');
+                    }
+                }
+                //Enviar los datos
+                xhr.send(infoDeleteArchivo);
+
+                
+            } else {
+              swal("Se canceló la operación.");
+            }
+          });
+    });
+}
+
+function viewUsuario(){
+    $('.icon-view-Usuario').on('click', function(e){
+
+        const idUsuario = e.target.parentNode.id;
+
+
+        const infoViewLibro = new FormData();
+        infoViewLibro.append('accion','viewUsuario');
+        infoViewLibro.append('ID',idUsuario);
+        
+        //Es necesario hace un AJAX para agregar el registro a la BD
+
+        //Llamado a AJAX (Crear el objeto)
+        const xhr = new XMLHttpRequest();
+        //Abrir la conexion
+        xhr.open('POST', '../Admin/Proxy.php', true);
+        //ProcesarRespuesta
+        xhr.onload = function(){
+            if(this.status === 200){  
+                //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                var data=xhr.responseText;
+                var jsonResponse = JSON.parse(data);
+       
+                $("#viewU-Form-Nombre").attr('value',jsonResponse["Nombre"]);
+                $("#viewU-Form-Correo").attr('value',jsonResponse["Correo"]);
+                $("#viewU-Form-Pass").attr('value',jsonResponse["Pass"]);
+                $("#viewU-Form-Rol").attr('value',jsonResponse["Rol"]);
+            }
+        }
+        //Enviar los datos
+        xhr.send(infoViewLibro);
+
+    });
+}
+
+function editUsuario(){
+    $('.icon-edit-Usuario').on('click', function(e){
+
+        const idUsuario = e.target.parentNode.id;
+
+
+        const infoViewLibro = new FormData();
+        infoViewLibro.append('accion','viewUsuario');
+        infoViewLibro.append('ID',idUsuario);
+        
+        //Es necesario hace un AJAX para agregar el registro a la BD
+
+        //Llamado a AJAX (Crear el objeto)
+        const xhr = new XMLHttpRequest();
+        //Abrir la conexion
+        xhr.open('POST', '../Admin/Proxy.php', true);
+        //ProcesarRespuesta
+        xhr.onload = function(){
+            if(this.status === 200){  
+                //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                var data=xhr.responseText;
+                var jsonResponse = JSON.parse(data);
+
+                $("#editU-Form-Nombre").attr('value',jsonResponse["Nombre"]);
+                $("#editU-Form-Correo").attr('value',jsonResponse["Correo"]);
+                $("#editU-Form-Pass").attr('value',jsonResponse["Pass"]);
+                $("#editU-Form-Rol").attr('value',jsonResponse["Rol"]);
+                $("#editU-Form-id").attr('value',jsonResponse["idUsuarios"]);
+
+               
+            }
+        }
+        //Enviar los datos
+        xhr.send(infoViewLibro);
+
+    });
+}
+
+
+function deleteUsuario(){
+    $('.icon-delete-Usuario').on('click', function(e){
+        swal({
+            title: "¿Eliminar Registro?",
+            text: "Recuerda que si eliminas este registro se eliminará de la base de datos.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+
+                const id = e.target.parentNode.id;
+
+                const infoDeleteUsuario = new FormData();
+                infoDeleteUsuario.append('accion','deleteUsuario');
+                infoDeleteUsuario.append('ID',id);
+
+
+                
+                //Es necesario hace un AJAX para agregar el registro a la BD
+                //Llamado a AJAX (Crear el objeto)
+                const xhr = new XMLHttpRequest();
+                //Abrir la conexion
+                xhr.open('POST', '../Admin/Proxy.php', true);
+                //ProcesarRespuesta
+                xhr.onload = function(){
+                    if(this.status === 200){  
+                        //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                        //console.log(xhr.responseText);
+                        //var data=xhr.responseText;
+                        //var jsonResponse = JSON.parse(data);
+
+                        location.assign('http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=16');
+                        //mostrarNotificacion('No se eliminó el registro.', 'error');
+                    }
+                }
+                //Enviar los datos
+                xhr.send(infoDeleteUsuario);
+
+                
+            } else {
+              swal("Se canceló la operación.");
+            }
+          });
+    });
+}
+
+
+
+function viewBlog(){
+    $('.icon-view-Blog').on('click', function(e){
+
+        const idBlog = e.target.parentNode.id;
+
+
+        const infoViewLibro = new FormData();
+        infoViewLibro.append('accion','viewBlog');
+        infoViewLibro.append('ID',idBlog);
+        
+        //Es necesario hace un AJAX para agregar el registro a la BD
+
+        //Llamado a AJAX (Crear el objeto)
+        const xhr = new XMLHttpRequest();
+        //Abrir la conexion
+        xhr.open('POST', '../Admin/Proxy.php', true);
+        //ProcesarRespuesta
+        xhr.onload = function(){
+            if(this.status === 200){  
+                //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                var data=xhr.responseText;
+                var jsonResponse = JSON.parse(data);
+       
+                $("#viewB-Form-Blog-Titulo").attr('value',jsonResponse["Titulo"]);
+                $("#viewB-Form-Blog-Autor").attr('value',jsonResponse["Autor"]);
+                $("#viewB-Form-Blog-Fecha").attr('value',jsonResponse["Fecha"]);
+
+                
+
+                $("#viewB-Form-Blog-Preview").html();
+                $("#viewB-Form-Blog-Entrada").html(jsonResponse["Entrada"]);
+            }
+        }
+        //Enviar los datos
+        xhr.send(infoViewLibro);
+
+    });
+}
+
+function deleteUsuario(){
+    $('.icon-delete-Blog').on('click', function(e){
+        swal({
+            title: "¿Eliminar Registro?",
+            text: "Recuerda que si eliminas este registro se eliminará de la base de datos.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+
+                const id = e.target.parentNode.id;
+
+                const infoDeleteBlog = new FormData();
+                infoDeleteBlog.append('accion','deleteBlog');
+                infoDeleteBlog.append('ID',id);
+
+
+                
+                //Es necesario hace un AJAX para agregar el registro a la BD
+                //Llamado a AJAX (Crear el objeto)
+                const xhr = new XMLHttpRequest();
+                //Abrir la conexion
+                xhr.open('POST', '../Admin/Proxy.php', true);
+                //ProcesarRespuesta
+                xhr.onload = function(){
+                    if(this.status === 200){  
+                        //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                        //console.log(xhr.responseText);
+                        //var data=xhr.responseText;
+                        //var jsonResponse = JSON.parse(data);
+
+                        location.assign('http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=16');
+                        //mostrarNotificacion('No se eliminó el registro.', 'error');
+                    }
+                }
+                //Enviar los datos
+                xhr.send(infoDeleteBlog);
+
+                
+            } else {
+              swal("Se canceló la operación.");
+            }
+          });
+    });
+}
 
 
