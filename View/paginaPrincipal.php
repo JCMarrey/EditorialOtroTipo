@@ -29,32 +29,27 @@
     <div class="contenedor-main1">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
 
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-
-            </div>
-
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide1">
-                </div>
-                <div class="carousel-item">
-                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide2">
-                </div>
-                <div class="carousel-item">
-                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide3">
-                </div>
-                <div class="carousel-item">
-                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide4">
-                </div>
-                <div class="carousel-item">
-                    <img src="../img/p1.jpg" class="d-block w-100" alt="slide5">
-                </div>
-
+                <?php
+                    require_once('Admin/Conexion.php');
+                    $query = "SELECT Archivo FROM deotrotipo.media WHERE tipo = 'CARRUSEL';";
+                    $resultado = mysqli_query($conexion,$query);
+                    $contador=0;
+                    $numRegistros = mysqli_num_rows($resultado );
+                ?>
+                
+                <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                    <?php if($contador==0): ?>
+                        <?php $contador++; ?>
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="/EditorialOtroTipo/Media/CarruselMain/<?= $registro['Archivo']; ?>" alt="Banner Principal">
+                            </div>
+                    <?php else: ?>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="/EditorialOtroTipo/Media/CarruselMain/<?= $registro['Archivo']; ?>" alt="Banner Principal">
+                        </div>
+                    <?php endif;?>
+                <?php endwhile;?>
             </div>
 
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -65,6 +60,20 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+
+
+
+            <div class="carousel-indicators">
+
+                <?php $contadorAuxiliar=0; while($numRegistros>$contadorAuxiliar): ?>
+                    <?php if($contadorAuxiliar==0): ?>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?=$contadorAuxiliar;?>" class="active" aria-current="true" aria-label="Slide <?=$contadorAuxiliar+1;?>"></button>
+                        <?php else: ?>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?=$contadorAuxiliar;?>" aria-current="true" aria-label="Slide <?=$contadorAuxiliar+1;?>"></button>
+                    <?php endif;?>
+                <?php  $contadorAuxiliar++; endwhile;?>
+
+            </div>
             
         </div>        
     <div class="contenedorIconos">
@@ -76,8 +85,15 @@
     </div>
 
     <div id="contenedor-main2">
-        <img src="../img/p1.jpg" alt="" class="anuncios-main">
-        <img src="../img/p1.jpg" alt="" class="anuncios-main">
+        <?php
+            $query = "SELECT * FROM deotrotipo.media WHERE tipo != 'CARRUSEL' AND tipo != 'SEMBLANZA';";
+            $resultado = mysqli_query($conexion,$query);
+        ?>
+            
+        <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+            <iframe width="420" height="345" class="anuncios-main" src="<?=$registro['Archivo']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <?php endwhile;?>
+
     </div>
 
             <!--sección para cargar los libros de novedades...-->
