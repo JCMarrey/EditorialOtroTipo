@@ -27,6 +27,7 @@ $(document).ready(function () {
     deleteUsuario();
 
     viewBlog();
+    deleteBlog();
 
 });
 
@@ -852,8 +853,10 @@ function viewBlog(){
     });
 }
 
-function deleteUsuario(){
+function deleteBlog(){
     $('.icon-delete-Blog').on('click', function(e){
+
+
         swal({
             title: "¿Eliminar Registro?",
             text: "Recuerda que si eliminas este registro se eliminará de la base de datos.",
@@ -865,12 +868,15 @@ function deleteUsuario(){
             if (willDelete) {
 
                 const id = e.target.parentNode.id;
-
+                const nav = document.getElementById(id);
+                const titulo = nav.previousElementSibling.innerHTML;
+                const autor = nav.previousElementSibling.previousElementSibling.innerHTML;
+                
                 const infoDeleteBlog = new FormData();
                 infoDeleteBlog.append('accion','deleteBlog');
                 infoDeleteBlog.append('ID',id);
-
-
+                infoDeleteBlog.append('TITULO',titulo);
+                infoDeleteBlog.append('AUTOR',autor);
                 
                 //Es necesario hace un AJAX para agregar el registro a la BD
                 //Llamado a AJAX (Crear el objeto)

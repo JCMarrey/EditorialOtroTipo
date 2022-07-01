@@ -313,12 +313,20 @@
         if(strcmp($_POST['accion'],'deleteBlog') == 0){
             
             $id = $_POST['ID'];
+            $titulo = $_POST['TITULO'];
+            $autor = $_POST['AUTOR'];
 
+            $previewRef = 'preview'.$titulo;
+            $entradaRef = 'entrada'.$titulo;
+            
+            $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Entradas/";
             $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`blog` WHERE (`idBlog` = ?);");
             $stmt->bind_param('i',$id);
             $res = $stmt->execute();
 
             if($res){
+                unlink($carpetaDestino.$previewRef.'.txt');
+                unlink($carpetaDestino.$entradaRef.'.txt');
                 $respuesta = array (
                     'id' => $stmt->insert_id,
                     'respuesta' => 'correcto'

@@ -20,11 +20,16 @@
             $previewRef = 'preview'.$titulo;
             $entradaRef = 'entrada'.$titulo;
 
+            $archivo = $_FILES['ARCHIVO']['name'];
+            $tipoArchivo = $_FILES['ARCHIVO']['type'];
+            $sizeArchivo = $_FILES['ARCHIVO']['size'];
+
+
             $idActual = 0;
 
             try{
-                $stmt = $conexion->prepare("INSERT INTO `deotrotipo`.`blog` (`idBlog`, `Titulo`, `Autor`, `Fecha`, `Preview`, `Entrada`) VALUES (?, ?, ?, ?, ?, ?);");
-                $stmt->bind_param('isssss', $idActual, $titulo, $autor, $fecha, $previewRef, $entradaRef);
+                $stmt = $conexion->prepare("INSERT INTO `deotrotipo`.`blog` (`idBlog`, `Titulo`, `Autor`, `Fecha`, `Preview`, `Entrada`, `Img`) VALUES (?, ?, ?, ?, ?, ?,?);");
+                $stmt->bind_param('issssss', $idActual, $titulo, $autor, $fecha, $previewRef, $entradaRef, $archivo);
                 $stmt->execute();
                 if($stmt->affected_rows == 1){
 
@@ -35,6 +40,10 @@
                     $inFile = fopen($carpetaDestino.$entradaRef.'.txt', "w") or die("Unable to open file!");
                     fwrite($inFile, $entrada);
                     fclose($inFile);
+
+                    if($sizeArchivo<=11000000){
+                        move_uploaded_file($_FILES['ARCHIVO']['tmp_name'],$carpetaDestino.$archivo);
+                    }
 
 
                     header('Location: http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=12');

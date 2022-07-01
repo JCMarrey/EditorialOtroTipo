@@ -28,6 +28,9 @@
                 <textarea rows = "15" placeholder="Contenido de la entrada del Blog..." cols = "40" name = "ENTRADA"></textarea>     
             </div>
 
+            <label for="addb-Form-Archivo" class="col-form-label">Imagen:</label>
+            <input  type="file" name="ARCHIVO" class="form-control" id="addb-Form-Archivo" accept="image/*">
+
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
               <input id="btn-modal-add-Blog" type="submit" class="btn btn-success">
