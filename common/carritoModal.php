@@ -16,14 +16,10 @@
               </tr>
             </thead>
             <tbody></tbody>
-
-
           </table>
         </div>
           <a  href="#" id="procesar-pedido" class="btn btn-primary btn-lg" style="margin-left:20rem;">Procesar Compra</a>
     
           <a  href="#" id="vaciar-carrito"  class="btn btn-danger btn-lg"  style="margin-left:10rem;">Vaciar Carrito</a>
-         
 </div>
 
- 

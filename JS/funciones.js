@@ -5,6 +5,8 @@ const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
 const verMas = document.getElementById('btnVermas');
 const procesarPedidoBtn= document.getElementById('procesar-pedido');
 
+
+
 cargarEventos();
 
 
@@ -27,7 +29,7 @@ function cargarEventos(){
 
     procesarPedidoBtn.addEventListener('click',(e)=>{
                 procesarPedido(e);
-    })
+    });
 
 
 }
@@ -37,7 +39,6 @@ function comprarProducto(e){
     if(e.target.classList.contains('agregar-producto-c')){
         const producto = e.target.parentElement.parentElement;
         //enviamos el producto seleccionado para tomar sus datos
-        console.log(producto);
         leerDatosProductos(producto);
     }
 }
@@ -45,11 +46,13 @@ function comprarProducto(e){
 //Leer datos del producto
 function leerDatosProductos(producto){
     //nuevo objeto para cargar producto a la tabla..
+    console.log(producto);
     const infoProducto = {
         imagen : producto.querySelector('img').src,
         titulo: producto.querySelector('h5').textContent,
         precio: producto.querySelector('span').textContent,
         id : producto.querySelector('li').textContent,
+        pesoLibro: producto.querySelector('h2').textContent,
         cantidad: 1
     }
     //verificar sí el libro existe
@@ -59,8 +62,6 @@ function leerDatosProductos(producto){
 
     librosLS.forEach(function(libroLS,index){
         if(libroLS.id === infoProducto.id){
-            //index = librosLS.indexOf(libroLS);
-            //librosLS[index].cantidad += 1;
             infoProducto.cantidad = libroLS.cantidad; 
             infoProducto.cantidad += 1;
             auxLibro = libroLS.id;
@@ -68,7 +69,6 @@ function leerDatosProductos(producto){
             librosLS.splice(index,1);
         }
     });
-    //actualizamos LocalStorage
     localStorage.setItem('productos',JSON.stringify(librosLS));
 
     if(auxLibro === infoProducto.id){
@@ -99,6 +99,7 @@ function insertarProductoCarrito(producto){
                     <p style="display:none"; id="idCarritoP">${producto.id}</p>
                 
             </td>
+
     `; 
     listaProductos.appendChild(row);
     guardarProductosLocalStorage(producto);
@@ -113,7 +114,7 @@ function eliminarProducto(e){
         productoID = producto.querySelector('p').textContent;
     }
     eliminarProductoLocalStorage(productoID);
-   
+   calcularTotal();
 }
 
 function vaciarCarrito(e){
@@ -190,7 +191,11 @@ function vaciarLocalStorage(){
     localStorage.clear();
 }
 
-
+function leerPDF(){
+    console.log("clcik...");
+    var url =  $('#btnLeerF').val();
+    console.log(url);
+  }
 
 function procesarPedido(e){
     e.preventDefault();
@@ -204,33 +209,94 @@ function procesarPedido(e){
             showConfirmButton: false
           })
     }else{
-        location.href = "/View/compra.php";
+        location.href = "/View/carrito.php";
     }   
 }
 
-function leerPDF(){
-  console.log("clcik...");
-  var url =  $('#btnLeerF').val();
-  console.log(url);
+function calcularTotal(estadoSeleccionado){
+
+    $estado = estadoSeleccionado;
+    console.log("estado..",$estado);
+
+    let productosLS;
+    let total = 0, subtotal = 0, pesoEnvio = 200;
+    let precioEnvio = 0 ;
+    productosLS = obtenerProductosLocalStorage();
+    for(let i = 0 ; i < productosLS.length; i++){
+        let subtotalProducto = Number(productosLS[i].precio * productosLS[i].cantidad);
+        subtotal = subtotal + subtotalProducto;
+        pesoEnvio += Number(productosLS[i].pesoLibro*productosLS[i].cantidad); 
+        console.log(pesoEnvio);
+    }
+   /* if(pesoEnvio === 200){
+        precioEnvio = 0;
+    }
+    else if(pesoEnvio >=1000  && $estado === 'Ciudad de Mexico'){
+        console.log("límite de libros---");
+        precioEnvio = 300;
+    }else if(pesoEnvio <1000  && $estado === 'Ciudad de Mexico'){
+        precioEnvio = 200;; //si es menor a 5000 el peso de envío la tarifa estándar será de 120;
+    }else if(pesoEnvio >=1000  && $estado != 'Ciudad de Mexico' ){
+        precioEnvio = 500;
+    }else if(pesoEnvio <1000  && $estado != 'Ciudad de Mexico'){
+        precioEnvio = 400;
+    }*/
+
+    if(pesoEnvio === 200){
+        precioEnvio = 0;
+    }else{
+        if($estado == 'Ciudad de Mexico'){
+            if(pesoEnvio >=1000){
+                precioEnvio = 300;
+            }else{
+                //el peso es menor  a 1000
+                precioEnvio = 200;;
+            }
+        }else{
+            if(pesoEnvio >=1000){
+                precioEnvio = 500;
+            }else{
+                //el peso es menor  a 1000
+                precioEnvio = 400;
+            }
+        }   
+
+    }
+
+    console.log("precioEnvio..",precioEnvio);
+    total =  precioEnvio + subtotal;
+    console.log("total..",total);
+    document.getElementById('subtotal').innerHTML = "$/ "+subtotal;
+    document.getElementById('costoEnvio').innerHTML = "$/  "+precioEnvio;
+    document.getElementById('totalEnvio').innerHTML = "$/ "+total;
 }
 
+function cambiarCantidad(e){
 
+    let librosLS = obtenerProductosLocalStorage();
+    let auxLibro;
+    let producto = e.target.parentElement.parentElement;
+    let productoID = producto.querySelector('p').textContent;
 
+    librosLS.forEach(function(libroLS,index){
+        if(libroLS.id === productoID){
+            if(e.target.classList.contains('disminuir-cantidad')){
+                console.log("disminuir... cantidad",libroLS.cantidad);
+                //auxLibro = libroLS[index];
+                libroLS.cantidad -=1;
+                console.log("disminuir... cantidad",libroLS.cantidad);
+                
+                localStorage.setItem('productos',JSON.stringify(librosLS));
+                location.reload();
+                
+            }
+            if(e.target.classList.contains('aumentar-cantidad')){
+                libroLS.cantidad +=1;
+                console.log("aumentar... cantidad",libroLS.cantidad);
+                localStorage.setItem('productos',JSON.stringify(librosLS));
+                location.reload();
+            }   
+        }
+    });
 
-
-
-/*
-
-function buscarLibros(libros){
-    $.ajax({
-        url : 'busquedaLibros.php',
-        type : 'POST',
-        dataType : 'php',
-        data : {libros: libros},
-    })
-    .done(function(resultado){
-
-        $("#listaBusqueda").html(resultado);
-    })
-}*/
-
+}

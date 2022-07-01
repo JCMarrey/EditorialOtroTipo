@@ -17,7 +17,7 @@ if($idLibro == ''){
     $sql_detalleLibro->execute([$idLibro]);
     //verificamos que exista al menos 1 elemento con ese ID:
     if($sql_detalleLibro->fetchColumn() >0){
-        $sql_detalleLibro= $con->prepare("SELECT Titulo, Precio, Imagen, Sinopsis, Autor, ISBN, Coleccion, Edicion, Paginas , Audio , Gandhi, Sotano, Porrua, CarlosFuentes, Amazon FROM deotrotipo.libro WHERE idLibro=? ");
+        $sql_detalleLibro= $con->prepare("SELECT Titulo, Precio, Imagen, Sinopsis, Autor, ISBN, Coleccion, Edicion, Paginas , Audio , Peso, Gandhi, Sotano, Porrua, CarlosFuentes, Amazon FROM deotrotipo.libro WHERE idLibro=? ");
         $sql_detalleLibro->execute([$idLibro]);
         $row = $sql_detalleLibro->fetch(PDO::FETCH_ASSOC);
 
@@ -31,6 +31,7 @@ if($idLibro == ''){
         $Edicion = $row['Edicion'];
         $Paginas = $row['Paginas'];
         $Audio = $row['Audio'];
+        $Peso = $row['Peso'];
 
         $AuxTexto = "";
         $contents=file_get_contents($Sinopsis);
@@ -95,7 +96,7 @@ if($idLibro == ''){
                       <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
                       <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
                       <p class="card-text" id="precio"  style="font-size: 4rem;" >$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
-                      <p class="card-text" id="pesoLibro" style="display:none;"><?php echo $row['Peso']?></p>
+                      <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $Peso?></h2>
 
                       <div>
                         <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
@@ -117,7 +118,7 @@ if($idLibro == ''){
 
         <!-- Modal -->
     <div class="modal fade" id="modalTiendas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title" id="exampleModalLabel">Editorial De Otro Tipo</h1>
@@ -134,7 +135,7 @@ if($idLibro == ''){
                         <div id="modalTitulo" style="padding-bottom: 30px; padding-top: 30px;">
                             <?php echo $Titulo ?>
                         </div>
-                        
+                        <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $row['Peso']?></h2>
                             
                         <div id="modalPrecio" style="font-size: 5rem">$<?php  echo $Precio?></div> 
                     </div>
@@ -221,6 +222,7 @@ if($idLibro == ''){
             <div class="audio" id="audio">
                     <p> Narrativa del libro.... </p>
                     <audio controls>
+                        <source src="<?php echo $Audio ?>" type="audio/mpeg">
                         <source src="<?php echo $Audio ?>" type="audio/wav">
                         Tu navegador no es compatible con el audio...
                     </audio>

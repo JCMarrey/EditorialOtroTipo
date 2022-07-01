@@ -6,9 +6,6 @@
 
   $con = $db->conectar();
 
-
-
-
   if(isset($_GET['categoria'])){
     $categoria = $_GET['categoria'];
     $sql_libros= $con->prepare("SELECT*FROM deotrotipo.libro WHERE Coleccion='$categoria'");
@@ -25,32 +22,38 @@
 
 <!DOCTYPE html>
     <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-        
-        <link rel="stylesheet" href="../FontAwesome/css/all.css">
-  
-        <link rel="stylesheet" href="../common/Normalize.css">
-        <link rel="stylesheet" href="../common/estilos.css">
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
-        <title>Editorial Otro Tipo</title>
-    </head>
-  
+    <?php  require_once("../common/head.php"); ?>
     <body>
 
-
       <?php require_once("../common/header.php"); ?>
-      <?php require_once("../common/carritoModal.php"); ?>
 
+      <div id="carrito">
+        <div>
+          <table id="lista-carrito" class="table" >
+            <tittle id="TextoCarritoCompras"><h1>Mi carrito de compras</h1></tittle>
+            <thead>
+              <tr>
+                <th>
+                  <button class="btnS2"  type="button" onclick="Ocultar()"  id="btnOcultarNB" >X</button>
+                </th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+          <a  href="#" id="procesar-pedido" class="btn btn-primary btn-lg" style="margin-left:20rem;">Procesar Compra</a>
+    
+          <a  href="#" id="vaciar-carrito"  class="btn btn-danger btn-lg"  style="margin-left:10rem;">Vaciar Carrito</a>
+        </div>
+
+ 
 
       <div class="filtros">
         <ul class="list-group">
@@ -138,18 +141,21 @@
                       <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
                       <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
                       <p class="card-text" id="precio"  style="display:none;">$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
-                      <p class="card-text" id="pesoLibro" style="display:none;"><?php echo $row['Peso']?></p>
+                      <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $row['Peso']?></h2>
                       
                       <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">                    
                         <!--<button class="btnS1"  type="button" id="btnLeerF"><a style="text-decoration: none;" target="_blank" href="/sinopsis/cuarta de forros Amar en otro idioma.pdf">Leer un fragmento</a></button>-->
                         
-                        <button class="btnS1"  type="button" id="btnLeerF"><a style="text-decoration: none; color: blanchedalmond;" target="_blank" href="<?php echo $row['Capitulo1'];  ?>">Leer un fragmento</a></button>                  
+                        <button   type="button" id="btnLeerF"><a style="text-decoration: none; color: blanchedalmond;" target="_blank" href="<?php echo $row['Capitulo1'];  ?>">Leer un fragmento</a></button>                  
+                        
                         <button class="btnS1" type="button" id="btnReproducirAudio"><a  href="detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>"><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
                         
                       </div>
-                      
                       <div class="d-grid gap-3 d-md-block">
-                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
+                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()">
+                          <img  id="imgComprar" src="/Icons/carrito.svg" alt="..." style="width: 22px;" >
+                            <p id="comprarTXT">Comprar</p>
+                        </button>
                         <ul id="idProducto" style="display:none";>
                           <li><?php echo $row['idLibro'] ?><li>
                         </ul>
@@ -166,8 +172,9 @@
                                          
           <!--div para sidebar de carrito-->
 
-      <script src="/JS/animaciones.js" type="text/javascript"></script>
-      <script src="/JS/funciones.js"></script>          
+      <script src="/JS/animaciones.js" type="text/javascript" defer></script>
+      <script src="/JS/funciones.js" defer></script>
+      <script src="/JS/compra.js" defer></script>     
       <script src="/JS/jquery-3.4.1.min.js"></script>
       <?php require_once("../common/footer.php"); ?>
     </body>
