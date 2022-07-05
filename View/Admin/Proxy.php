@@ -315,6 +315,7 @@
             $id = $_POST['ID'];
             $titulo = $_POST['TITULO'];
             $autor = $_POST['AUTOR'];
+            $img = $_POST['IMG'];
 
             $previewRef = 'preview'.$titulo;
             $entradaRef = 'entrada'.$titulo;
@@ -323,13 +324,17 @@
             $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`blog` WHERE (`idBlog` = ?);");
             $stmt->bind_param('i',$id);
             $res = $stmt->execute();
-
+            unlink($carpetaDestino.$img);
+            unlink($carpetaDestino.$previewRef.'.txt');
+            unlink($carpetaDestino.$entradaRef.'.txt');
             if($res){
-                unlink($carpetaDestino.$previewRef.'.txt');
-                unlink($carpetaDestino.$entradaRef.'.txt');
+                
                 $respuesta = array (
                     'id' => $stmt->insert_id,
-                    'respuesta' => 'correcto'
+                    'respuesta' => 'correcto',
+                    'Titulo' => $titulo,
+                    'prev' => $carpetaDestino.$previewRef.'.txt',
+                    'in' => $carpetaDestino.$entradaRef.'.txt'
                 );
             }else{
                 $respuesta = array (

@@ -13,7 +13,7 @@
   
     /* width */
     ::-webkit-scrollbar {
-      width: 10px;
+      width: 5px;
   }
   
   /* Track */
@@ -54,6 +54,7 @@
   body {
     height: 100%;
 }
+
   
   *,*:before,*:after{
       box-sizing: inherit;
@@ -66,8 +67,14 @@
   
   a{
     text-decoration: none;
+    color: white;
   }
   
+  a:hover{
+    text-decoration: none;
+    color: white;
+  }
+
   .containerProductos{
       margin-top: 12.5rem;
       margin-right: 15rem;
@@ -918,4 +925,33 @@
 .contenedor-Blog{
   overflow: auto;
   display: grid;
+}
+
+
+/*Estilos Blog*/
+.img-Blog{
+  max-width: 25%;
+  max-height: 30rem;
+  margin-top: 2rem;
+}
+
+.cuadroblog{
+display: flex;
+justify-content: space-between;
+border-style: solid;
+border-width: 2px;
+border-color: #CB123F;
+border-left: #ffff;
+border-right: #ffff;
+margin-top: 5rem;
+padding: 2rem;
+}
+
+@media (max-width: 685px){
+  .img-Blog{
+    max-height: 15rem;
+  }
+  .cuadroblog{
+    font-size: 1.2rem;
+  }
 }
