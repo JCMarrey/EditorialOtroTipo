@@ -1041,25 +1041,24 @@
     
   }
   
-  #tituloblog{
+  .tituloblog{
   
     float: right;
-    height: 20px;
     width: 66%;
     
     
     
   }
   
-  #tituloblog h1{
+  .tituloblog h1{
   
     color: #CB123F;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 600;
-    
+    margin: 0;; 
   }
   
-  #tituloblog p#nombre{
+  .tituloblog p#nombre{
   
     font-size: 1.3em;
     font-weight: 400;
@@ -1068,7 +1067,7 @@
     
   }
   
-  #tituloblog p#fecha{
+  .tituloblog p#fecha{
   
     font-size: 1em;
     font-weight: 400;
@@ -1076,7 +1075,7 @@
     
   }
   
-  #tituloblog p#resumen{
+  .tituloblog p#resumen{
   
     margin-top: 40px;
     font-size: 1.1em;
@@ -1088,11 +1087,11 @@
   
   #cuadroleer1{
   
-    grid-column: 5/14;
+    grid-column: 4/16;
     grid-row-start:2;
     grid-row-end: 20;
-   
-  
+    overflow: auto;
+    padding: 1rem;
   }
   
   
