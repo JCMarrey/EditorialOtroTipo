@@ -856,6 +856,7 @@ function viewBlog(){
 function deleteBlog(){
     $('.icon-delete-Blog').on('click', function(e){
 
+       
 
         swal({
             title: "¿Eliminar Registro?",
@@ -867,16 +868,19 @@ function deleteBlog(){
           .then((willDelete) => {
             if (willDelete) {
 
-                const id = e.target.parentNode.id;
-                const nav = document.getElementById(id);
-                const titulo = nav.previousElementSibling.innerHTML;
-                const autor = nav.previousElementSibling.previousElementSibling.innerHTML;
                 
+                const id = e.target.parentNode.id;
+                const titulo = e.target.parentNode.previousElementSibling.innerHTML;
+                const autor = e.target.parentNode.previousElementSibling.previousElementSibling.innerHTML;
+                
+                const nameImagen = e.target.parentNode.previousElementSibling.id;
+
                 const infoDeleteBlog = new FormData();
                 infoDeleteBlog.append('accion','deleteBlog');
                 infoDeleteBlog.append('ID',id);
                 infoDeleteBlog.append('TITULO',titulo);
                 infoDeleteBlog.append('AUTOR',autor);
+                infoDeleteBlog.append('IMG',nameImagen);
                 
                 //Es necesario hace un AJAX para agregar el registro a la BD
                 //Llamado a AJAX (Crear el objeto)

@@ -51,9 +51,12 @@
                     <li id="controller-tab-eventos" class="nav-item">
                         <a class="nav-link" href="#tab-eventos">Eventos</a>
                     </li>
-                    <li id="controller-tab-estadisticas" class="nav-item">
+                    
+                    <!--
+                        <li id="controller-tab-estadisticas" class="nav-item">
                         <a class="nav-link" href="#tab-estadisticas">Estadisticas</a>
                     </li>
+                    -->
 
                     <li id="controller-tab-blog" class="nav-item">
                         <a class="nav-link" href="#tab-blog">Blog</a>
@@ -181,7 +184,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="tab-estadisticas"></div>
+                <!--<div id="tab-estadisticas"></div>-->
                 
                 <div id="tab-blog">
                     <div id="btnAdd-Blog" class="btnAdd">
@@ -207,8 +210,8 @@
 
                             <?php while($registro = mysqli_fetch_assoc($resultado)):?>
                                 <tr class="tr-Admin">
-                                    <td  class="text-center" scope="row"><?= $registro['Titulo'];?></td>
-                                    <td  class="text-center"><?= $registro['Autor'];?></td>
+                                    <td  class="text-center" scope="row"><?= $registro['Autor'];?></td>
+                                    <td  id="<?= $registro['Img'];?>" class="text-center"><?= $registro['Titulo'];?></td>
                                     
                                     <td  id="<?= $registro['idBlog'];?>"  class="text-center container-actions">
                                         <!--

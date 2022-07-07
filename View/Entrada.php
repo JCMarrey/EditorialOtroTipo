@@ -25,32 +25,43 @@
 <body>
     <?php require_once("../common/header.php"); ?>
 
-    <div class="contenedor-Autores">
+    <?php
+        require_once('Admin/Conexion.php');
+        $query = "SELECT * FROM deotrotipo.blog WHERE idBlog =".$_GET["r"];;
+        $resultado = mysqli_query($conexion,$query);
+        $registro = mysqli_fetch_assoc($resultado);
+    ?>  
 
-        <h3 class="titulo-Autores" >Blog</h3>
+    <div  class="section">
+        <div class="grid">
 
-        <?php
-            require_once('Admin/Conexion.php');
-            $query = "SELECT * FROM deotrotipo.blog;";
-            $resultado = mysqli_query($conexion,$query);
-        ?>
-            
-        <?php while($registro = mysqli_fetch_assoc($resultado)):?>
-            <a href="http://localhost/EditorialOtroTipo/View/Entrada.php?r=<?=$registro['idBlog']?>">
-                <div class="cuadroblog">
-                    <img class="img-Blog" src="../Entradas/<?=$registro['Img']?>" alt="ImagenBlog">
-                    <div class="tituloblog">
-                        <h1><?=$registro['Titulo']?></h1>
-                        <p id="nombre"><?=$registro['Autor']?></p>
-                        <p id="fecha"><?=$registro['Fecha']?></p>
-                        
-                        <?php $myfile = fopen("../Entradas/".$registro['Preview'].".txt", "r") or die("Unable to open file!");?>
-                        <p id="resumen"><?=fread($myfile,filesize("../Entradas/".$registro['Preview'].".txt"));?>...</p>
-                        <?php fclose($myfile); ?>
+
+            <div id="cuadroleer1">
+
+                <div id="tituloblog1">
+                    <h1><?=$registro['Titulo']?></h1>
+                    <p id="nombre"><?=$registro['Autor']?></p>
+                    <p id="fecha"><?=$registro['Fecha']?></p>
+                    
+                    <div id="textoblog1">
+                        <?php $myfile = fopen("../Entradas/".$registro['Entrada'].".txt", "r") or die("Unable to open file!");?>
+                            <p><?=fread($myfile,filesize("../Entradas/".$registro['Entrada'].".txt"));?></p>
+                        <?php fclose($myfile); ?>    
+                        <div class="flex-container-E">
+                            <p id="compartir">Compartir</p>
+                            <img id="img1" src="../Icons/compartirrojo.svg" alt="">
+                            <img id="img1" src="../Icons/twitterrojo.svg" alt="">
+                            <img id="img1" src="../Icons/fbrojo.svg" alt="">
+                            <img id="img1" src="../Icons/instarojo.svg" alt="">
+                        </div>
                     </div>
+                    <img src="../Entradas/<?=$registro['Img']?>" alt="#">
                 </div>
-            </a>
-        <?php endwhile;?>        
+            </div>
+
+
+            </div>        
+        </div>
     </div>
 
     <?php require_once("../common/footer.php"); ?>
