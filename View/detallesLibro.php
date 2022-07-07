@@ -85,8 +85,7 @@ if($idLibro == ''){
 
 
 <body>
-   <?php require_once("../common/header.php"); ?>
-   <?php require_once("../common/carritoModal.php"); ?>
+<?php require_once("../common/header.php"); ?>
    <div class="detallesLibro">
         <div class="asideIzq" id="lista-productos">
                     <div class="card-body">
@@ -98,19 +97,19 @@ if($idLibro == ''){
                       <p class="card-text" id="precio"  style="font-size: 4rem;" >$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
                       <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $Peso?></h2>
 
-                      <div>
+                      <!--<div>
                         <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
                         <ul id="idProducto" style="display:none";>
-                          <li><?php echo $idLibro ?><li>
+                          <li></*?php echo $idLibro ?*/><li>
                         </ul>
 
-                     </div>
+                     </div>-- quitado por tiempo -->
         </div>            
            <!-- Button trigger modal -->
 
         <div class="btn-tiendas">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTiendas">
-                <h3>Puedes encontrarlo en (Dar Click)</h3>
+                <h3 id="idTiendas">Puedes encontrarlo en (Dar Click)</h3>
             </button>
         </div>
 
@@ -141,7 +140,7 @@ if($idLibro == ''){
                     </div>
                     <div class="modalTabla">
                       
-                        <table class="table table-borderless"  >
+                        <table class="table table-borderless" id="listaTiendas" >
                             <tittle> <h3>Elige tu tienda favorita:<h3> </tittle>
                             <tbody>
                                 <tr>
@@ -215,7 +214,7 @@ if($idLibro == ''){
             </div>
         </div>
     </div>
-        <div id="infoLibro">
+    <div id="infoLibro">
             
             <p id="textoPDF"><?php echo $AuxTexto ?></p>
           
@@ -234,35 +233,35 @@ if($idLibro == ''){
                     <tbody>
                         <tr>
                             <td id="iconoAutor">
-                                <img src="/Icons/autor.svg" alt = "... ">
+                                <img class="imgLogo" src="/Icons/autor.svg" alt = "... ">
                             </td>
                             <td>Autor</td>
                             <td id="nombreAutor"><?php echo  $Autor?></td>
                         </tr>
                         <tr>
                             <td id="iconoISBN">
-                                <img src="/Icons/isbn.svg" alt="" >
+                                <img class="imgLogo" src="/Icons/isbn.svg" alt="" >
                             </td>
                             <td>ISBN</td>
                             <td id="numISBN"><?php echo  $ISBN ?></td>
                         </tr>
                         <tr>
                             <td id="iconoColeccion">
-                                <img src="/Icons/coleccion.svg" alt="" >
+                                <img class="imgLogo" src="/Icons/coleccion.svg" alt="" >
                             </td>
                             <td>Colección</td>
                             <td id="tipoColeccion"><?php echo $Coleccion?></td>
                         </tr>
                         <tr>
                             <td id="iconoNumEd">
-                                <img src="/Icons/noedicion.svg" alt="" >
+                                <img class="imgLogo" src="/Icons/noedicion.svg" alt="" >
                             </td>
                             <td>NúmeroDeEdición</td>
                             <td id="numEdicion"><?php  echo $Edicion ?></td>
                         </tr>
                         <tr>
                             <td id="iconoPags">
-                                <img src="/Icons/paginas.svg" alt="" >
+                                <img class="imgLogo" src="/Icons/paginas.svg" alt="" >
                             </td>
                             <td>Páginas</td>
                             <td id="numPags"><?php echo $Paginas ?></td>
@@ -278,7 +277,6 @@ if($idLibro == ''){
     <script src="/JS/funciones.js"></script>          
     <script src="/JS/jquery-3.4.1.min.js"></script>
     <?php require_once("../common/footer.php"); ?>
-
 </body>
 </html>
 

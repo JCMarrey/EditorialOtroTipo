@@ -37,6 +37,7 @@
                     <p>Contacto</p>
             </div>
         </div>
+
 </header>
 
     
@@ -72,6 +73,7 @@
         <div class="navItem"><a href="">Noticias</a></div>
         <div class="navItem"><a href="">Convocatorias</a></div>
         <div class="navItem"><a href="">Blog</a></div>
+
 
 </div>
 
