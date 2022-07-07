@@ -50,15 +50,18 @@
       font-size: 1.5rem;
   }
 
+
   html, 
   body {
     height: 100%;
+    width: 100%;
 }
   
   *,*:before,*:after{
       box-sizing: inherit;
   }
   
+
   img{
     max-width: 100%;
    
@@ -69,14 +72,30 @@
   }
   
   .containerProductos{
-      margin-top: 12.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    grid-auto-rows: 72px;
+      /*grid-column: 3/10;
+      grid-row: 11/14;
+      /*margin-top: 12.5rem;
       margin-right: 15rem;
       width: 150rem;
       display: flex;
       margin-left: 40rem;
+      justify-content: center;
+      align-items: center;*/
     }
   
     .catalogoP{
+      /*float: left;
+      width: 87.5rem;
+      height: auto;
+      margin-left: 25rem;
+      transition: 0.4s;*/
+      grid-column: 6/10;
+      grid-row: 2/14;
       float: left;
       width: 87.5rem;
       height: auto;
@@ -134,7 +153,7 @@
   padding-right: 2rem;
 }
     
-    
+/******************************************************+++++grididd**********/
   
   
   /*clase Juan*/
@@ -169,12 +188,14 @@
   }
 
   .filtros{
+    grid-column: 2/10;
+    grid-row: 2/8;
     width: 20rem;
-    margin-top: 12.5rem;
+    /*margin-top: 12.5rem;
     margin-left: 15rem;
     float: left;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;*/
   }
   
   .card{
@@ -283,9 +304,23 @@
     }
     
     .btnVermas{
-      font-size: relative;
-      border: none;
-    }
+        color: white;
+        background-color: #3D97CB;
+        border-color: #3D97CB;
+        border-style: solid;
+        border-radius: 2.18rem;
+  }
+  .btnVermas2{
+    color: white;
+    background-color: #3D97CB;
+    border-color: #3D97CB;
+    border-style: solid;
+    border-radius: 2.18rem;
+    text-decoration: none;
+  }
+  .btnVermas2 a{
+    color: white;
+  }
 
 #TextoCarritoCompras{
   text-align: center;
@@ -315,21 +350,26 @@
 
 
 .btn-tiendas{
-  width: auto;
-  float: left;
-  height: 10rem;
-  margin-left: 10rem;
-  text-align: center;
+  grid-column:5/16;
+  grid-row: 2/8;
 }
 
 
 .detallesLibro{
-      height: 65rem;
-      width: auto;
-      margin-top: 10rem;
-      margin-left: 10%;
+      
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 35px;
+  grid-auto-rows: 72px;
+  margin-top: 10rem;
+
 }
+
+
+
 .asideIzq{
+      grid-column: 2/16;
+      grid-row: 1/8;
       width: 30rem; 
       height: 40rem;  
       float: left;
@@ -338,7 +378,9 @@
 
 }
     
-    #infoLibro{
+#infoLibro{
+      grid-column: 7/16;
+      grid-row: 1/8;
       width: 50rem;
       height: 31.25rem;
       float: left;
@@ -346,7 +388,9 @@
       margin-left: 10rem;
     }
     
-    #asideDer{
+#asideDer{
+      grid-column: 13/16;
+      grid-row: 1/8;
       margin-right: 0;
       width: 30rem; 
       height: 31.25rem;  
@@ -1070,3 +1114,504 @@
   overflow: auto;
   display: grid;
 }
+
+
+/*Reponsive para celulares detalles libro*/
+
+@media all and (max-width: 1750px) {
+ .btn-tiendas{
+    grid-column: 2/16;
+    grid-row: 8/12;
+    width: 1500px;
+  }
+  #infoLibro{
+    grid-column: 5/16;
+    grid-row: 1/12;
+    width: 700px;
+  }
+  #asideDer{
+    grid-column: 12/16;
+    grid-row: 1/20;
+   }
+
+}
+
+@media all and (max-width: 1654px) {
+  body{
+    overflow-x: hidden;
+  }
+
+  #infoLibro{
+     grid-column: 5/16;
+     grid-row: 1/12;
+     width: 500px;
+   }
+   #asideDer{
+    grid-column: 10/16;
+    grid-row: 1/20;
+   }
+ }
+
+ @media all and (max-width: 1340px) {
+  body{
+    overflow-x: hidden;
+  }
+
+  .asideIzq{
+    grid-column: 3/16;
+    grid-row: 1/16;
+    width: 500px;
+    height: 100px;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .btn-tiendas{
+    grid-column: 4/16;
+    grid-row: 8/16;
+  }
+  #infoLibro{
+     grid-column: 2/16;
+     grid-row: 9/12;
+     width: 1100px;
+     height: 100px;
+   }
+   #asideDer{
+    grid-column: 8/16;
+    grid-row: 1/20;
+    width: 6px;
+    height: 70rem;
+    
+   }
+ }
+ 
+ @media all and (max-width: 1250px) {
+  body{
+    overflow-x: hidden;
+  }
+
+  .asideIzq{
+    grid-column: 3/16;
+    grid-row: 1/16;
+    width: 500px;
+    height: 100px;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .btn-tiendas{
+    grid-column: 5/16;
+    grid-row: 8/16;
+    margin-left: 250px;
+  }
+  #infoLibro{
+     grid-column: 5/16;
+     grid-row: 9/12;
+     width: 700px;
+     height: 100px;
+   }
+   #asideDer{
+    grid-column: 7/16;
+    grid-row: 1/20;
+    width: 6px;
+    height: 70rem;
+    
+   }
+   #listaTiendas img {
+      margin-left: -50px
+   }
+   .catalogoP{
+    grid-column: 2/10;
+    grid-row: 2/14;
+ 
+   }
+   .filtros{
+    grid-column: 5/10;
+    grid-row: 2/14;
+    margin-left: 200px;
+   }
+
+
+ }
+
+ @media all and (max-width: 980px) {
+  body{
+    overflow-x: hidden;
+  }
+
+  .asideIzq{
+    grid-column: 1/16;
+    grid-row: 1/16;
+    width: 500px;
+    height: 100px;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .btn-tiendas{
+    grid-column: 4/16;
+    grid-row: 8/16;
+  }
+  #infoLibro{
+     grid-column: 2/16;
+     grid-row: 9/12;
+     width: 750px;
+     height: 100px;
+     font-size: 20px;
+   }
+   #asideDer{
+    grid-column: 6/16;
+    grid-row: 1/20;
+    width: 6px;
+    height: 70rem;    
+   }
+
+   .modal{
+    margin-top: 300px;
+    margin-left: 150px;
+   }
+   .modal-backdrop.fade{
+    height: 100%;
+    width: 100%;
+   }
+   
+   .catalogoP{
+    grid-column: 2/10;
+    grid-row: 2/16;
+    margin-left: 25rem;
+   }
+   .row-cols-md-3>* {
+    float: 0 0 auto;
+    width:20%;
+   }
+
+   .card{
+    width: 15rem;
+    height: 30rem;
+    
+    }
+    
+    .figure .card-img-top{
+      width: 10rem;
+      height: 12rem;
+      margin-right: 4.5rem;
+      transition: all 500ms ease-out;
+    }
+
+    #nombreLibro{
+      text-align: center;
+      font-size: 10px;
+      margin-top: -4rem;
+    }
+
+    #autor{
+      font-size: small;
+    }
+    a{
+      font-size: 10px;
+    }
+    #btnReproducirAudio{
+      max-width: 35px;
+      margin-top: 5px;
+    }
+    #btnLeerF{
+      margin-top: -8px;
+    }
+
+   .filtros{
+    grid-column: 1/16;
+    grid-row: 2/14;
+    margin-left: 20px;
+    margin-top: 13px;
+   }
+
+   .figure .capa {
+    height: 100%;
+    width: 150px;
+  }
+
+  .figure .capa #textoPDF {
+    color: #717070;
+    text-align: center;
+    margin-left: 2rem;
+    font-size: small;
+  }
+
+  #firmaAutor{
+    font-size: small;
+  }
+
+  .col-md-6 {
+    flex: 0 0 auto;
+    width: 35%;
+  }
+
+
+}
+
+@media all and (max-width: 600px) {
+
+  body{
+    overflow-x: hidden;
+  }
+
+  .asideIzq{
+    grid-column: 5/16;
+    grid-row: 1/16;
+    width: 500px;
+    height: 100px;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+  }
+  #textoPDF{
+    font-size: 25px;
+   }
+   #nombreLibro{
+    font-size: 40px;
+  }
+  .btn-tiendas{
+    margin-left: 200px;
+    grid-row: 8/16;
+  }
+  #infoLibro{
+     grid-column: 2/16;
+     grid-row: 9/16;
+     width: 980px;
+     font-size: 25px;
+   }
+   #asideDer{
+    grid-column: 6/16;
+    grid-row: 15/20;
+    
+   }
+   #idTiendas{
+    font-size: 25px;
+    }
+   .modal{
+    margin-top: 350px;
+    margin-left: 400px;
+    width: 1800px;
+    height: 850px;
+   }
+   .modalContenidoLibro{
+    margin-left: 200px;
+   }
+
+   .modal-backdrop.fade{
+    height: 100%;
+    width: 100%;
+  }
+
+  /*catalogoo*/
+  
+
+
+
+  .catalogoP{
+    grid-column: 1/10;
+    grid-row: 5/16;
+    margin-left: 5rem;
+   }
+
+   .card{
+    width: 15rem;
+    height: 30rem;
+    
+    }
+    .col-sm-4 {
+      flex: 0 0 auto;
+      width: 40.33%;
+    }
+    .figure .card-img-top{
+      width: 10rem;
+      height: 12rem;
+      margin-right: 4.5rem;
+      transition: all 500ms ease-out;
+    }
+
+    #nombreLibro{
+      text-align: center;
+      font-size: 10px;
+      margin-top: -4rem;
+    }
+
+    #autor{
+      font-size: small;
+    }
+    a{
+      font-size: 10px;
+    }
+    #btnReproducirAudio{
+      max-width: 35px;
+      margin-top: 5px;
+    }
+    #btnLeerF{
+      margin-top: -8px;
+    }
+
+   .filtros{
+    grid-column: 3/16;
+    grid-row: 2/14;
+    margin-left: 20px;
+    margin-top: 13px;
+   }
+
+   .figure .capa {
+    height: 100%;
+    width: 150px;
+  }
+
+  .figure .capa #textoPDF {
+    color: #717070;
+    text-align: center;
+    margin-left: 2rem;
+    font-size: small;
+  }
+
+  #firmaAutor{
+    font-size: small;
+  }
+
+  
+  }
+
+@media all and (max-width: 400px) {
+    body{
+      overflow-x: hidden;
+    }
+  
+    .asideIzq{
+      grid-column: 2/16;
+      grid-row: 1/16;
+      width: 900px;
+      height: 100px;
+      flex: auto;
+      justify-content: center;
+      align-items: center;
+  
+    }
+    .asideIzq img{
+      width: 250px;
+    }
+
+
+    #infoLibro{
+       grid-column: 1/16;
+       grid-row: 11/16;
+       width: 900px;
+       height: 300px;
+       margin-right: 150px;
+      
+     }
+     #textoPDF{
+      font-size: 20px;
+     }
+     #asideDer{
+      margin-top: 50px;
+      grid-row: 15/20;
+      margin-left: 20px;
+      
+     }
+     .btn-tiendas{
+      grid-column: 2/16;
+      grid-row: 10/16;
+
+    }
+    #idTiendas{
+      font-size: 30px;
+    }
+
+    #nombreLibro{
+      font-size: 50px;
+    }
+
+    .modal{
+      margin-top: 700px;
+      width: 1700px;
+      height: 10000px;
+      margin-left: 250px;
+     }
+     .modal-backdrop.fade{
+      height: 100%;
+      width: 100%;
+     }
+
+
+     /*catalogo..*/
+     .catalogoP{
+      grid-column: 6/10;
+      grid-row: 5/16;
+      margin-left: 5rem;
+     }
+  
+     .card{
+      width: 15rem;
+      height: 30rem;
+      
+      }
+      .col-sm-4 {
+        flex: 0 0 auto;
+        width: 100%;
+        flex-direction: column;
+    }
+      .figure .card-img-top{
+        width: 10rem;
+        height: 12rem;
+        margin-right: 4.5rem;
+        transition: all 500ms ease-out;
+        margin-left: 5px;
+}
+      
+  
+      #nombreLibro{
+        text-align: center;
+        font-size: 10px;
+        margin-top: -4rem;
+      }
+  
+      #autor{
+        font-size: small;
+      }
+      a{
+        font-size: 10px;
+      }
+      #btnReproducirAudio{
+        max-width: 35px;
+        margin-top: 5px;
+        margin-left: 40px
+      }
+      #btnLeerF{
+        margin-top: -8px;
+      }
+  
+      .filtros {
+        grid-column: 6/10;
+        grid-row: 2/14;
+        margin-left: -5px;
+        margin-top: 13px;
+        height: 30px;
+        width: 120px;
+    }
+  
+     .figure .capa {
+      height: 100%;
+      width: 150px;
+    }
+  
+    .figure .capa #textoPDF {
+      color: #717070;
+      text-align: center;
+      margin-left: 2rem;
+      font-size: small;
+    }
+  
+    #firmaAutor{
+      font-size: small;
+    }
+
+}
+   

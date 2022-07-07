@@ -23,11 +23,11 @@
 <!DOCTYPE html>
     <html lang="en">
 
-    <?php  require_once("../common/head.php"); ?>
+    /*<?php  require_once("../common/head.php"); ?>*/
     <body>
 
-      <?php require_once("../common/header.php"); ?>
-
+     
+    <?php require_once("../common/header.php"); ?>
       <div id="carrito">
         <div>
           <table id="lista-carrito" class="table" >
@@ -54,57 +54,55 @@
         </div>
 
  
-
-      <div class="filtros">
-        <ul class="list-group">
-          <li class="list-group-item">Filtrar por:</li>
-            <li class="list-group-item">Categoria
-                  <div class="btn-group dropend">
-                      <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
-                        <span>+</span>
-                      </button>
-                      <ul class="dropdown-menu"  style="text-decoration: none;">
-
-                        <?php
-                           $sql_categorias = $con->prepare("SELECT DISTINCT Coleccion FROM deotrotipo.libro");
-                           $sql_categorias->execute();
-                           $resultCate = $sql_categorias->fetchAll(PDO::FETCH_ASSOC); 
-                        
-                        foreach($resultCate as $row){
-                          $categoria=$row['Coleccion'];
-                        ?>
-                           
-                           <li><a class="dropdown-item" href="catalogo.php?categoria=<?php echo $categoria;?>"><?php echo $categoria?></a></li>
-                          
-                        <?php    
-                        }
-                        ?>
-                          <li><a class="dropdown-item" href="catalogo.php">Todos los libros</a></li>-->
-                      </ul>
-                  </div>
-            </li>
-            <li class="list-group-item">Precio</li>
-            <li class="list-group-item">Firma
-              <div class="btn-group dropend">
-                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
-                          <span>+</span>
-                        </button>
-                        <ul class="dropdown-menu"  style="text-decoration: none;">
-                          <li><a class="dropdown-item" href="#">Con autógrafo</a></li>
-                          <li><a class="dropdown-item" href="#">Sin autógrafo</a></li>
-                        </ul>
-                  </div>
-            </li>
-        </ul>        
-      </div>
-
-
-
       <div class="containerProductos"  id="lista-productos">
+          <div class="filtros">
+            <ul class="list-group">
+              <li class="list-group-item">Filtrar por:</li>
+                <li class="list-group-item">Categoria
+                      <div class="btn-group dropend">
+                          <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+                            <span>+</span>
+                          </button>
+                          <ul class="dropdown-menu"  style="text-decoration: none;">
+
+                            <?php
+                              $sql_categorias = $con->prepare("SELECT DISTINCT Coleccion FROM deotrotipo.libro");
+                              $sql_categorias->execute();
+                              $resultCate = $sql_categorias->fetchAll(PDO::FETCH_ASSOC); 
+                            
+                            foreach($resultCate as $row){
+                              $categoria=$row['Coleccion'];
+                            ?>
+                              
+                              <li><a class="dropdown-item" href="catalogo.php?categoria=<?php echo $categoria;?>"><?php echo $categoria?></a></li>
+                              
+                            <?php    
+                            }
+                            ?>
+                              <li><a class="dropdown-item" href="catalogo.php">Todos los libros</a></li>-->
+                          </ul>
+                      </div>
+                </li>
+                <li class="list-group-item">Precio</li>
+                <li class="list-group-item">Firma
+                  <div class="btn-group dropend">
+                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+                              <span>+</span>
+                            </button>
+                            <ul class="dropdown-menu"  style="text-decoration: none;">
+                              <li><a class="dropdown-item" href="#">Con autógrafo</a></li>
+                              <li><a class="dropdown-item" href="#">Sin autógrafo</a></li>
+                            </ul>
+                      </div>
+                </li>
+            </ul>        
+          </div> 
+
+
           <div class="catalogoP">
-            <div class="row row-cols-1 row-cols-md-3 g-2 text-center ">
+            <div class="row  text-center ">
               <?php  foreach($result as $row) { ?>
-                <div class="col">
+                <div class="col-12 col-sm-4 col-md-6 col-lg-4">
                   <div class="card" >          
                     <div class="card-body">
                       <div class="figure">
@@ -129,7 +127,7 @@
                                           echo $AuxTexto;  
                                         }            
                                     ?>
-                                      <button class="btnVermas" id="btnVermas" ><a href="/View/detallesLibro.php?idLibro=<?php echo $row['idLibro']; ?>">Ver más..</a></button>  
+                                      <button class="btnVermas" id="btnVermas" ><a id="aVermas" href="/View/detallesLibro.php?idLibro=<?php echo $row['idLibro']; ?>">Ver más..</a></button>  
                                     <!---->
                                   </p>
                           </div>
@@ -152,14 +150,11 @@
                         
                       </div>
                       <div class="d-grid gap-3 d-md-block">
-                        <!--
-                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()">
-                          <img class="agregar-producto-c" id="imgComprar" src="/Icons/carrito.svg" alt="..." style="width: 22px;" >
-                            <p class=" agregar-producto-c" id="comprarTXT">Comprar</p>
-                        </button>-->
-                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()">
+                            
+                        <!--<button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()">
                           <img  class="agregar-producto-B" src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar
-                        </button>
+                        </button>-->
+                        <button class="btnVermas2" id="btnVermas" ><a href="/View/detallesLibro.php?idLibro=<?php echo $row['idLibro']; ?>">Ver más..</a></button>
                         <ul id="idProducto" style="display:none";>
                           <li><?php echo $row['idLibro'] ?><li>
                         </ul>
