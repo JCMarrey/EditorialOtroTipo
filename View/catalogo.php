@@ -23,7 +23,7 @@
 <!DOCTYPE html>
     <html lang="en">
 
-    /*<?php  require_once("../common/head.php"); ?>*/
+    <?php  require_once("../common/head.php"); ?>
     <body>
 
      
@@ -114,7 +114,10 @@
                                         $sufijo = "...";
                                         $Sinopsis = $row['Sinopsis'];
                                         $AuxTexto = "";
-                                        $contents=file_get_contents($Sinopsis);
+                                        $Sinopsis = $row['Sinopsis'];
+                                        $ISBN = $row['ISBN'];
+                                        $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Libros/".$ISBN."/".$Sinopsis;
+                                        $contents=file_get_contents($carpetaDestino);
                                         $lines=explode("\n",$contents);
                                         foreach($lines as $line){
                                             $AuxTexto = $AuxTexto . $line;
@@ -132,10 +135,10 @@
                                   </p>
                           </div>
      
-                        <img  class="card-img-top" src="<?php echo  $row['Imagen']; ?>" > 
+                        <img  class="card-img-top" src="<?php echo  "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>" > 
                     </div> 
                     <div>
-                      <img  style="display:none" class="card-img-top" src="<?php echo $row['Imagen']; ?>"> 
+                      <img  style="display:none" class="card-img-top" src="<?php echo  "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>"> 
                       <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
                       <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
                       <p class="card-text" id="precio"  style="display:none;">$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
@@ -144,9 +147,9 @@
                       <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">                    
                         <!--<button class="btnS1"  type="button" id="btnLeerF"><a style="text-decoration: none;" target="_blank" href="/sinopsis/cuarta de forros Amar en otro idioma.pdf">Leer un fragmento</a></button>-->
                         
-                        <button   type="button" id="btnLeerF"><a style="text-decoration: none; color: blanchedalmond;" target="_blank" href="<?php echo $row['Capitulo1'];  ?>">Leer un fragmento</a></button>                  
+                        <button   type="button" id="btnLeerF"><a style="text-decoration: none; color: blanchedalmond;" target="_blank" href="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Capitulo1'];  ?>">Leer un fragmento</a></button>                  
                         
-                        <button class="btnS1" type="button" id="btnReproducirAudio"><a  href="detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>"><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
+                        <button class="btnS1" type="button" id="btnReproducirAudio"><a  href="detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>"><img src="../Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
                         
                       </div>
                       <div class="d-grid gap-3 d-md-block">
@@ -154,7 +157,7 @@
                         <!--<button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()">
                           <img  class="agregar-producto-B" src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar
                         </button>-->
-                        <button class="btnVermas2" id="btnVermas" ><a href="/View/detallesLibro.php?idLibro=<?php echo $row['idLibro']; ?>">Ver más..</a></button>
+                        <button class="btnVermas2" id="btnVermas" ><a href="http://localhost/EditorialOtroTipo/View/detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>">Ver más..</a></button>
                         <ul id="idProducto" style="display:none";>
                           <li><?php echo $row['idLibro'] ?><li>
                         </ul>

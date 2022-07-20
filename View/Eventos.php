@@ -39,7 +39,7 @@
                 <img class="img-Evento" src="../Media/Eventos/<?=$registro['img']?>" alt="ImagenEvento">
                 <div class="info-evento">
                     <p><?=$registro['Fecha']?></p>
-                    <p><?=$registro['info']?></p>
+                    <p class="parrafo-Eventos"><?=$registro['info']?></p>
                 </div>
             </div>
 

@@ -45,7 +45,7 @@
         
 
     <div class="navItem"><a href="/View/Quienes somos.php">Quienes somos</a></div>
-    <div class="navItem"><a href="/View/catalogo.php">Catálogo</a></div>
+    <div class="navItem"><a href="http://localhost/EditorialOtroTipo/View/catalogo.php">Catálogo</a></div>
     
                
     <div class="navItem">

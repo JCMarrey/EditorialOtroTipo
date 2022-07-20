@@ -111,9 +111,11 @@
     
                                         <?php
                                             $sufijo = "...";
-                                            $Sinopsis = $row['Sinopsis'];
                                             $AuxTexto = "";
-                                            $contents=file_get_contents($Sinopsis);
+                                            $Sinopsis = $row['Sinopsis'];
+                                            $ISBN = $row['ISBN'];
+                                            $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Libros/".$ISBN."/".$Sinopsis;
+                                            $contents=file_get_contents($carpetaDestino);
                                             $lines=explode("\n",$contents);
                                             foreach($lines as $line){
                                                 $AuxTexto = $AuxTexto . $line;
@@ -131,10 +133,10 @@
                                       </p>
                               </div>
          
-                            <img  class="card-img-top" src="<?php echo  $row['Imagen']; ?>" > 
+                            <img  class="card-img-top" src="<?php echo  "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>" > 
                         </div> 
                         <div>
-                          <img  style="display:none" class="card-img-top" src="<?php echo $row['Imagen']; ?>"> 
+                          <img  style="display:none" class="card-img-top" src="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>"> 
                           <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
                           <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
                           <p class="card-text" id="precio"  style="display:none;">$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
@@ -145,12 +147,12 @@
                             
                             <button   type="button" id="btnLeerF"><a style="text-decoration: none; color: blanchedalmond;" target="_blank" href="<?php echo $row['Capitulo1'];  ?>">Leer un fragmento</a></button>                  
                             
-                            <button class="btnS1" type="button" id="btnReproducirAudio"><a  href="detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>"><img src="/Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
+                            <button class="btnS1" type="button" id="btnReproducirAudio"><a  href="http://localhost/EditorialOtroTipo/View/detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>"><img src="../Icons/boton_play.svg" alt=".." style="width: 35px;"></a></button>
                             
                           </div>
                           <div class="d-grid gap-3 d-md-block">
                           <button class="btnS2" id="btnVermas" >
-                            <a href="/View/detallesLibro.php?idLibro=<?php echo $row['idLibro']; ?>">
+                            <a href="http://localhost/EditorialOtroTipo/View/detallesLibro.php?idLibro=<?php echo $row['idLibro'];?>">
                                   <p id="verMasP">Ver más</p>
                             </a>
                           </button> 
@@ -170,7 +172,7 @@
 
           <div class="botonVermas" >
             <button class = "botonVermasF">
-              <a id="txtVerMas" type="button"  href="/View/catalogo.php" >Ver más libros<a/>
+              <a id="txtVerMas" type="button"  href="http://localhost/EditorialOtroTipo/View/catalogo.php" >Ver más libros<a/>
             </button> 
           </div>
 
