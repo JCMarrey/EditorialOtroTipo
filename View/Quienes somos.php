@@ -25,7 +25,7 @@
     </div>
 
     <div id="imagen1"> 
-        <img src="" alt="Editorial de OtroTipo">
+        <img src="../img/QuienesSomos1.png" alt="Editorial de OtroTipo">
        
     </div>
 
@@ -35,7 +35,7 @@
     </div>
 
     <div id="imagen3"> 
-        <img src="" alt="Editorial de OtroTipo">
+        <img src="../img/QuienesSomos2.png" alt="Editorial de OtroTipo">
        
     </div>
 

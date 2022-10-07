@@ -43,11 +43,11 @@
                     <?php if($contador==0): ?>
                         <?php $contador++; ?>
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="/EditorialOtroTipo/Media/Semblanzas/<?= $registro['Archivo']; ?>" alt="Banner Principal">
+                                <img class="d-block w-70" src="/EditorialOtroTipo/Media/Semblanzas/<?= $registro['Archivo']; ?>" alt="Banner Principal">
                             </div>
                     <?php else: ?>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="/EditorialOtroTipo/Media/Semblanzas/<?= $registro['Archivo']; ?>" alt="Banner Principal">
+                            <img class="d-block w-70" src="/EditorialOtroTipo/Media/Semblanzas/<?= $registro['Archivo']; ?>" alt="Banner Principal">
                         </div>
                     <?php endif;?>
                 <?php endwhile;?>

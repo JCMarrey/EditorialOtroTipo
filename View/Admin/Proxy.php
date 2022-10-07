@@ -345,6 +345,37 @@
         
             echo json_encode($respuesta);
         }
+
+        if(strcmp($_POST['accion'],'deleteNoticia') == 0){
+            
+            $id = $_POST['ID'];
+            $name = $_POST['NAME'];
+            
+            //$carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Media/LogosPortales/";
+            
+            $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`noticia` WHERE IdNoticia = ?");
+            $stmt->bind_param('i',$id);
+            $res = $stmt->execute();
+
+            //
+            // if($res){
+            //     unlink($carpetaDestino.$name);
+            //     $respuesta = array (
+            //         'id' => $stmt->insert_id,
+            //         'respuesta' => 'correcto'
+            //     );
+            // }else{
+            //     $respuesta = array (
+            //         'respuesta' => 'incorrecto'
+            //     );
+            // }
+                
+        
+            echo json_encode($respuesta);
+        }
+
+
+
         $conexion->close();
 
     }else{

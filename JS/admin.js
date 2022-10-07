@@ -8,6 +8,8 @@ $(document).ready(function () {
     inputBuscador.addEventListener('input', buscarLibro);
 
     selectedTabsEfectTabsPagina();
+    selectedTabsEfectTabsEventos();
+
     addLibro();
     viewLibro();
     editLibro();
@@ -297,7 +299,6 @@ function selectedTabsEfect(){
             if(!$('#controller-tab-catalogo').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Catálogo";
                 $('#controller-tab-eventos').removeClass("active");
-                $('#controller-tab-estadisticas').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
@@ -310,7 +311,6 @@ function selectedTabsEfect(){
             if(!$('#controller-tab-eventos').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Eventos";
                 $('#controller-tab-catalogo').removeClass("active");
-                $('#controller-tab-estadisticas').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
@@ -319,26 +319,11 @@ function selectedTabsEfect(){
             break;
         }
 
-        case 2: {
-
-            if(!$('#controller-tab-estadisticas').hasClass("active")){
-                document.getElementById("systemName").innerHTML = "Estadisticas";
-                $('#controller-tab-catalogo').removeClass("active");
-                $('#controller-tab-eventos').removeClass("active");
-                $('#controller-tab-blog').removeClass("active");
-                $('#controller-tab-pagina').removeClass("active");
-                $('#controller-tab-usuarios').removeClass("active");
-                $('#controller-tab-estadisticas').addClass("active");
-            }
-            break;
-        }
-
-        case 3:{
+        case 2:{
             if(!$('#controller-tab-blog').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Blog";
                 $('#controller-tab-catalogo').removeClass("active");
                 $('#controller-tab-eventos').removeClass("active");
-                $('#controller-tab-estadisticas').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
                 $('#controller-tab-blog').addClass("active");
@@ -346,12 +331,11 @@ function selectedTabsEfect(){
             break;
         }
 
-        case 4:{
+        case 3:{
             if(!$('#controller-tab-pagina').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Carrusel Principal y Semblanzas";
                 $('#controller-tab-catalogo').removeClass("active");
                 $('#controller-tab-eventos').removeClass("active");
-                $('#controller-tab-estadisticas').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
                 $('#controller-tab-pagina').addClass("active");
@@ -359,12 +343,11 @@ function selectedTabsEfect(){
             break;
         }
 
-        case 5:{
+        case 4:{
             if(!$('#controller-tab-usuarios').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Usuarios";
                 $('#controller-tab-catalogo').removeClass("active");
                 $('#controller-tab-eventos').removeClass("active");
-                $('#controller-tab-estadisticas').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-usuarios').addClass("active");
@@ -408,6 +391,36 @@ function selectedTabsEfectTabsPagina(){
                 document.getElementById("systemName").innerHTML = "Pagina Principal - Videos";
                 $('#controller-tab-Carrusel-Main').removeClass("active");
                 $('#controller-tab-Videos-Main').addClass("active");
+            }
+            break;
+        }        
+    }  
+   });
+}
+
+function selectedTabsEfectTabsEventos(){
+    $('#tabs-Pagina-Eventos').tabs();
+
+    $('#controller-tab-gestion-noticias').addClass("active"); 
+        
+    $('.nav-tabs-Pagina-Eventos').click(function(){
+       
+    switch ($("#tabs-Pagina-Eventos").tabs('option','active')){
+
+        case 0: {
+            if(!$('#controller-tab-gestion-noticias').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Noticias";
+                $('#controller-tab-gestion-eventos').removeClass("active");
+                $('#controller-tab-gestion-noticias').addClass("active"); 
+            }
+            break;
+        }
+
+        case 1: {
+            if(!$('#controller-tab-gestion-eventos').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Eventos";
+                $('#controller-tab-gestion-noticias').removeClass("active");
+                $('#controller-tab-gestion-eventos').addClass("active");
             }
             break;
         }        
@@ -901,6 +914,54 @@ function deleteBlog(){
                 }
                 //Enviar los datos
                 xhr.send(infoDeleteBlog);
+
+                
+            } else {
+              swal("Se canceló la operación.");
+            }
+          });
+    });
+}
+
+function deleteEvento(){
+    $('.icon-delete-Noticia').on('click', function(e){
+        swal({
+            title: "¿Eliminar Archivo?",
+            text: "Recuerda que si eliminas este registro se eliminará de la base de datos y tambien para los usuarios.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+
+                const id = e.target.parentNode.id;
+                const name = e.target.id ;
+
+                const infoDeleteArchivo = new FormData();
+                infoDeleteArchivo.append('accion','deleteNoticia');
+                infoDeleteArchivo.append('ID',id);
+                infoDeleteArchivo.append('NAME',name);
+
+                
+                //Es necesario hace un AJAX para agregar el registro a la BD
+                //Llamado a AJAX (Crear el objeto)
+                const xhr = new XMLHttpRequest();
+                //Abrir la conexion
+                xhr.open('POST', '../Admin/Proxy.php', true);
+                //ProcesarRespuesta
+                xhr.onload = function(){
+                    if(this.status === 200){  
+                        //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                        //console.log(xhr.responseText);
+                        //var data=xhr.responseText;
+                        //var jsonResponse = JSON.parse(data);
+
+                        location.assign('http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=3');
+                    }
+                }
+                //Enviar los datos
+                xhr.send(infoDeleteArchivo);
 
                 
             } else {

@@ -145,49 +145,102 @@
                 </div>
                 
                 <div id="tab-eventos">
-                    <div id="btnAdd-Evento">
-                        <button id="btnAgregarEvento" type="button" data-bs-toggle="modal" data-bs-target="#ModalAddEvento" class="btn-agregar-producto" ><i class="fas fa-plus-circle"></i> Agregar Evento</button>
+                
+                    <div id="tabs-Pagina-Eventos">
+                        <ul class="nav nav-tabs-Pagina-Eventos">
+
+                            <li id="controller-tab-gestion-noticias" class="nav-item">
+                                <a class="nav-link " aria-current="page" href="#tab-gestion-Noticias">Noticias</a>
+                            </li>
+                            <li id="controller-tab-gestion-eventos" class="nav-item">
+                                <a class="nav-link" href="#tab-gestion-eventos">Eventos</a>
+                            </li>
+
+                        </ul>
+
+                        <div id="tab-gestion-Noticias">
+                                <div id="btnAdd-Evento" class="btnAdd">
+                                    <button id="btnAgregarNoticia" type="button" data-bs-toggle="modal" data-bs-target="#ModalAddNoticia" class="btn-agregar-producto" ><i class="fas fa-plus-circle"></i> Agregar Noticia</button>
+                                </div>
+                
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="thead-Admin">
+                                        <tr>
+                                        <th id="tHeadISBN"  class="text-center" scope="col">Fecha</th>
+                                        <th  class="text-center"  scope="col">Titulo</th>
+                                        <th  class="text-center" scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php
+                                            require_once("Conexion.php");
+                                            $query = "SELECT * FROM noticia";
+                                            $resultado = mysqli_query($conexion,$query);
+                                            $numRegistros = mysqli_num_rows($resultado);
+                                        ?>
+
+                                        <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                            <tr class="tr-Admin">
+                                                <td  class="text-center" scope="row"><?= $registro['Fecha'];?></td>
+                                                <td  class="text-center"><?= $registro['Titulo'];?></td>
+                                                <td  id="<?= $registro['IdNoticia'];?>"  class="text-center container-actions">
+                                                    <i title="Eliminar" id="<?= $registro['LogoPortal'];?>" class="fas fa-trash icon-delete-Noticia iconos-Acciones icon-action-Admin"></i>
+                                                </td>
+                                            </tr>                
+                                        <?php endwhile;?>
+
+                                    </tbody>
+                                </table>
+                        </div>
+
+                        <div id="tab-gestion-eventos">
+                            <div id="btnAdd-Evento">
+                                <button id="btnAgregarEvento" type="button" data-bs-toggle="modal" data-bs-target="#ModalAddEvento" class="btn-agregar-producto" ><i class="fas fa-plus-circle"></i> Agregar Evento</button>
+                            </div>
+            
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="thead-Admin">
+                                    <tr>
+                                    <th id="tHeadISBN"  class="text-center" scope="col">Fecha</th>
+                                    <th  class="text-center"  scope="col">Información Evento</th>
+                                    <th  class="text-center" scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php
+                                        require_once("Conexion.php");
+                                        $query = "SELECT * FROM evento";
+                                        $resultado = mysqli_query($conexion,$query);
+                                        $numRegistros = mysqli_num_rows($resultado);
+                                    ?>
+
+                                    <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                        <tr class="tr-Admin">
+                                            <td  class="text-center" scope="row"><?= $registro['Fecha'];?></td>
+                                            <td  class="text-center"><?= $registro['info'];?></td>
+                                            
+                                                <td  id="<?= $registro['idEvento'];?>"  class="text-center container-actions">
+                                                    <i title="Ver detalles" data-bs-toggle="modal" data-bs-target="#ModalViewEvento" class="fas fa-eye iconos-Acciones   view-Evento   icon-action-Admin"></i> 
+                                                    <i title="Editar"       data-bs-toggle="modal" data-bs-target="#ModalEditEvento" class="fas fa-edit iconos-Acciones icon-edit-Evento   icon-action-Admin"></i>
+                                                    <i title="Eliminar" id="<?= $registro['img'];?>"     class="fas fa-trash icon-delete-Evento iconos-Acciones icon-action-Admin"></i>
+                                                </td>
+                                        
+
+                                        </tr>                
+                                    <?php endwhile;?>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-    
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead class="thead-Admin">
-                            <tr>
-                            <th id="tHeadISBN"  class="text-center" scope="col">Fecha</th>
-                            <th  class="text-center"  scope="col">Información Evento</th>
-                            <th  class="text-center" scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <?php
-                                require_once("Conexion.php");
-                                $query = "SELECT * FROM evento";
-                                $resultado = mysqli_query($conexion,$query);
-                                $numRegistros = mysqli_num_rows($resultado);
-                            ?>
-
-                            <?php while($registro = mysqli_fetch_assoc($resultado)):?>
-                                <tr class="tr-Admin">
-                                    <td  class="text-center" scope="row"><?= $registro['Fecha'];?></td>
-                                    <td  class="text-center"><?= $registro['info'];?></td>
-                                    
-                                        <td  id="<?= $registro['idEvento'];?>"  class="text-center container-actions">
-                                            <i title="Ver detalles" data-bs-toggle="modal" data-bs-target="#ModalViewEvento" class="fas fa-eye iconos-Acciones   view-Evento   icon-action-Admin"></i> 
-                                            <i title="Editar"       data-bs-toggle="modal" data-bs-target="#ModalEditEvento" class="fas fa-edit iconos-Acciones icon-edit-Evento   icon-action-Admin"></i>
-                                            <i title="Eliminar" id="<?= $registro['img'];?>"     class="fas fa-trash icon-delete-Evento iconos-Acciones icon-action-Admin"></i>
-                                        </td>
-                                
-
-                                </tr>                
-                            <?php endwhile;?>
-
-                        </tbody>
-                    </table>
+                
                 </div>
                 <!--<div id="tab-estadisticas"></div>-->
                 
                 <div id="tab-blog">
-                    <div id="btnAdd-Blog" class="btnAdd">
+                    <div id="btnAdd-Evento" class="btnAdd">
                         <button id="btnAgregarBlog" type="button" data-bs-toggle="modal" data-bs-target="#ModalAddBlog" class="btn-agregar-producto" ><i class="fas fa-plus-circle"></i> Agregar Entrada</button>
                     </div>
             
@@ -305,7 +358,7 @@
 
 
                 <div id="tab-usuarios">
-                        <div id="btnAdd-Usuario" class="btnAdd">
+                        <div id="btnAdd-Evento" class="btnAdd">
                             <button id="btnAgregarUsuario" type="button" data-bs-toggle="modal" data-bs-target="#ModalAddUsuario" class="btn-agregar-producto" ><i class="fas fa-plus-circle"></i> Agregar Usuario</button>
                         </div>
         
@@ -363,6 +416,7 @@
             include('Modals/addBlog.php');
             include('Modals/viewBlog.php');
             include('Modals/editBlog.php');
+            include('Modals/addNoticia.php');
         ?>
 
         <?php if(!empty($_GET)): ?>
@@ -404,7 +458,7 @@
 
             <?php  if($_GET['r'] == 7): ?>
                 <script>
-                    swal("Error","No se pudo agregar el archivo" , 'error');
+                    swal("Error","No se pudo agregar el archivo, tamaño maximo aceptado: 10MB" , 'error');
                 </script>
             <?php endif; ?>
 

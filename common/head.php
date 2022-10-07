@@ -12,6 +12,10 @@
   
         <link rel="stylesheet" href="../common/Normalize.css">
         <link rel="stylesheet" href="../common/estilos.css">
-        <link rel="stylesheet" href="../common/estilocarrito.css">
+        <script src="../JS/jquery-3.4.1.min.js"></script>
+        <script src="../JS/barraDeBusqueda.js"></script>
+
+        <link rel="stylesheet" href="../common/estilosJulieta.css">
+
         <title>Editorial Otro Tipo</title>
 </head>

@@ -1,0 +1,61 @@
+
+
+---Listas---
+Servicios editoriales
+Servicios multimedia
+Servicios Comunicacion e informacion
+Autores
+Eventos
+Contacto
+Ver detalles
+Admin-Catalogo
+Admin-Eventos
+Admin-Blog
+Admin-Pagina -> (Carrusel/Semblanza y videos)
+Admin-Usuarios
+Blog
+Pagina Principal
+catalogo
+Ubicación
+quienes somos
+
+
+---Medio listas---
+Carrito
+Compra
+Busqueda
+
+---Faltan--
+Dialogos con el autor
+Noticias
+
+Traducciones
+Gestion inventario y ventas (envios y CDMX)
+Estadísticas
+
+
+---Faltas Tecnicas Tiempo estimado de implementación---
+Responsive (3 días)
+Conectividad API de envios (2 días)
+Imagen Correo (1 días)
+Cargar el sistema al servidor y hacer pruebas (2 días)
+
+
+
+
+
+
+-------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

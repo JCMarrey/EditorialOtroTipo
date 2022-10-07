@@ -4,7 +4,7 @@
         private $hostname = "localhost";
         private $database = "deotrotipo";
         private $username = "root";
-        private $password = "123456789";
+        private $password = "";
         private $charset = "utf8";
         private $conect;
    
@@ -20,7 +20,7 @@
             ];
 
             $pdo = new PDO($conexion,$this->username,$this->password,$options);
-            echo 'conectado..';
+            
 
             return $pdo;
 

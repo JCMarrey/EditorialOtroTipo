@@ -23,13 +23,13 @@
                         
                         <div id="form1">
                             <input class="texto1" id="correo" type="email" id="fname" name="correo"
-                                value="Correo para confirmar el pedido">
+                                placeholder="Correo para confirmar el pedido">
 
-                            <input class="texto1" id="nombreCliente" type="text" id="fname" name="nombreCliente" value="Nombre">
+                            <input class="texto1" id="nombreCliente" type="text" id="fname" name="nombreCliente" placeholder="Nombre">
 
-                            <input class="texto1" id="apellido" type="text" id="fname" name="apellido" value="Apellido">
+                            <input class="texto1" id="apellido" type="text" id="fname" name="apellido" placeholder="Apellido">
 
-                            <input class="texto1" id="telefono" type="text" id="fname" name="telefono" value="Teléfono">
+                            <input class="texto1" id="telefono" type="text" id="fname" name="telefono" placeholder="Teléfono">
 
                             <!--<button id="botonEnviar" type="button" >Continuar</button>-->
                             <a href="#envio" type="button" id="botonEnviar">Continuar</a>
@@ -103,9 +103,9 @@
                         </div>
 
 
-                        <input class="texto1" id="direccion" type="text" id="fname" name="direccion" value="Dirección">
+                        <input class="texto1" id="direccion" type="text" id="fname" name="direccion" placeholder="Dirección">
 
-                        <input class="texto1" id="delegacion" type= "text"  name="delegacion" value="Ciudad / Delegación / Municipio">
+                        <input class="texto1" id="delegacion" type= "text"  name="delegacion" placeholder="Ciudad / Delegación / Municipio">
 
                         <select name="texto3" id="pais" class="texto3">
 
@@ -384,9 +384,9 @@
                     
                          
 
-                            <input class="texto2" type="text" id="cp" name="fname" value="Código postal">
+                            <input class="texto2" type="text" id="cp" name="fname" placeholder="Código postal">
                             <select class="texto4" id="metodoEnvio">
-                                    <option value="Región">Método de envío</option>
+                                    <option placeholder="Región">Método de envío</option>
                                     <option value="Envío estandar">Envío estandar</option>
                             </select>
 
@@ -460,10 +460,10 @@
         </div>        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="/JS/animaciones.js" type="text/javascript" defer></script>
-        <script src="/JS/funciones.js" defer></script>
-        <script src="/JS/compra.js" defer></script>
-        <script src="/JS/carritoCompra.js" defer></script>
+        <script src="../JS/animaciones.js" type="text/javascript" defer></script>
+        <script src="../JS/funciones.js" defer></script>
+        <script src="../JS/compra.js" defer></script>
+        <script src="../JS/carritoCompra.js" defer></script>
         <?php require_once("../common/footer.php"); ?>            
 </body>
 

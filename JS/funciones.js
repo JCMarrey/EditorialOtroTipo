@@ -209,7 +209,7 @@ function procesarPedido(e){
             showConfirmButton: false
           })
     }else{
-        location.href = "/View/carrito.php";
+        location.href = "/EditorialOtroTipo/View/carrito.php";
     }   
 }
 

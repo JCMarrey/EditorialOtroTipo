@@ -32,8 +32,11 @@
                 if($stmt->affected_rows == 1){
                     if($sizeArchivo<=11000000){
                         move_uploaded_file($_FILES['BANNER']['tmp_name'],$carpetaDestino.$archivo);
+                        header('Location: http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=8');
+                    }else{
+                        header('Location: http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=9');
                     }
-                    header('Location: http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=8');
+                    
                 }else{
                     header('Location: http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=9');
                 }

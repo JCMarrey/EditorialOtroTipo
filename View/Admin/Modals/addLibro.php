@@ -27,7 +27,7 @@
             <label for="addL-Form-Páginas" class="col-form-label">Páginas:</label>
             <input  type="text" name = "PAGINAS" class="form-control" id="addL-Form-Paginas">
             <label for="addL-Form-Peso" class="col-form-label">Peso:</label>
-            <input  type="text" name = "PESO" class="form-control" id="addL-Form-Peso">
+            <input  type="text" name = "PESO" placeholder="En Kg" class="form-control" id="addL-Form-Peso">
             <label for="addL-Form-Precio" class="col-form-label">Precio:</label>
             <input  type="text" name = "PRECIO" class="form-control" id="addL-Form-Precio">
             <label for="addL-Form-Costo" class="col-form-label">Costo:</label>

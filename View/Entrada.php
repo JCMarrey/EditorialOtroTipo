@@ -17,12 +17,40 @@
     <link rel="stylesheet" href="../common/estilos.css">
     <link rel="stylesheet" href="../common/estilosCarrito.css">
 
+
     
     <title>Blog</title>
 </head>
 
 
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v15.0" nonce="Rp2S1Loo"></script>
+    <script>window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function(f) {
+            t._e.push(f);
+        };
+
+        return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
+
+    <script>
+        function copyToClipBoard() {
+            navigator.clipboard.writeText(window.location.href);
+            alert("Copied the text: " + window.location.href);
+        }
+    </script>
+   
     <?php require_once("../common/header.php"); ?>
 
     <?php
@@ -49,10 +77,21 @@
                         <?php fclose($myfile); ?>    
                         <div class="flex-container-E">
                             <p id="compartir">Compartir</p>
-                            <img id="img1" src="../Icons/compartirrojo.svg" alt="">
-                            <img id="img1" src="../Icons/twitterrojo.svg" alt="">
+                            
+                               <img id="img1" onclick="copyToClipBoard()" src="../Icons/compartirrojo.svg" alt="">
+                            
+                            <!-- <img id="img1" src="../Icons/twitterrojo.svg" alt="">
                             <img id="img1" src="../Icons/fbrojo.svg" alt="">
-                            <img id="img1" src="../Icons/instarojo.svg" alt="">
+                            <img id="img1" src="../Icons/instarojo.svg" alt=""> -->
+                            <div class="fb-share-button" data-href="https://neubox.com/" data-layout="button_count" data-size="small">
+                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                </a>
+                            </div>
+                            <a class="twitter-share-button"
+                                href="#"
+                                data-size="large">
+                                Tweet
+                            </a>
                         </div>
                     </div>
                     <img src="../Entradas/<?=$registro['Img']?>" alt="#">

@@ -33,8 +33,10 @@ if($idLibro == ''){
         $Audio = $row['Audio'];
         $Peso = $row['Peso'];
 
+        $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Libros/".$ISBN."/".$Sinopsis;
+
         $AuxTexto = "";
-        $contents=file_get_contents($Sinopsis);
+        $contents=file_get_contents($carpetaDestino);
         $lines=explode("\n",$contents);
         foreach($lines as $line){
          $AuxTexto = $AuxTexto . $line;
@@ -86,24 +88,25 @@ if($idLibro == ''){
 
 <body>
 <?php require_once("../common/header.php"); ?>
+<?php require_once("../common/carritoModal.php"); ?>
    <div class="detallesLibro">
         <div class="asideIzq" id="lista-productos">
                     <div class="card-body">
-                        <img  class="rounded mx-auto d-block" src="<?php echo  $row['Imagen']; ?>" > 
+                        <img  class="rounded mx-auto d-block" src="<?php echo  "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>" > 
                     </div> 
-                      <img  style="display:none" class="card-img-top" src="<?php echo $row['Imagen']; ?>"> 
+                      <img  style="display:none" class="card-img-top" src="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>"> 
                       <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
                       <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
                       <p class="card-text" id="precio"  style="font-size: 4rem;" >$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
                       <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $Peso?></h2>
 
-                      <!--<div>
-                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
+                    <div>
+                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="../Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
                         <ul id="idProducto" style="display:none";>
-                          <li></*?php echo $idLibro ?*/><li>
+                          <li><?php echo $idLibro ?><li>
                         </ul>
 
-                     </div>-- quitado por tiempo -->
+                     </div>
         </div>            
            <!-- Button trigger modal -->
 
@@ -129,7 +132,7 @@ if($idLibro == ''){
                             <?php echo $Autor ?>
                         </div>
                         <div>
-                            <img class="imgModal" src="<?php echo $Imagen ?>" alt="...">
+                            <img class="imgModal" src="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>" alt="...">
                         </div>
                         <div id="modalTitulo" style="padding-bottom: 30px; padding-top: 30px;">
                             <?php echo $Titulo ?>
@@ -145,7 +148,7 @@ if($idLibro == ''){
                             <tbody>
                                 <tr>
                                     <td id="iconoGandhi">
-                                        <img src="/Icons/logo-gandhi.jpg" alt = "... ">
+                                        <img src="../Icons/logo-gandhi.jpg" alt = "... ">
                                     </td>
                                 
                                     <td id="Gandhi">
@@ -158,7 +161,7 @@ if($idLibro == ''){
                                 </tr>
                                 <tr>
                                     <td id="iconoSotano">
-                                        <img src="/Icons/logo-sotano.jpg" alt="" >
+                                        <img src="../Icons/logo-sotano.jpg" alt="" >
                                     </td>
                                 
                                     <td id="Sotano">
@@ -171,7 +174,7 @@ if($idLibro == ''){
                                 </tr>
                                 <tr>
                                     <td id="iconoPorrua">
-                                        <img src="/Icons/logo-porrua.jpg" alt="" >
+                                        <img src="../Icons/logo-porrua.jpg" alt="" >
                                     </td>
                                     <td id="Porrua">
                                         <?php 
@@ -183,7 +186,7 @@ if($idLibro == ''){
                                 </tr>
                                 <tr>
                                     <td id="iconoAmazon">
-                                        <img src="/Icons/logo-amazon.png" alt="" >
+                                        <img src="../Icons/logo-amazon.png" alt="" >
                                     </td>
                                     
                                     <td id="Amazon">
@@ -196,7 +199,7 @@ if($idLibro == ''){
                                 </tr>
                                 <tr>
                                     <td id="iconoCarlosFuentes">
-                                        <img src="/Icons/logo-carlos-fuentes.png" alt="" >
+                                        <img src="../Icons/logo-carlos-fuentes.png" alt="" >
                                     </td>
                                     
                                     <td id="CarlosFuentes">
@@ -221,8 +224,8 @@ if($idLibro == ''){
             <div class="audio" id="audio">
                     <p> Narrativa del libro.... </p>
                     <audio controls>
-                        <source src="<?php echo $Audio ?>" type="audio/mpeg">
-                        <source src="<?php echo $Audio ?>" type="audio/wav">
+                        <source src="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$Audio ?>" type="audio/mpeg">
+                        <source src="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$Audio ?>" type="audio/wav">
                         Tu navegador no es compatible con el audio...
                     </audio>
             </div>
@@ -233,35 +236,35 @@ if($idLibro == ''){
                     <tbody>
                         <tr>
                             <td id="iconoAutor">
-                                <img class="imgLogo" src="/Icons/autor.svg" alt = "... ">
+                                <img class="imgLogo" src="../Icons/autor.svg" alt = "... ">
                             </td>
                             <td>Autor</td>
                             <td id="nombreAutor"><?php echo  $Autor?></td>
                         </tr>
                         <tr>
                             <td id="iconoISBN">
-                                <img class="imgLogo" src="/Icons/isbn.svg" alt="" >
+                                <img class="imgLogo" src="../Icons/isbn.svg" alt="" >
                             </td>
                             <td>ISBN</td>
                             <td id="numISBN"><?php echo  $ISBN ?></td>
                         </tr>
                         <tr>
                             <td id="iconoColeccion">
-                                <img class="imgLogo" src="/Icons/coleccion.svg" alt="" >
+                                <img class="imgLogo" src="../Icons/coleccion.svg" alt="" >
                             </td>
                             <td>Colección</td>
                             <td id="tipoColeccion"><?php echo $Coleccion?></td>
                         </tr>
                         <tr>
                             <td id="iconoNumEd">
-                                <img class="imgLogo" src="/Icons/noedicion.svg" alt="" >
+                                <img class="imgLogo" src="../Icons/noedicion.svg" alt="" >
                             </td>
                             <td>NúmeroDeEdición</td>
                             <td id="numEdicion"><?php  echo $Edicion ?></td>
                         </tr>
                         <tr>
                             <td id="iconoPags">
-                                <img class="imgLogo" src="/Icons/paginas.svg" alt="" >
+                                <img class="imgLogo" src="../Icons/paginas.svg" alt="" >
                             </td>
                             <td>Páginas</td>
                             <td id="numPags"><?php echo $Paginas ?></td>

@@ -15,9 +15,6 @@
             
             $video = str_replace("watch?v=","embed/",$video);
 
-            echo $video;
-            echo $num;
-
             $idActual = 0;
 
             if($num == 1){

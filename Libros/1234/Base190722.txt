@@ -1,0 +1,178 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema DeOtroTipo
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema DeOtroTipo
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `DeOtroTipo` ;
+USE `DeOtroTipo` ;
+
+-- -----------------------------------------------------
+-- Table `DeOtroTipo`.`Libro`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DeOtroTipo`.`Libro` (
+  `idLibro` INT NOT NULL AUTO_INCREMENT,
+  `Titulo` VARCHAR(100) NULL,
+  `Sinopsis` VARCHAR(45) NULL,
+  `Precio` FLOAT NULL,
+  `Autor` VARCHAR(65) NULL,
+  `ISBN` VARCHAR(45) NOT NULL,
+  `Tema` VARCHAR(45) NULL,
+  `Tipo` VARCHAR(45) NULL,
+  `Coleccion` VARCHAR(45) NULL,
+  `AEdicion` INT NULL,
+  `Edicion` VARCHAR(45) NULL,
+  `Paginas` INT NULL,
+  `Peso` FLOAT NULL,
+  `Firma` VARCHAR(45) NULL,
+  `Imagen` VARCHAR(45) NULL,
+  `Capitulo1` VARCHAR(45) NULL,
+  `Costo` VARCHAR(45) NULL,
+  `Audio` VARCHAR(45) NULL,
+  `Gandhi` VARCHAR(45) NULL,
+  `Porrua` VARCHAR(45) NULL,
+  `CarlosFuentes` VARCHAR(45) NULL,
+  `Sotano` VARCHAR(45) NULL,
+  `Amazon` VARCHAR(45) NULL,
+  PRIMARY KEY (`idLibro`, `ISBN`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DeOtroTipo`.`Inventario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DeOtroTipo`.`Inventario` (
+  `idInventario` INT NOT NULL,
+  `Promocion` FLOAT NULL,
+  `Difusion` INT NULL,
+  `Autor` INT NULL,
+  `Personal` INT NULL,
+  `AlmacenAdrian` INT NULL,
+  `AlmacenOficina` INT NULL,
+  `Tiraje` INT NULL,
+  `Libro_idLibro` INT NOT NULL,
+  `Libro_ISBN1` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Libro_idLibro`, `Libro_ISBN1`),
+  INDEX `fk_Inventario_Libro1_idx` (`Libro_idLibro` ASC, `Libro_ISBN1` ASC) VISIBLE,
+  CONSTRAINT `fk_Inventario_Libro1`
+    FOREIGN KEY (`Libro_idLibro` , `Libro_ISBN1`)
+    REFERENCES `DeOtroTipo`.`Libro` (`idLibro` , `ISBN`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DeOtroTipo`.`Venta`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DeOtroTipo`.`Venta` (
+  `idVenta` INT NOT NULL AUTO_INCREMENT,
+  `Fecha` DATE NOT NULL,
+  `Cantidad` INT NULL,
+  `Promocion` FLOAT NULL,
+  `Total` FLOAT NULL,
+  `Estado` VARCHAR(45) NULL,
+  `Inventario_Libro_idLibro` INT NOT NULL,
+  `Inventario_Libro_ISBN1` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idVenta`),
+    FOREIGN KEY (`Inventario_Libro_idLibro` , `Inventario_Libro_ISBN1`)
+    REFERENCES `DeOtroTipo`.`Inventario` (`Libro_idLibro` , `Libro_ISBN1`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DeOtroTipo`.`VentaEvento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DeOtroTipo`.`VentaEvento` (
+  `idVentaEvento` INT NOT NULL,
+  `Cantidad` INT NULL,
+  `Promocion` FLOAT NULL,
+  `Total` FLOAT NULL,
+  `Inventario_Libro_idLibro` INT NOT NULL,
+  `Inventario_Libro_ISBN1` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idVentaEvento`),
+    FOREIGN KEY (`Inventario_Libro_idLibro` , `Inventario_Libro_ISBN1`)
+    REFERENCES `DeOtroTipo`.`Inventario` (`Libro_idLibro` , `Libro_ISBN1`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DeOtroTipo`.`Evento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DeOtroTipo`.`Evento` (
+  `idEvento` INT NOT NULL AUTO_INCREMENT,
+  `Fecha` DATE NULL,
+  `Lugar` VARCHAR(150) NULL,
+  `img` VARCHAR(45) NULL,
+  `info` VARCHAR(100) NULL,
+  PRIMARY KEY (`idEvento`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DeOtroTipo`.`Usuarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DeOtroTipo`.`Usuarios` (
+  `idUsuarios` INT NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(65) NULL,
+  `Correo` VARCHAR(65) NULL,
+  `Pass` VARCHAR(100) NULL,
+  `Rol` VARCHAR(45) NULL,
+  PRIMARY KEY (`idUsuarios`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DeOtroTipo`.`Imagenes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DeOtroTipo`.`Imagenes` (
+  `idImagenes` INT NOT NULL AUTO_INCREMENT,
+  `archivo` VARCHAR(85) NULL,
+  `Inventario_Libro_ISBN` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idImagenes`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DeOtroTipo`.`Media`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DeOtroTipo`.`Media` (
+  `idMedia` INT NOT NULL AUTO_INCREMENT,
+  `Tipo` VARCHAR(45) NULL,
+  `Archivo` VARCHAR(45) NULL,
+  PRIMARY KEY (`idMedia`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DeOtroTipo`.`Blog`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DeOtroTipo`.`Blog` (
+  `idBlog` INT NOT NULL AUTO_INCREMENT,
+  `Titulo` VARCHAR(150) NULL,
+  `Autor` VARCHAR(65) NULL,
+  `Fecha` VARCHAR(45) NULL,
+  `Preview` VARCHAR(85) NULL,
+  `Entrada` VARCHAR(85) NULL,
+  PRIMARY KEY (`idBlog`))
+ENGINE = InnoDB
+COMMENT = '	';
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
