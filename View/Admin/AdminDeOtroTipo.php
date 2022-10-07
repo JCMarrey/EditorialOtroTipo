@@ -48,6 +48,11 @@
                     <li id="controller-tab-catalogo" class="nav-item">
                         <a class="nav-link " aria-current="page" href="#tab-catalogo">Catálogo</a>
                     </li>
+
+                    <li id="controller-tab-Venta" class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#tab-Venta">Ventas</a>
+                    </li>
+
                     <li id="controller-tab-eventos" class="nav-item">
                         <a class="nav-link" href="#tab-eventos">Eventos</a>
                     </li>
@@ -101,7 +106,7 @@
 
                     <div class="search-container-Admin">
                         
-                        <input  id="Criterio-busqueda" type="text" placeholder="Buscar en catálogo" class="rounded search-input-Admin" name="search">
+                        <input  id="Criterio-busqueda" type="text" placeholder="Buscar en catálogo" class="rounded search-input-Admin" name="search" autocomplete="off">
                         <button type="submit" id="busca-Libro" class ="icon-search"><i class="fa fa-search"></i></button>
                         
                     </div>
@@ -144,6 +149,46 @@
                     </table>
                 </div>
                 
+                <div id="tab-Venta">
+
+                    <div class="search-container-Admin">
+                        
+                        <input  id="Criterio-busqueda-venta" type="text" placeholder="Buscar en Venta por ID Paypal" class="rounded search-input-Admin" name="search" autocomplete="off">
+                        <button type="submit" id="busca-venta.IdPaypal" class ="icon-search"><i class="fa fa-search"></i></button>
+                        
+                    </div>
+
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-Admin">
+                            <tr>
+                            <th id="tHeadISBN"  class="text-center" scope="col">ID Venta</th>
+                            <th  class="text-center"  scope="col">ID Paypal</th>
+                            <th  class="text-center"  scope="col">Fecha</th>
+                            <th  class="text-center"  scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+                                require_once("Conexion.php");
+                                $query = "SELECT * FROM ventaj";
+                                $resultado = mysqli_query($conexion,$query);
+                                $numRegistros = mysqli_num_rows($resultado);
+                            ?>
+
+                            <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                <tr class="tr-Admin">
+                                    <td  class="text-center" scope="row"><?= $registro['IdVenta'];?></td>
+                                    <td  class="text-center"><?= $registro['IdPaypal'];?></td>
+                                    <td  class="text-center container-actions"><?= $registro['fechaPago'];?></td>
+                                    <td  class="text-center container-actions"><?= $registro['total'];?></td>
+                                </tr>                
+                            <?php endwhile;?>
+
+                        </tbody>
+                    </table>
+                </div>
+
                 <div id="tab-eventos">
                 
                     <div id="tabs-Pagina-Eventos">
@@ -428,7 +473,7 @@
 
             <?php  if($_GET['r'] == 2): ?>
                 <script>
-                    mostrarNotificacion('Se Guardaron Cambios.', 'exito');
+                    mostrarNotificacion('Se Guardaron los Cambios.', 'exito');
                 </script>
             <?php endif; ?>
 

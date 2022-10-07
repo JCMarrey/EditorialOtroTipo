@@ -1,8 +1,11 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-    <?php  require_once("../common/head.php"); ?>
-</body>
+<?php require_once("../common/head.php"); ?>
+<body>
     <?php require_once("../common/header.php"); ?>
+    <?php require_once("../common/carritoModal.php"); ?>
+
+
 <div class="grid">
 
     <div id="imagen"> 

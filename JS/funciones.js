@@ -83,6 +83,8 @@ function leerDatosProductos(producto){
 function insertarProductoCarrito(producto){
 
     const row = document.createElement('tr');
+    const subTotal = (parseFloat(producto.precio)) * (parseFloat(producto.cantidad));
+    console.log(subTotal);
     row.innerHTML=`
             <td></td>
             <td>
@@ -91,7 +93,7 @@ function insertarProductoCarrito(producto){
             <td>${producto.titulo}</td>
             <td>${producto.precio}</td>
             <td>${producto.cantidad}</td>
-            <td>${producto.precio*producto.cantidad}
+            <td>${subTotal}</td>
             
             <td>
                 

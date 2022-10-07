@@ -17,7 +17,7 @@ if($idLibro == ''){
     $sql_detalleLibro->execute([$idLibro]);
     //verificamos que exista al menos 1 elemento con ese ID:
     if($sql_detalleLibro->fetchColumn() >0){
-        $sql_detalleLibro= $con->prepare("SELECT Titulo, Precio, Imagen, Sinopsis, Autor, ISBN, Coleccion, Edicion, Paginas , Audio , Peso, Gandhi, Sotano, Porrua, CarlosFuentes, Amazon FROM deotrotipo.libro WHERE idLibro=? ");
+        $sql_detalleLibro= $con->prepare("SELECT * FROM deotrotipo.libro WHERE idLibro=? ");
         $sql_detalleLibro->execute([$idLibro]);
         $row = $sql_detalleLibro->fetch(PDO::FETCH_ASSOC);
 
@@ -48,12 +48,20 @@ if($idLibro == ''){
         $Gandhi = $row['Gandhi'];
         $Sotano = $row['Sotano'];
 
+        $UAmazon = $row['UAmazon'];
+        $UPorrua = $row['UPorrua'];
+        $UCarlosFuentes = $row['UCarlosFuentes'];
+        $UGandhi = $row['UGandhi'];
+        $USotano = $row['USotano'];
+
+
+
         function evaluar($link){
             $estilos = ["Comprar","green"];
             if($link === NULL){
-                return  $estilos =["No disponible","BECABC"];
+                return  $estilos =["No disponible","BECABC","pointer-events: none;"];
             }else{
-                return $estilos;
+                return $estilos = ["Comprar","green", ""];
             }
         }
 
@@ -156,7 +164,7 @@ if($idLibro == ''){
                                                 $cadena = evaluar($Gandhi);
                                                 implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $Gandhi ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $UGandhi ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>"  > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -169,7 +177,7 @@ if($idLibro == ''){
                                                 $cadena = evaluar($Sotano);
                                                 implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $Sotano ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $USotano ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -181,7 +189,7 @@ if($idLibro == ''){
                                                 $cadena = evaluar($Porrua);
                                                 implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $Porrua ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $UPorrua ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -194,7 +202,7 @@ if($idLibro == ''){
                                             $cadena = evaluar($Amazon);
                                             implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $Amazon ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $UAmazon ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -207,7 +215,7 @@ if($idLibro == ''){
                                                 $cadena = evaluar($CarlosFuentes);
                                                 implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $CarlosFuentes ?>" tanget="_blank" class="btn  btn-lg btn-primary"  tabindex="-1"  aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $UCarlosFuentes ?>" tanget="_blank" class="btn  btn-lg btn-primary"  tabindex="-1"  aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -276,9 +284,9 @@ if($idLibro == ''){
     </div>
    
 
-    <script src="/JS/animaciones.js" type="text/javascript"></script>
-    <script src="/JS/funciones.js"></script>          
-    <script src="/JS/jquery-3.4.1.min.js"></script>
+    <script src="../JS/animaciones.js" type="text/javascript"></script>
+    <script src="../JS/funciones.js"></script>          
+    <script src="../JS/jquery-3.4.1.min.js"></script>
     <?php require_once("../common/footer.php"); ?>
 </body>
 </html>

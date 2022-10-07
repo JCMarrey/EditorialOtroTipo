@@ -17,5 +17,5 @@
 
         <link rel="stylesheet" href="../common/estilosJulieta.css">
 
-        <title>Editorial Otro Tipo</title>
+        <title>Editorial Otro Tipo 2</title>
 </head>

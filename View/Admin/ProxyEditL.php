@@ -51,11 +51,17 @@
             $sotano = $_POST['Sotano'];
             $amazon = $_POST['Amazon'];
 
+            $Ugandhi = $_POST['UGandhi'];
+            $Uporrua = $_POST['UPorrua'];
+            $UcarlosFuentes = $_POST['UCarlosFuentes'];
+            $Usotano = $_POST['USotano'];
+            $Uamazon = $_POST['UAmazon'];
+
             echo $idActual;
             echo $isbn;
             try{
-                $stmt = $conexion->prepare("UPDATE `deotrotipo`.`libro` SET `idLibro` = ?, `Titulo` = ?, `Sinopsis` = ?, `Precio` = ?, `Autor` = ?, `ISBN` = ?, `Tema` = ?, `Tipo` = ?, `Coleccion` = ?, `AEdicion` = ?, `Edicion` = ?, `Paginas` = ?, `Peso` = ?, `Firma` = ?, `Imagen` = ?, `Capitulo1` = ?, `Costo` = ?, `Audio` = ?, `Gandhi` = ?, `Porrua` = ?, `CarlosFuentes` = ?, `Sotano` = ?, `Amazon` = ? WHERE (`idLibro` = ?) and (`ISBN` = ?);");
-                $stmt->bind_param('issdsssssisidsssdssssssii', $idActual, $titulo, $sinopsis, $precio, $autor, $isbn, $tema, $tipo, $coleccion, $aedicion, $edicion, $paginas, $peso, $firma, $img, $cap1, $costo, $audio, $gandhi, $porrua, $carlosFuentes, $sotano, $amazon, $idActual, $isbn );
+                $stmt = $conexion->prepare("UPDATE `deotrotipo`.`libro` SET `idLibro` = ?, `Titulo` = ?, `Sinopsis` = ?, `Precio` = ?, `Autor` = ?, `ISBN` = ?, `Tema` = ?, `Tipo` = ?, `Coleccion` = ?, `AEdicion` = ?, `Edicion` = ?, `Paginas` = ?, `Peso` = ?, `Firma` = ?, `Imagen` = ?, `Capitulo1` = ?, `Costo` = ?, `Audio` = ?, `Gandhi` = ?, `Porrua` = ?, `CarlosFuentes` = ?, `Sotano` = ?, `Amazon` = ?, `UGandhi` = ?, `UPorrua` = ?, `UCarlosFuentes` = ?, `USotano` = ?, `UAmazon` = ? WHERE (`idLibro` = ?) and (`ISBN` = ?);");
+                $stmt->bind_param('issdsssssisidsssdsssssssssssii', $idActual, $titulo, $sinopsis, $precio, $autor, $isbn, $tema, $tipo, $coleccion, $aedicion, $edicion, $paginas, $peso, $firma, $img, $cap1, $costo, $audio, $gandhi, $porrua, $carlosFuentes, $sotano, $amazon, $Ugandhi, $Uporrua, $UcarlosFuentes, $Usotano, $Uamazon, $idActual, $isbn );
                 $stmt->execute();
                 if($stmt->affected_rows == 1){
                     $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Libros/$isbn/";

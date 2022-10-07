@@ -62,6 +62,20 @@
               <label for="Amazon">Amazon</label>
             </div>
 
+            <label style="margin-top: 1rem;" class="col-form-label">Agrega solo los URL necesarios:</label>
+            <br>
+            <br>
+
+            <label for="addL-Form-U1" class="col-form-label">Url Gandhi:</label>
+            <input  type="text" name="UGandhi" class="form-control" id="addL-Form-U1">
+            <label for="addL-Form-U2" class="col-form-label">Url Porrua:</label>
+            <input  type="text" name="UPorrua" class="form-control" id="addL-Form-U2">
+            <label for="addL-Form-U3" class="col-form-label">Url Carlos Fuentes:</label>
+            <input  type="text" name="UCarlosFuentes" class="form-control" id="addL-Form-U3">
+            <label for="addL-Form-U4" class="col-form-label">Url Sotano:</label>
+            <input  type="text" name="USotano" class="form-control" id="addL-Form-U4">
+            <label for="addL-Form-U5" class="col-form-label">Url Amazon:</label>
+            <input  type="text" name="UAmazon" class="form-control" id="addL-Form-U5">
           
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

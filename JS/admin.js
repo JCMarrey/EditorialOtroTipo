@@ -3,9 +3,15 @@
 $(document).ready(function () {
 
     selectedTabsEfect();
+    
     document.getElementById("systemName").innerHTML = "Catálogo";
+
     const inputBuscador = document.querySelector("#Criterio-busqueda");
     inputBuscador.addEventListener('input', buscarLibro);
+
+    const inputBuscadorVenta = document.querySelector("#Criterio-busqueda-venta");
+    inputBuscadorVenta.addEventListener('input', buscarVenta);
+
 
     selectedTabsEfectTabsPagina();
     selectedTabsEfectTabsEventos();
@@ -14,7 +20,9 @@ $(document).ready(function () {
     viewLibro();
     editLibro();
     deleteLibro();
+
     buscarLibro();
+    buscarVenta();
 
     viewArchivo();
     editArchivo();
@@ -206,30 +214,42 @@ function editLibro(){
    
                 $("#editL-Form-Costo").attr('value',jsonResponse["Costo"]);
 
-                
+                $("#editL-Form-Firma").prop('checked', false); 
                 if(jsonResponse["Firma"] === "FIRMADO" || jsonResponse["Firma"] === "on"){
                     $("#editL-Form-Firma").prop('checked', true); 
                 }
 
+                $("#editL-Form-Gandhi").prop('checked', false);
                 if(jsonResponse["Gandhi"] === "DISPONIBLE"){
                     $("#editL-Form-Gandhi").prop('checked', true); 
                 }
                 
+                $("#editL-Form-Porrua").prop('checked', false);
                 if(jsonResponse["Porrua"] === "DISPONIBLE"){
                     $("#editL-Form-Porrua").prop('checked', true); 
                 }
 
+                $("#editL-Form-CarlosFuentes").prop('checked', false); 
                 if(jsonResponse["CarlosFuentes"] === "DISPONIBLE"){
                     $("#editL-Form-CarlosFuentes").prop('checked', true); 
                 }
 
+                $("#editL-Form-Sotano").prop('checked', false);
                 if(jsonResponse["Sotano"] === "DISPONIBLE"){
                     $("#editL-Form-Sotano").prop('checked', true); 
                 }
 
+                $("#editL-Form-Amazon").prop('checked', false); 
                 if(jsonResponse["Amazon"] === "DISPONIBLE"){
                     $("#editL-Form-Amazon").prop('checked', true); 
                 }
+
+                $("#editL-Form-U1").attr('value',jsonResponse["UGandhi"]);
+                $("#editL-Form-U2").attr('value',jsonResponse["UPorrua"]);
+                $("#editL-Form-U3").attr('value',jsonResponse["UCarlosFuentes"]);
+                $("#editL-Form-U4").attr('value',jsonResponse["USotano"]);
+                $("#editL-Form-U5").attr('value',jsonResponse["UAmazon"]);
+                
 
             }
         }
@@ -302,54 +322,76 @@ function selectedTabsEfect(){
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
+                $('#controller-tab-Venta').removeClass("active");
                 $('#controller-tab-catalogo').addClass("active"); 
+                document.getElementById('Criterio-busqueda').value = "";
+                buscarLibro();
             }
             break;
         }
 
         case 1: {
+            if(!$('#controller-tab-Venta').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Ventas";
+                $('#controller-tab-eventos').removeClass("active");
+                $('#controller-tab-blog').removeClass("active");
+                $('#controller-tab-pagina').removeClass("active");
+                $('#controller-tab-usuarios').removeClass("active");
+                $('#controller-tab-catalogo').removeClass("active");
+                $('#controller-tab-Venta').addClass("active"); 
+                document.getElementById('Criterio-busqueda-venta').value ="";
+                buscarVenta();
+            }
+            break;
+        }
+
+        case 2: {
             if(!$('#controller-tab-eventos').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Eventos";
                 $('#controller-tab-catalogo').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
+                $('#controller-tab-Venta').removeClass("active");
                 $('#controller-tab-eventos').addClass("active");
             }
             break;
         }
 
-        case 2:{
+        case 3:{
             if(!$('#controller-tab-blog').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Blog";
                 $('#controller-tab-catalogo').removeClass("active");
                 $('#controller-tab-eventos').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
+                $('#controller-tab-Venta').removeClass("active");
                 $('#controller-tab-blog').addClass("active");
             }
             break;
         }
 
-        case 3:{
+        case 4:{
             if(!$('#controller-tab-pagina').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Carrusel Principal y Semblanzas";
                 $('#controller-tab-catalogo').removeClass("active");
                 $('#controller-tab-eventos').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
+                $('#controller-tab-Venta').removeClass("active");
                 $('#controller-tab-pagina').addClass("active");
             }
             break;
         }
 
-        case 4:{
+        case 5:{
             if(!$('#controller-tab-usuarios').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Usuarios";
                 $('#controller-tab-catalogo').removeClass("active");
                 $('#controller-tab-eventos').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
+                $('#controller-tab-Venta').removeClass("active");
                 $('#controller-tab-usuarios').addClass("active");
             }
             break;
@@ -451,6 +493,18 @@ function mostrarNotificacion(mensaje,clase){
 
 function buscarLibro(){
     const busqueda = new RegExp(document.getElementById('Criterio-busqueda').value, "i");
+    const registros = document.querySelectorAll('tbody tr');
+    registros.forEach(registro =>{
+        registro.style.display = 'none';
+        if(registro.childNodes[3].textContent.replace(/\s/g, " ").search(busqueda) != -1 ){
+            registro.style.display = 'table-row';
+            
+        }
+    });
+}
+
+function buscarVenta(){
+    const busqueda = new RegExp(document.getElementById('Criterio-busqueda-venta').value, "i");
     const registros = document.querySelectorAll('tbody tr');
     registros.forEach(registro =>{
         registro.style.display = 'none';
@@ -824,8 +878,6 @@ function deleteUsuario(){
           });
     });
 }
-
-
 
 function viewBlog(){
     $('.icon-view-Blog').on('click', function(e){
