@@ -17,17 +17,173 @@ function cargarEventos(){
     document.addEventListener('DOMContentLoaded',leerProductosLocalStorageCompra());
 
     carritoC.addEventListener('click',(e)=>{
-               eliminarProducto(e);
+               eliminarProductoCompra(e);
                cambiarCantidad(e);     
     });
 
-    calcularTotal(estadoSeleccionado);
+    //calcularTotal(estadoSeleccionado);
 
     procesarCompraBtn.addEventListener('click',(e) =>{
         procesarCompra(e);
     });
 
 }
+
+
+function activarBotonFinalizarCompra(){
+    const boton = document.getElementById('finalizar-compra');
+    boton.style.display = 'block';
+}
+
+function obtenerDatosPagos(){
+    if(localStorage.getItem('pagos') === null ){
+       const pagos = [];
+      }else{
+        pagos = JSON.parse(localStorage.getItem('pagos'));
+      }
+
+    return pagos;
+}
+function obtenerDatosPaypal(){
+    if(localStorage.getItem('datosCompra') === null ){
+        const pagos = [];
+       }else{
+         datosCompra = JSON.parse(localStorage.getItem('datosCompra'));
+       }
+ 
+     return datosCompra;
+}
+
+function guardarDatosBD(){
+
+    //vaciarLocalStorage(); //para vacíar listaProductos
+    const datosUsuarios = obtenerDatosUsuarioLocalStorage();
+    //const datosProductos = obtenerProductosLocalStorage();
+
+    const productoLS = obtenerProductosLocalStorage();
+
+    const datosPagos = obtenerDatosPagos();
+    const datosPaypal = obtenerDatosPaypal();
+
+    //procesarDatosCompra
+    var fechaPago = datosPaypal[0];
+    var idPaypal = datosPaypal[1];
+    var status = datosPaypal[2];
+
+    //procesarDatosPagos
+
+    var subtotal = datosPagos[0];
+    var precioEnvio = datosPagos[1];
+    var total = datosPagos[2];
+
+
+    //procesarDatosUsuarios:
+    var direccion = datosUsuarios[0];
+    var delegacion = datosUsuarios[1];
+    var pais = datosUsuarios[3];
+    var estado = datosUsuarios[3];
+    var cp = datosUsuarios[4];
+    var metodoEnvio = datosUsuarios[5];
+    var correo = datosUsuarios[6];
+    var nombreCliente = datosUsuarios[7];
+    var apellido = datosUsuarios[8];
+    var telefono = datosUsuarios[9];
+    
+    //probar ajax
+   var cantidadLibro;
+   var idLibro;
+
+   //función bien...
+   /* productoLS.forEach(function(producto){
+        cantidadLibro = producto.cantidad;
+        idLibro = producto.id;
+        $.post('procesarDatosBD.php',{
+            cantidadLibro:cantidadLibro,
+            idLibro:idLibro,
+            fechaPago:fechaPago,
+            idPaypal:idPaypal,
+            status:status,
+            subtotal:subtotal,
+            precioEnvio:precioEnvio,
+            total:total
+        },
+        function(data,estado){
+            if(data!=null){
+                alert("datos envíados...enviandoo"+data+"\nEstado: " + estado);
+            }else{
+                alert("error en el proceso...");
+            }
+        });
+    });*/
+
+    //ahora mandamos correo electrónico... con el pedido...
+    $.post('emailPedido.php',{
+        //cantidadLibro:cantidadLibro,
+        //idLibro:idLibro,
+          //procesarDatosUsuarios:
+
+        //datos del libro
+
+        datosLibro:JSON.stringify(productoLS),
+        //datos usuario
+        direccion:direccion,
+        delegacion:delegacion,
+        pais:pais,
+        estado:estado,
+        cp:cp,
+        metodoEnvio:metodoEnvio,
+        correo:correo,
+        nombreCliente:nombreCliente,
+        apellido:apellido,
+        telefono:telefono,
+        
+        //datos pago
+        fechaPago:fechaPago,
+        status:status,
+        subtotal:subtotal,
+        precioEnvio:precioEnvio,
+        total:total
+    },
+    function(data,estado){
+        if(data!=null){
+            alert("datos envíados...enviandoo"+data+"\nEstado: " + estado);
+        }else{
+            alert("error en el proceso...");
+        }
+    });    
+
+
+}
+
+function eliminarProductoCompra(e){
+    let producto, productoID;
+    if(e.target.classList.contains('borrar-producto')){
+        e.target.parentElement.parentElement.remove();
+        producto = e.target.parentElement.parentElement;
+        productoID = producto.querySelector('p').textContent;
+    }
+    eliminarProductoLocalStorageCompra(productoID,e);
+}
+
+function eliminarProductoLocalStorageCompra(productoID,e){
+    e.preventDefault();
+    let productosLS;
+    productosLS = obtenerProductosLocalStorage();
+    productosLS.forEach(function(productoLS,index){
+        console.log("id de LS", productoLS.id);
+        console.log("id de productoID",productoID);
+        if(productoLS.id === productoID){
+            productosLS.splice(index,1);
+        }
+    });
+    localStorage.setItem('productos',JSON.stringify(productosLS));
+    //actualizamos el localStorage
+
+    let datosEnvioU = [];
+    datosEnvioU = guardarDatosEnvio();
+    calcularEnvio(datosEnvioU,e);
+}
+
 
 function leerProductosLocalStorageCompra(){
     let productosLS;
@@ -48,7 +204,7 @@ function leerProductosLocalStorageCompra(){
             </td>          
             </td>
             <td>
-               <input class="form-control cantidad" min="1" value=${producto.cantidad}>    
+               <input class="form-control cantidad" id="cantidadLibros min="1" value=${producto.cantidad}>    
             <td>
             <td>
                 <a href="#" class="aumentar-cantidad fa-solid fa-circle-x" style="font-size:30px">+
@@ -72,7 +228,7 @@ function leerProductosLocalStorageCompra(){
 function procesarCompra(e){
     e.preventDefault();
     if(obtenerProductosLocalStorage().length === 0){
-        Swal.fire({
+        swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Tu carrito esta vacío, agrega un producto por favor',
@@ -82,7 +238,7 @@ function procesarCompra(e){
             window.location ="/View/Catalogo.php";
           });
     }else if(nombreCliente.value === '' || correo.value === ''){
-        Swal.fire({
+        swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Llene todos los campos porfavor',
@@ -104,8 +260,8 @@ function procesarCompra(e){
             setTimeout(() =>{
 
                 enviado.remove();
-                vaciarLocalStorage();
-                window.location ="/View/catalogo.php";
+                guardarDatosBD();
+                //window.location ="/View/catalogo.php";
 
             },2000)
         },3000)

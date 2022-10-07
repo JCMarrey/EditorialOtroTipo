@@ -86,6 +86,7 @@ if($idLibro == ''){
 
 <body>
 <?php require_once("../common/header.php"); ?>
+<?php require_once("../common/carritoModal.php"); ?>
    <div class="detallesLibro">
         <div class="asideIzq" id="lista-productos">
                     <div class="card-body">
@@ -97,13 +98,13 @@ if($idLibro == ''){
                       <p class="card-text" id="precio"  style="font-size: 4rem;" >$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
                       <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $Peso?></h2>
 
-                      <!--<div>
+                      <div>
                         <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
                         <ul id="idProducto" style="display:none";>
-                          <li></*?php echo $idLibro ?*/><li>
+                          <li><?php echo $idLibro ?><li>
                         </ul>
 
-                     </div>-- quitado por tiempo -->
+                     </div>
         </div>            
            <!-- Button trigger modal -->
 

@@ -23,7 +23,7 @@
 <!DOCTYPE html>
     <html lang="en">
 
-    /*<?php  require_once("../common/head.php"); ?>*/
+    <?php  require_once("../common/head.php"); ?>
     <body>
 
      
@@ -107,7 +107,17 @@
                     <div class="card-body">
                       <div class="figure">
                           <div class="capa">
-                              <h4 id="firmaAutor">LibroFirmado</h3>
+                              <h3 id="firmaAutor">
+                                <?php
+                                   if($row['Firma'] == 'FIRMADO'){
+                                      echo 'LibroFirmado';
+                                   }else{
+                                    echo 'LibroSinFirma';     
+                                   }
+                                  
+                                ?>
+
+                              </h3>
                                   <p id="textoPDF">
 
                                     <?php
@@ -151,10 +161,10 @@
                       </div>
                       <div class="d-grid gap-3 d-md-block">
                             
-                        <!--<button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()">
+                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()">
                           <img  class="agregar-producto-B" src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar
-                        </button>-->
-                        <button class="btnVermas2" id="btnVermas" ><a href="/View/detallesLibro.php?idLibro=<?php echo $row['idLibro']; ?>">Ver más..</a></button>
+                        </button>
+                        <!--<button class="btnVermas2" id="btnVermas" ><a href="/View/detallesLibro.php?idLibro=<?/*php echo $row['idLibro']; */?>">Ver más..</a></button>-->
                         <ul id="idProducto" style="display:none";>
                           <li><?php echo $row['idLibro'] ?><li>
                         </ul>

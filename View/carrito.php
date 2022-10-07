@@ -23,17 +23,17 @@
                         
                         <div id="form1">
                             <input class="texto1" id="correo" type="email" id="fname" name="correo"
-                                value="Correo para confirmar el pedido">
+                            placeholder="Correo para confirmar el pedido">
 
-                            <input class="texto1" id="nombreCliente" type="text" id="fname" name="nombreCliente" value="Nombre">
+                            <input class="texto1" id="nombreCliente" type="text" id="fname" name="nombreCliente" placeholder="Nombre">
 
-                            <input class="texto1" id="apellido" type="text" id="fname" name="apellido" value="Apellido">
+                            <input class="texto1" id="apellido" type="text" id="fname" name="apellido" placeholder="Apellido">
 
-                            <input class="texto1" id="telefono" type="text" id="fname" name="telefono" value="Teléfono">
+                            <input class="texto1" id="telefono" type="text" id="fname" name="telefono" placeholder="Teléfono">
 
                             <!--<button id="botonEnviar" type="button" >Continuar</button>-->
                             <a href="#envio" type="button" id="botonEnviar">Continuar</a>
-
+                            
                         </div>
 
                        
@@ -85,12 +85,12 @@
                             </table>
 
                             <div>
-                                <a href="catalogo.php" class="btn  btn-lg btn-primary" tabindex="-1" role="button"
+                                <a href="/View/catalogo.php" class="btn  btn-lg btn-primary" tabindex="-1" role="button"
                                     aria-disabled="true">Seguir comprando</a>
                             </div>
                             <div>
                                 <a href="#" id="finalizar-compra" class="btn btn-lg btn-success" tabindex="-1"
-                                    role="button" aria-disabled="true">Finalizar Compra</a>
+                                    role="button" aria-disabled="true" style= "display:block">Finalizar Compra</a>
                             </div>
 
                         </div>
@@ -103,9 +103,9 @@
                         </div>
 
 
-                        <input class="texto1" id="direccion" type="text" id="fname" name="direccion" value="Dirección">
+                        <input class="texto1" id="direccion" type="text" id="fname" name="direccion" placeholder="Dirección">
 
-                        <input class="texto1" id="delegacion" type= "text"  name="delegacion" value="Ciudad / Delegación / Municipio">
+                        <input class="texto1" id="delegacion" type= "text"  name="delegacion" placeholder="Ciudad / Delegación / Municipio">
 
                         <select name="texto3" id="pais" class="texto3">
 
@@ -381,79 +381,24 @@
                                     <option value="Yucatan">Yucatán</option>
                                     <option value="Zacatecas">Zacatecas</option>
                                 </select>
-                    
-                         
 
-                            <input class="texto2" type="text" id="cp" name="fname" value="Código postal">
-                            <select class="texto4" id="metodoEnvio">
-                                    <option value="Región">Método de envío</option>
-                                    <option value="Envío estandar">Envío estandar</option>
+                            <input class="texto2" type="text" id="cp" name="fname" placeholder="Código postal">
+                            <select class="texto4" id="metodoEnvio" value="Método de Envío">
+                                    <option value="DIA_SIGUIENTE">Envío Express</option>
+                                    <option value="STANDARD">Envío Estándar</option>
                             </select>
 
-                            <!--<button type="button" id="btnContinuarEnvio">Continuar</button>-->
-                            <a href="#form1" type="button" id="btnContinuarEnvio">Continuar</a>
+
+                            <div>
+                                <a href="#" id="btnCalcularEnvio" class="btn btn-lg btn-success" tabindex="-1"
+                                    role="button" aria-disabled="true">CalcularEnvío</a>
+                            </div>
+                           
                     </div>
 
                     <div id="pago">
-                        Selecciona tu método de pago, por favor.
-                        <p>
-                            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                Link with href
-                            </a>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Button with data-target
-                            </button>
-                        </p>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-
-                            </div>
-                        </div>
-
-
-                        <div id="titulo">
-                            <!-- Replace "test" with your own sandbox Business account app client ID -->
-                            <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-                            <!-- Set up a container element for the button -->
-                            <div id="paypal-button-container"></div>
-                            <script>
-                                paypal.Buttons({
-                                    style: {
-                                        color: 'blue',
-                                        shpe: 'pill',
-                                        label: 'pay'
-                                    },
-                                    createOrder: (data, actions) => {
-                                        return actions.order.create({
-                                            purchase_units: [{
-                                                amount: {
-                                                    value: 500 // Can also reference a variable or function
-                                                }
-                                            }]
-                                        });
-                                    },
-                                    // Finalize the transaction after payer approval
-                                    onApprove: (data, actions) => {
-                                        return actions.order.capture().then(function (orderData) {
-                                            // Successful capture! For dev/demo purposes:
-                                            console.log('Capture result', orderData, JSON.stringify(
-                                                orderData, null, 2));
-                                            const transaction = orderData.purchase_units[0].payments
-                                                .captures[0];
-                                            alert(
-                                                `Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
-                                            // When ready to go live, remove the alert and show a success message within this page. For example:
-                                            // const element = document.getElementById('paypal-button-container');
-                                            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                                            // Or go to another URL:  actions.redirect('thank_you.html');
-                                        });
-                                    }
-                                }).render('#paypal-button-container');
-                            </script>
-                        </div>
-
+                        
+                        <?php require_once("confPago.php"); ?>                   
                     </div>
                 </div>    
             </div>       
@@ -464,7 +409,9 @@
         <script src="/JS/funciones.js" defer></script>
         <script src="/JS/compra.js" defer></script>
         <script src="/JS/carritoCompra.js" defer></script>
-        <?php require_once("../common/footer.php"); ?>            
+        <?php require_once("../common/footer.php"); ?>   
+         
+          
 </body>
 
 </html>
