@@ -1,21 +1,14 @@
-
 <?php
    
+    //contenido de los productos
+
     
-    /*
     $datosLibro = $_POST['datosLibro'];
     $resultado = json_decode($datosLibro);
 
     //print_r ($resultado[0]->titulo);
 
 
-    for($indice = 0; $indice < sizeof($resultado) ; $indice++){
-            echo ($resultado[$indice]->titulo);
-            echo ($resultado[$indice]->cantidad);
-            echo ($resultado[$indice]->precio);
-            echo ($resultado[$indice]->imagen);
-    }
-    
     //datos usuario
     $direccion = $_POST['direccion'];
     $delegacion = $_POST['delegacion'];
@@ -34,13 +27,17 @@
     $subtotal = $_POST['subtotal'];
     $precioEnvio = $_POST['precioEnvio'];
     $total = $_POST['total'];
-    echo "datos:".$direccion."\n".$delegacion."\n".$pais."\n".$estado."\n".$cp."\n".$metodoEnvio."\n".$correo."\n".$nombreCliente."\n".$apellido."\n".$telefono."\n".
-    $fechaPago."\n".$status."\n".$subtotal."\n".$precioEnvio."\n".$total;
-    */
+    $idPaypal = ($_POST['idPaypal']);
 
+
+
+    echo "datos:".$direccion."\n".$delegacion."\n".$pais."\n".$estado."\n".$cp."\n".$metodoEnvio."\n".$correo."\n".$nombreCliente."\n".$apellido."\n".$telefono."\n".
+    $fechaPago."\n".$status."\n".$subtotal."\n".$precioEnvio."\n".$total."\n".$idPaypal;
+
+    
 
     //correo
-
+    
     use PHPMailer\PHPMailer\{PHPMailer,SMTP,Exception};
 
     require '../phpMailer/src/PHPMailer.php';
@@ -75,8 +72,9 @@
       $subtotal = $_POST['subtotal'];
       $precioEnvio = $_POST['precioEnvio'];
       $total = $_POST['total'];
+      $idPaypal =$_POST['idPaypal'];
 
-      $asunto = "Compra registrada";
+      $asunto = "Compra pendiente";
 
 
     //correo electronico válaido
@@ -154,21 +152,53 @@
       </head>
       <body>
         <h1> Estimado '.$nombreDestinatario.' '.$apellido.' <h1>
-        <p>Su compra ha sido registrada éxitosamente.</p>
-        <p>A continuación le adjuntamos los datos de su compra:.</p>
-        <p>número de contacto: '.$telefono.' </p>
-        <p>dirección de domicilio: '.$direccion.' '.$delegacion.' '.$pais.' '.$estado.' '.$cp.' </p>
-        <p>Método de envío: '.$metodoEnvio.' </p>
-        <p>Fecha de compra: '.$fechaPago.' </p>
-        <p>Subtotal: '.$subtotal.' </p>
-        <p>Precio de Envío: '.$precioEnvio.' </p>
-        <p>Total: '.$total.' </p>
+        <p><h3>Por favor <strong>finalice </strong>su compra realizando el déposito correspondiente.</h3></p>
+        <p><h4>A continuación le adjuntamos los datos de su compra:.</h4></p>
+        <p><h4>número de contacto: '.$telefono.'</h4> </p>
+        <p><h4>dirección de domicilio: '.$direccion.' '.$delegacion.' '.$pais.' '.$estado.' '.$cp.' </h4></p>
+        <p><h4>Método de envío: '.$metodoEnvio.'</h4> </p>
+        <p><h4>Fecha de compra: '.$fechaPago.'</h4> </p>
+        <p><h4>Subtotal: '.$subtotal.'</h4> </p>
+        <p><h4>Precio de Envío: '.$precioEnvio.'</h4> </p>
+        <p><h4>Total: '.$total.'</h4> </p>
+
+        <h1> Datos bancarios:  <h1>
+        <p><h4>Banco: Santander </h4> </p>
+        <p><h4>Titular: Editorial De Otro Tipo</h4> </p>
+        <p><h4>No. de cuenta: 65-50436327-6</h4> </p>
+        <p><h4>CLABE: 014180655043632767</h4> </p>
+        <p><u>- Envía tu comprobante a contacto@deotrotipo.mx <u></p>
 
         <p><h2>Producto(s) comprados(s):<h2></p>
+        
       </body>
       </html>
       ';
-      $mail->Body = utf8_decode($mensaje);
+
+      $datosProductos = "";
+
+      for($indice = 0; $indice < sizeof($resultado) ; $indice++){
+
+             $mensaje = $mensaje.  '
+                  <html>
+                  <body>
+                    <p><h4> Título del libro '.$resultado[$indice]->titulo. '</h4></p>
+                    <p><h4> Cantidad de libro(s) '.$resultado[$indice]->cantidad. '</h4></p>
+                    <p><h4> Precio '.$resultado[$indice]->precio. '</h4></p>
+                    <br>
+                  </body>
+                  </html>
+            ';
+
+              /*$datosProductos = $datosProductos.'Titulo del libro: '.$resultado[$indice]->titulo;
+              $datosProductos = $datosProductos.' Cantidad: '.$resultado[$indice]->cantidad;
+              $datosProductos = $datosProductos.'Precio: '.$resultado[$indice]->precio;*/
+
+      }
+
+      
+
+      $mail->Body = $mensaje;
       // Texto alternativo
       $mail->AltBody = 'Detalles de tu compra...';
    
@@ -191,5 +221,6 @@
       echo "no envíado..";
       exit();
     }
+
 
 ?>

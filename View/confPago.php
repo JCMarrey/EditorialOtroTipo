@@ -17,7 +17,7 @@
 
     </script>
 
-    <div id="paypal-button-container" style="display:none"></div>
+    <div id="paypal-button-container" style="display:block"></div>
     <script>
            if(localStorage.getItem('pagos') === null ){
             pagos = [];
@@ -30,7 +30,7 @@
           return actions.order.create({
             purchase_units: [{
               amount: {
-                value: pagos[2] //'1.0' //pagos[2]// Can also reference a variable or function
+                value: '1.0' //pagos[2]// Can also reference a variable or function
               }
             }]
           });

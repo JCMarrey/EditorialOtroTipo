@@ -90,7 +90,7 @@
                             </div>
                             <div>
                                 <a href="#" id="finalizar-compra" class="btn btn-lg btn-success" tabindex="-1"
-                                    role="button" aria-disabled="true" style= "display:block">Finalizar Compra</a>
+                                    role="button" aria-disabled="true" style= "display:none">Finalizar Compra</a>
                             </div>
 
                         </div>
@@ -397,8 +397,30 @@
                     </div>
 
                     <div id="pago">
-                        
-                        <?php require_once("confPago.php"); ?>                   
+                            <div id="metodosPago" style="display:none">
+                                <p>Seleccione su método de pago por favor:</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbPagoManual">
+                                    <label class="form-check-label" for="PagoManual">
+                                        Pago Manual
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbPagoPaypal" checked>
+                                    <label class="form-check-label" for="pagoPaypal">
+                                    PagoPaypal
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class = "opcionesPagos" id="opcionesPagos">
+                                    <div id="pagoPaypal" style="display:none">
+                                        <?php require_once("confPago.php"); ?> 
+                                    </div>
+                                    <div id="pagoManual" style="display:none">
+                                        <di>Al seleccionar esta opción </h2> <br> Puedes realizar el deposito o transferencia de tu compra a: <br> Santander <br> Titular: Editorial De Otro Tipo <br>  No. de cuenta: 65-50436327-6 <br>CLABE: 014180655043632767 <br>- Envía tu comprobante a contacto@deotrotipo.mx
+                                    </div>
+                            </div>
                     </div>
                 </div>    
             </div>       

@@ -19,7 +19,7 @@
 
     
 
-    echo "subtotal: ".$subtotal."\nFechaPago:".$fechaPago."\nIDLibro:".$idLibro;
+    echo "\nsubtotal: ".$subtotal."\nFechaPago:".$fechaPago."\nIDLibro:".$idLibro."\n idPaypal:".$idPaypal;
     $sql_insertarVenta = $conexion->prepare("INSERT INTO deotrotipo.ventas (idLibro,idPaypal,subtotal,precioEnvio,total,cantidadLibro,fechaPago,estado)
                   VALUES (?,?,?,?,?,?,?,?);");
 
@@ -27,7 +27,7 @@
         echo 'hubo un error en insertar registro';
         return ['ok' => 'false'];
     }else{
-        $sql_insertarVenta->bind_param('iididiss',$idLibro,$idPaypal,$subtotal,$precioEnvio,$total,$cantidadLibro,$fechaPago,$estado);
+        $sql_insertarVenta->bind_param('isdidiss',$idLibro,$idPaypal,$subtotal,$precioEnvio,$total,$cantidadLibro,$fechaPago,$estado);
         $sql_insertarVenta->execute();
         echo 'registro inserado con éxito';
     }

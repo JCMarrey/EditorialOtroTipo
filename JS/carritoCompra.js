@@ -1,16 +1,22 @@
 const btnCalcularEnvio = document.getElementById('btnCalcularEnvio');
-
+const btnPagoPaypal = document.getElementById('rbPagoPaypal');
+const btnPagoManual = document.getElementById('rbPagoManual');
 
 let datosEnvioU = [];
 
 cargarEventos();
+
+function activarBotonFinalizarCompra(){
+    const boton = document.getElementById('finalizar-compra');
+    boton.style.display = 'block';
+}
 
 function cargarEventos(){
     btnCalcularEnvio.addEventListener('click',(e) =>{
 
         //verificar si hay productos en el carrito, si no mandar notificación....
         if(obtenerProductosLocalStorage().length === 0){
-            /*Swal.fire({
+            Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Tu carrito esta vacío, agrega un producto para cotizar envío por favor',
@@ -18,7 +24,7 @@ function cargarEventos(){
                 showConfirmButton: true
               }).then(function(){
                 window.location ="/View/Catalogo.php";
-              });*/
+              });
               console.log("carritoVacío");
         }else{
             datosEnvioU = guardarDatosEnvio();
@@ -26,6 +32,35 @@ function cargarEventos(){
             calcularEnvio(datosEnvioU,e);
         }
        
+    });
+
+    btnPagoManual.addEventListener('click',(e) =>{
+
+        console.log("has presionado Pago manual");
+        const boton = document.getElementById('pagoManual');
+        boton.style.display = 'block';
+
+        const botonP = document.getElementById('pagoPaypal');
+        botonP.style.display = 'none';
+
+        activarBotonFinalizarCompra();
+    });
+
+    btnPagoPaypal.addEventListener('click',(e) =>{
+
+        console.log("has presionado Pago Paypal");
+        const botonM = document.getElementById('pagoManual');
+        botonM.style.display = 'none';
+
+        const boton = document.getElementById('pagoPaypal');
+        boton.style.display = 'block';
+
+        const botonP = document.getElementById('paypal-button-container');
+        botonP.style.display = 'block';
+
+        const botonCompra = document.getElementById('finalizar-compra');
+        botonCompra.style.display = 'none';
+
     });
 }
 
@@ -229,8 +264,12 @@ function calcularTotal(cotizacionEnvio,e){
 
         localStorage.setItem("pagos",JSON.stringify(pagos));
 
-        const boton = document.getElementById('paypal-button-container');
+        //aquí hay que desplegar los 2 métodos de envío
+        const boton = document.getElementById('metodosPago');
         boton.style.display = 'block';
+
+        const botonP = document.getElementById('pagoPaypal');
+        botonP.style.display = 'block';
        
 }
 function calcularTotalSinEnvio(){

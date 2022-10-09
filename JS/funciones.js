@@ -62,7 +62,6 @@ function leerDatosProductos(producto){
     let librosLS = obtenerProductosLocalStorage();
     let auxLibro;
 
-
     librosLS.forEach(function(libroLS,index){
         if(libroLS.id === infoProducto.id){
             infoProducto.cantidad = libroLS.cantidad; 
@@ -85,6 +84,7 @@ function leerDatosProductos(producto){
 }
 function insertarProductoCarrito(producto){
 
+    
     const row = document.createElement('tr');
     row.innerHTML=`
             <td></td>
@@ -94,11 +94,10 @@ function insertarProductoCarrito(producto){
             <td>${producto.titulo}</td>
             <td>${producto.precio}</td>
             <td>${producto.cantidad}</td>
-            <td>${producto.precio*producto.cantidad}
-            
+            <td>${producto.precio*producto.cantidad}</td>
             <td>
                 
-                    <i class="fa-solid fa-x"></i>
+                    <i class="fa-solid fa-x">X</i>
                     <p style="display:none"; id="idCarritoP">${producto.id}</p>
                 
             </td>
