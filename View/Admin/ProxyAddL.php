@@ -22,8 +22,11 @@
             $paginas = $_POST['PAGINAS']; 
             $peso = $_POST['PESO']; 
             $firma = $_POST['FIRMA']; 
-            $costo = $_POST['COSTO']; 
+            $cantidad = $_POST['CANTIDAD']; 
             $idActual = 0;
+
+            $porcentajeDescuento = 100 - $_POST['PROMOCION'];
+            $precioConDescuento = $porcentajeDescuento / 100;
 
 
             $sinopsis = $_FILES['archSinopsis']['name'];
@@ -79,8 +82,8 @@
 
             
             try{
-                $stmt = $conexion->prepare("INSERT INTO `deotrotipo`.`libro` (`idLibro`, `Titulo`, `Sinopsis`, `Precio`, `Autor`, `ISBN`, `Tema`, `Tipo`, `Coleccion`, `AEdicion`, `Edicion`, `Paginas`, `Peso`, `Firma`, `Imagen`, `Capitulo1`, `Costo`, `Audio`, `Gandhi`, `Porrua`, `CarlosFuentes`, `Sotano`, `Amazon`, `UGandhi`, `UPorrua`, `UCarlosFuentes`, `USotano`, `UAmazon`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
-                $stmt->bind_param('issdsssssisidsssdsssssssssss', $idActual, $titulo, $sinopsis, $precio, $autor, $isbn, $tema, $tipo, $coleccion, $aedicion, $edicion, $paginas, $peso, $firma, $img, $cap1, $costo, $audio, $gandhi, $porrua, $carlosFuentes, $sotano, $amazon, $Ugandhi, $Uporrua, $UcarlosFuentes, $Usotano, $Uamazon);
+                $stmt = $conexion->prepare("INSERT INTO `deotrotipo`.`libro` (`idLibro`, `Titulo`, `Sinopsis`, `Precio`, `Autor`, `ISBN`, `Tema`, `Tipo`, `Coleccion`, `AEdicion`, `Edicion`, `Paginas`, `Peso`, `Firma`, `Imagen`, `Capitulo1`, `Cantidad`, `Audio`, `Gandhi`, `Porrua`, `CarlosFuentes`, `Sotano`, `Amazon`, `UGandhi`, `UPorrua`, `UCarlosFuentes`, `USotano`, `UAmazon`, `Promocion`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                $stmt->bind_param('issdsssssisidsssisssssssssssd', $idActual, $titulo, $sinopsis, $precio, $autor, $isbn, $tema, $tipo, $coleccion, $aedicion, $edicion, $paginas, $peso, $firma, $img, $cap1, $cantidad, $audio, $gandhi, $porrua, $carlosFuentes, $sotano, $amazon, $Ugandhi, $Uporrua, $UcarlosFuentes, $Usotano, $Uamazon, $precioConDescuento);
                 $stmt->execute();
                 if($stmt->affected_rows == 1){
                     header('Location: http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=1');

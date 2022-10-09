@@ -30,8 +30,11 @@
             <input  type="text" disabled name = "PESO" class="form-control" id="viewL-Form-Peso">
             <label for="viewL-Form-Precio" class="col-form-label">Precio:</label>
             <input  type="text" disabled name = "PRECIO" class="form-control" id="viewL-Form-Precio">
-            <label for="viewL-Form-Costo" class="col-form-label">Costo:</label>
+            <label for="viewL-Form-Costo" class="col-form-label">Existencia:</label>
             <input  type="text" disabled name = "COSTO" class="form-control" id="viewL-Form-Costo">
+
+            <label for="viewL-Form-Promocion" class="col-form-label">Porcentaje de descuento:</label>
+            <input  type="number" disabled name = "PROMOCION" min="0" max="100" value="0" class="form-control" id="viewL-Form-Promocion">
 
             <label for="viewL-Form-Sinopsis" class="col-form-label">Sinopsis:</label>
             <input  type="text" disabled name="archSinopsis" class="form-control" id="viewL-Form-Sinopsis" accept=".doc,.docx,.txt">

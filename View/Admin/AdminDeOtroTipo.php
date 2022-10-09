@@ -53,16 +53,14 @@
                         <a class="nav-link " aria-current="page" href="#tab-Venta">Ventas</a>
                     </li>
 
+                    <li id="controller-tab-inventario" class="nav-item">
+                        <a class="nav-link" href="#tab-Inventario">Inventario</a>
+                    </li>
+
                     <li id="controller-tab-eventos" class="nav-item">
-                        <a class="nav-link" href="#tab-eventos">Eventos</a>
+                        <a class="nav-link" href="#tab-eventos">Noticias y Eventos</a>
                     </li>
                     
-                    <!--
-                        <li id="controller-tab-estadisticas" class="nav-item">
-                        <a class="nav-link" href="#tab-estadisticas">Estadisticas</a>
-                    </li>
-                    -->
-
                     <li id="controller-tab-blog" class="nav-item">
                         <a class="nav-link" href="#tab-blog">Blog</a>
                     </li>
@@ -93,8 +91,6 @@
                             header('Location: http://localhost/EditorialOtroTipo/View/Admin/Login.php?r=5');
                         }
                     ?>
-
-
                 </ul>
             </div>
 
@@ -150,43 +146,105 @@
                 </div>
                 
                 <div id="tab-Venta">
+                    <div id="tabs-Pagina-Ventas">
+                        <ul class="nav nav-tabs-Pagina-Principal">
 
-                    <div class="search-container-Admin">
-                        
-                        <input  id="Criterio-busqueda-venta" type="text" placeholder="Buscar en Venta por ID Paypal" class="rounded search-input-Admin" name="search" autocomplete="off">
-                        <button type="submit" id="busca-venta.IdPaypal" class ="icon-search"><i class="fa fa-search"></i></button>
-                        
-                    </div>
+                        <li id="controller-tab-consulta-ventas" class="nav-item">
+                            <a class="nav-link " aria-current="page" href="#tab-consulta-ventas">Consulta Ventas</a>
+                        </li>
+                        <li id="controller-tab-venta-manual" class="nav-item">
+                            <a class="nav-link" href="#tab-venta-manual">Ingreso manual de venta</a>
+                        </li>
 
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead class="thead-Admin">
-                            <tr>
-                            <th id="tHeadISBN"  class="text-center" scope="col">ID Venta</th>
-                            <th  class="text-center"  scope="col">ID Paypal</th>
-                            <th  class="text-center"  scope="col">Fecha</th>
-                            <th  class="text-center"  scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                        </ul>
+
+                        <div id="tab-consulta-ventas">
+
+                            <div class="search-container-Admin">
+                                                
+                                <input  id="Criterio-busqueda-venta" type="text" placeholder="Buscar en Venta por ID Paypal" class="rounded search-input-Admin" name="search" autocomplete="off">
+                                <button type="submit" id="busca-venta.IdPaypal" class ="icon-search"><i class="fa fa-search"></i></button>
+                                
+                            </div>
+
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="thead-Admin">
+                                    <tr>
+                                    <th id="tHeadISBN"  class="text-center" scope="col">ID Venta</th>
+                                    <th  class="text-center"  scope="col">ID Paypal</th>
+                                    <th  class="text-center"  scope="col">Fecha</th>
+                                    <th  class="text-center"  scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php
+                                        require_once("Conexion.php");
+                                        $query = "SELECT * FROM ventaj";
+                                        $resultado = mysqli_query($conexion,$query);
+                                        $numRegistros = mysqli_num_rows($resultado);
+                                    ?>
+
+                                    <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                        <tr class="tr-Admin">
+                                            <td  class="text-center" scope="row"><?= $registro['IdVenta'];?></td>
+                                            <td  class="text-center"><?= $registro['IdPaypal'];?></td>
+                                            <td  class="text-center container-actions"><?= $registro['fechaPago'];?></td>
+                                            <td  class="text-center container-actions"><?= $registro['total'];?></td>
+                                        </tr>                
+                                    <?php endwhile;?>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div id="tab-venta-manual">
 
                             <?php
                                 require_once("Conexion.php");
-                                $query = "SELECT * FROM ventaj";
+                                $query = "SELECT Titulo,idLibro,Precio FROM Libro ORDER BY Titulo";
                                 $resultado = mysqli_query($conexion,$query);
-                                $numRegistros = mysqli_num_rows($resultado);
                             ?>
 
-                            <?php while($registro = mysqli_fetch_assoc($resultado)):?>
-                                <tr class="tr-Admin">
-                                    <td  class="text-center" scope="row"><?= $registro['IdVenta'];?></td>
-                                    <td  class="text-center"><?= $registro['IdPaypal'];?></td>
-                                    <td  class="text-center container-actions"><?= $registro['fechaPago'];?></td>
-                                    <td  class="text-center container-actions"><?= $registro['total'];?></td>
-                                </tr>                
-                            <?php endwhile;?>
+                            <div class="modal-body">
+                                <form class="form-bg" action="ProxyAddV.php" method="POST"  id="formVenta" enctype = "multipart/form-data">
+                                    
+                                    <label class="col-form-label label-form" for="libro">Libro vendido: </label>
+                                    <select class="form-control input-field" name="LIBRO" id="ISBN-libro-venta-manual">
+                                        <option class="form-control input-field"disabled selected>--Selecciona un libro--</option>
+                                        <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                            <option class="form-control input-field" value="<?=$registro['idLibro'];?>"><?=$registro['Titulo'];?></option>
+                                        <?php endwhile;?>
+                                    </select>
+                                    
+                                    <label class="col-form-label label-form" for="">Costo de envio: </label>
+                                    <input class="form-control input-field" type="text" placeholder="Ingresa el Costo en numeros" name="COSTOENVIO" id="">
+                                    
+                                    <label class="col-form-label label-form" for="">Cantidad: </label>
+                                    <input class="form-control input-field" type="number" name="CANTIDAD" value="1" min="1" id="">
 
-                        </tbody>
-                    </table>
+
+                                    <label class="col-form-label label-form" for="">Fecha de pago: </label>
+                                    <input class="form-control input-field" type="text" placeholder="DD/MM/AAAA" name="FECHAPAGO" id="">
+
+                                    <?php
+                                        require_once("Conexion.php");
+                                        $query = "SELECT idLibro,Precio FROM Libro ORDER BY Titulo";
+                                        $resultado = mysqli_query($conexion,$query);
+                                    ?>
+
+                                    <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                        <input type="hidden" name="<?=$registro['idLibro'];?>" value="<?=$registro['Precio'];?>">
+                                    <?php endwhile;?>
+
+                                    <input class="btn btn-success btn-form" type="submit" value="Registrar venta">
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div id="tab-eventos">
@@ -282,8 +340,117 @@
                     </div>
                 
                 </div>
-                <!--<div id="tab-estadisticas"></div>-->
-                
+
+                <div id="tab-Inventario">
+                    <div id="tabs-Pagina-inventario">
+                        <ul class="nav nav-tabs-Pagina-Principal">
+
+                        <li id="controller-tab-entradas" class="nav-item">
+                            <a class="nav-link " aria-current="page" href="#tab-entradas">Entradas de Libros</a>
+                        </li>
+                        <li id="controller-tab-salidas" class="nav-item">
+                            <a class="nav-link" href="#tab-salidas">Devoluciones</a>
+                        </li>
+
+                        </ul>
+
+                        <div id="tab-entradas">
+
+                            <?php
+                                require_once("Conexion.php");
+                                $query = "SELECT Titulo,idLibro FROM Libro ORDER BY Titulo";
+                                $resultado = mysqli_query($conexion,$query);
+                            ?>
+
+                            <div class="modal-body">
+                                <form class="form-bg" action="ProxyUpdateI.php" method="POST"  id="formUpdate" enctype = "multipart/form-data">
+                                    
+                                    <label class="col-form-label label-form" for="libro">Libro: </label>
+                                    <select class="form-control input-field" name="LIBRO" id="ISBN-libro-actualizar-existencia">
+                                        <option class="form-control input-field"disabled selected>--Selecciona un libro--</option>
+                                        <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                            <option class="form-control input-field" value="<?=$registro['idLibro'];?>"><?=$registro['Titulo'];?></option>
+                                        <?php endwhile;?>
+                                    </select>
+                                    <label class="col-form-label label-form" for="">Cantidad: </label>
+                                    <input class="form-control input-field" type="number" name="CANTIDADNUEVA" value="1" min="1" id="">
+
+                                    <?php
+                                        require_once("Conexion.php");
+                                        $query = "SELECT idLibro,ISBN,Cantidad FROM Libro";
+                                        $resultado = mysqli_query($conexion,$query);
+                                    ?>
+
+                                    <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                        <input type="hidden" name="<?=$registro['idLibro'];?>" value="<?=$registro['ISBN'];?>">
+                                        <input type="hidden" name="<?=$registro['ISBN'];?>" value="<?=$registro['Cantidad'];?>">
+                                    <?php endwhile;?>
+
+                                    <input class="btn btn-success btn-form" type="submit" value="Actualizar existencias">
+
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div id="tab-salidas">
+
+                            <div class="search-container-Admin">
+                                                
+                                <input  id="Criterio-busqueda-devoluciones" type="text" placeholder="Buscar en Venta por ID Paypal" class="rounded search-input-Admin" name="search" autocomplete="off">
+                                <button type="submit" id="busca-venta.IdPaypal" class ="icon-search"><i class="fa fa-search"></i></button>
+                                
+                            </div>
+
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="thead-Admin">
+                                    <tr>
+                                    <th id="tHeadISBN"  class="text-center" scope="col">ID Venta</th>
+                                    <th  class="text-center"  scope="col">ID Paypal</th>
+                                    <th  class="text-center"  scope="col">Fecha</th>
+                                    <th  class="text-center"  scope="col">Total</th>
+                                    <th  class="text-center"  scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php
+                                        require_once("Conexion.php");
+                                        $query = "SELECT * FROM ventaj";
+                                        $resultado = mysqli_query($conexion,$query);
+                                        $numRegistros = mysqli_num_rows($resultado);
+                                    ?>
+
+                                    <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                        <tr class="tr-Admin">
+                                            <td  class="text-center" scope="row"><?= $registro['IdVenta'];?></td>
+                                            <td  class="text-center"><?= $registro['IdPaypal'];?></td>
+                                            <td  class="text-center container-actions"><?= $registro['fechaPago'];?></td>
+                                            <td  class="text-center container-actions"><?= $registro['total'];?></td>
+                                            <td  id="<?= $registro['IdVenta'];?>"  class="text-center container-actions">
+                                                <i title="Hacer devolucion" id="<?= $registro['IdLibro'];?>" cantidad="<?=$registro['cantidadLibro'];?>" class="fas fa-trash icon-delete-Venta iconos-Acciones icon-action-Admin"></i>
+                                            </td>
+                                        </tr>                
+                                    <?php endwhile;?>
+                                </tbody>
+                            </table>
+
+                            <?php
+                                require_once("Conexion.php");
+                                $query = "SELECT idLibro,Cantidad FROM Libro";
+                                $resultado = mysqli_query($conexion,$query);
+                                $numRegistros = mysqli_num_rows($resultado);
+                            ?>
+
+                            <?php while($registro = mysqli_fetch_assoc($resultado)):?>
+                                <input type="hidden" id="Libro<?=$registro['idLibro'];?>" value="<?=$registro['Cantidad'];?>">
+                            <?php endwhile;?>
+
+
+                        </div>
+                    </div>
+                </div>
+                  
                 <div id="tab-blog">
                     <div id="btnAdd-Evento" class="btnAdd">
                         <button id="btnAgregarBlog" type="button" data-bs-toggle="modal" data-bs-target="#ModalAddBlog" class="btn-agregar-producto" ><i class="fas fa-plus-circle"></i> Agregar Entrada</button>
@@ -400,7 +567,6 @@
                     </div>
 
                 </div>
-
 
                 <div id="tab-usuarios">
                         <div id="btnAdd-Evento" class="btnAdd">

@@ -1114,7 +1114,8 @@
 #tab-blog,
 #tab-pagina,
 #tab-usuarios,
-#tab-Venta{
+#tab-Venta,
+#tab-Inventario{
   padding: 6rem;
   height: inherit;
   width: 100%;
@@ -1125,7 +1126,8 @@
 #tab-eventos,
 #tab-usuarios,
 #tab-blog,
-#tab-Venta{
+#tab-Venta,
+#tab-Inventario{
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -1295,7 +1297,8 @@
 
 
 #tabs-Pagina-Principal,
-#tabs-Pagina-Eventos{
+#tabs-Pagina-Eventos,
+#tabs-Pagina-inventario{
   width: 100%;
 }
 
@@ -3220,3 +3223,27 @@ padding: 30px;
   height: 25px;
 }
 
+#tabs-Pagina-Ventas{
+  width: 100%;
+}
+
+
+.label-form{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.input-field{
+  font-size: 1.6rem;
+  width: 50%;
+}
+
+.form-bg{
+  background-color: var(--grisCard);
+  padding: 3rem;
+}
+
+.btn-form{
+  margin-top: 2rem;
+  font-size: 1.6rem;
+}

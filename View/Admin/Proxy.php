@@ -355,23 +355,34 @@
             
             $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`noticia` WHERE IdNoticia = ?");
             $stmt->bind_param('i',$id);
-            $res = $stmt->execute();
-
-            //
-            // if($res){
-            //     unlink($carpetaDestino.$name);
-            //     $respuesta = array (
-            //         'id' => $stmt->insert_id,
-            //         'respuesta' => 'correcto'
-            //     );
-            // }else{
-            //     $respuesta = array (
-            //         'respuesta' => 'incorrecto'
-            //     );
-            // }
-                
-        
+            $res = $stmt->execute();        
             echo json_encode($respuesta);
+        }
+
+        if(strcmp($_POST['accion'],'deleteVenta') == 0){
+            
+            $idVenta = $_POST['IDVENTA'];
+            $idLibro = $_POST['IDLIBRO'];
+            $cantidad = $_POST['CANTIDAD'];
+            $cantidadActual = $_POST['CANTIDADACTUAL'];
+
+            $cantidad = $cantidad + intval($cantidadActual);
+
+            try{
+                $stmt = $conexion->prepare("UPDATE `libro` SET `Cantidad` = ? WHERE `libro`.`idLibro` = ?;");
+                $stmt->bind_param('ii', $cantidad, $idLibro);
+                $stmt->execute();
+                if($stmt->affected_rows == 1){
+                    $stmt = $conexion->prepare("DELETE FROM `deotrotipo`.`ventaj` WHERE IdVenta = ?");
+                    $stmt->bind_param('i',$idVenta);
+                    $res = $stmt->execute();        
+                    echo json_encode($respuesta);
+                    // header('Location: http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=5');
+                }
+                $stmt->close();
+            }catch(Exception $e){
+                // header('Location: http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=5');
+            }            
         }
 
 

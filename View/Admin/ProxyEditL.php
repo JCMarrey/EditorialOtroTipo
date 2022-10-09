@@ -22,8 +22,13 @@
             $paginas = $_POST['PAGINAS']; 
             $peso = $_POST['PESO']; 
             $firma = $_POST['FIRMA']; 
-            $costo = $_POST['COSTO']; 
+            $cantidad = $_POST['CANTIDAD']; 
+
+            $porcentajeDescuento = 100 - $_POST['PROMOCION'];
+            $precioConDescuento = $porcentajeDescuento / 100;
+
             $idActual = $_POST['IDLIBRO'];
+
 
 
             $sinopsis = $_FILES['archSinopsis']['name'];
@@ -60,8 +65,8 @@
             echo $idActual;
             echo $isbn;
             try{
-                $stmt = $conexion->prepare("UPDATE `deotrotipo`.`libro` SET `idLibro` = ?, `Titulo` = ?, `Sinopsis` = ?, `Precio` = ?, `Autor` = ?, `ISBN` = ?, `Tema` = ?, `Tipo` = ?, `Coleccion` = ?, `AEdicion` = ?, `Edicion` = ?, `Paginas` = ?, `Peso` = ?, `Firma` = ?, `Imagen` = ?, `Capitulo1` = ?, `Costo` = ?, `Audio` = ?, `Gandhi` = ?, `Porrua` = ?, `CarlosFuentes` = ?, `Sotano` = ?, `Amazon` = ?, `UGandhi` = ?, `UPorrua` = ?, `UCarlosFuentes` = ?, `USotano` = ?, `UAmazon` = ? WHERE (`idLibro` = ?) and (`ISBN` = ?);");
-                $stmt->bind_param('issdsssssisidsssdsssssssssssii', $idActual, $titulo, $sinopsis, $precio, $autor, $isbn, $tema, $tipo, $coleccion, $aedicion, $edicion, $paginas, $peso, $firma, $img, $cap1, $costo, $audio, $gandhi, $porrua, $carlosFuentes, $sotano, $amazon, $Ugandhi, $Uporrua, $UcarlosFuentes, $Usotano, $Uamazon, $idActual, $isbn );
+                $stmt = $conexion->prepare("UPDATE `deotrotipo`.`libro` SET `idLibro` = ?, `Titulo` = ?, `Sinopsis` = ?, `Precio` = ?, `Autor` = ?, `ISBN` = ?, `Tema` = ?, `Tipo` = ?, `Coleccion` = ?, `AEdicion` = ?, `Edicion` = ?, `Paginas` = ?, `Peso` = ?, `Firma` = ?, `Imagen` = ?, `Capitulo1` = ?, `Cantidad` = ?, `Audio` = ?, `Gandhi` = ?, `Porrua` = ?, `CarlosFuentes` = ?, `Sotano` = ?, `Amazon` = ?, `UGandhi` = ?, `UPorrua` = ?, `UCarlosFuentes` = ?, `USotano` = ?, `UAmazon` = ?, `Promocion` = ? WHERE (`idLibro` = ?) and (`ISBN` = ?);");
+                $stmt->bind_param('issdsssssisidsssisssssssssssdii', $idActual, $titulo, $sinopsis, $precio, $autor, $isbn, $tema, $tipo, $coleccion, $aedicion, $edicion, $paginas, $peso, $firma, $img, $cap1, $cantidad, $audio, $gandhi, $porrua, $carlosFuentes, $sotano, $amazon, $Ugandhi, $Uporrua, $UcarlosFuentes, $Usotano, $Uamazon, $precioConDescuento, $idActual, $isbn );
                 $stmt->execute();
                 if($stmt->affected_rows == 1){
                     $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Libros/$isbn/";

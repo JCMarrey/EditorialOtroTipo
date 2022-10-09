@@ -12,9 +12,16 @@ $(document).ready(function () {
     const inputBuscadorVenta = document.querySelector("#Criterio-busqueda-venta");
     inputBuscadorVenta.addEventListener('input', buscarVenta);
 
+    const inputBuscadorDevoluciones = document.querySelector("#Criterio-busqueda-devoluciones");
+    inputBuscadorDevoluciones.addEventListener('input', buscarVentaParaDevolucion);
+
+
+
 
     selectedTabsEfectTabsPagina();
     selectedTabsEfectTabsEventos();
+    selectedTabsEfectTabsVentas();
+    selectedTabsEfectTabsInventario();
 
     addLibro();
     viewLibro();
@@ -38,6 +45,8 @@ $(document).ready(function () {
 
     viewBlog();
     deleteBlog();
+
+    deleteVenta();
 
 });
 
@@ -133,12 +142,20 @@ function viewLibro(){
                 $("#viewL-Form-Firma").attr('value',jsonResponse["Firma"]);
                 $("#viewL-Form-Imagen").attr('value',jsonResponse["Imagen"]);
                 $("#viewL-Form-Capitulo1").attr('value',jsonResponse["Capitulo1"]);
-                $("#viewL-Form-Costo").attr('value',jsonResponse["Costo"]);
+                $("#viewL-Form-Costo").attr('value',jsonResponse["Cantidad"]);
+
+                $("#viewL-Form-Promocion").attr('value',(100-(jsonResponse["Promocion"]*100)));
+
+                
+
 
                 $("#viewL-Form-Sinopsis").attr('value',jsonResponse["Sinopsis"]);
                 $("#viewL-Form-Imagen").attr('value',jsonResponse["Imagen"]);
                 $("#viewL-Form-Capitulo1").attr('value',jsonResponse["Capitulo1"]);
                 $("#viewL-Form-Audio").attr('value',jsonResponse["Audio"]);
+
+
+                
                 
                 if(jsonResponse["Firma"] === "FIRMADO" || jsonResponse["Firma"] === "on"){
                     $("#viewL-Form-Firma").prop('checked', true); 
@@ -211,8 +228,9 @@ function editLibro(){
                 $("#editL-Form-Peso").attr('value',jsonResponse["Peso"]);
                 $("#editL-Form-Firma").attr('value',jsonResponse["Firma"]);
                 $("#editL-Form-Imagen").attr('value',jsonResponse["Imagen"]);
+                $("#editL-Form-Promocion").attr('value',(100-(jsonResponse["Promocion"]*100)));
    
-                $("#editL-Form-Costo").attr('value',jsonResponse["Costo"]);
+                $("#editL-Form-Costo").attr('value',jsonResponse["Cantidad"]);
 
                 $("#editL-Form-Firma").prop('checked', false); 
                 if(jsonResponse["Firma"] === "FIRMADO" || jsonResponse["Firma"] === "on"){
@@ -312,7 +330,6 @@ function selectedTabsEfect(){
         
    $('.nav-tabs').click(function(){
        
-
     switch ($("#tabsAdmin").tabs('option','active')){
 
         case 0: {
@@ -324,6 +341,7 @@ function selectedTabsEfect(){
                 $('#controller-tab-usuarios').removeClass("active");
                 $('#controller-tab-Venta').removeClass("active");
                 $('#controller-tab-catalogo').addClass("active"); 
+                $('#controller-tab-inventario').removeClass("active");
                 document.getElementById('Criterio-busqueda').value = "";
                 buscarLibro();
             }
@@ -332,12 +350,13 @@ function selectedTabsEfect(){
 
         case 1: {
             if(!$('#controller-tab-Venta').hasClass("active")){
-                document.getElementById("systemName").innerHTML = "Ventas";
+                document.getElementById("systemName").innerHTML = "Consulta Ventas";
                 $('#controller-tab-eventos').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
                 $('#controller-tab-catalogo').removeClass("active");
+                $('#controller-tab-inventario').removeClass("active");
                 $('#controller-tab-Venta').addClass("active"); 
                 document.getElementById('Criterio-busqueda-venta').value ="";
                 buscarVenta();
@@ -345,20 +364,37 @@ function selectedTabsEfect(){
             break;
         }
 
+
         case 2: {
-            if(!$('#controller-tab-eventos').hasClass("active")){
-                document.getElementById("systemName").innerHTML = "Eventos";
+            if(!$('#controller-tab-inventario').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Entradas de Libros";
                 $('#controller-tab-catalogo').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
                 $('#controller-tab-Venta').removeClass("active");
+                $('#controller-tab-eventos').removeClass("active");
+                $('#controller-tab-inventario').addClass("active");
+                // document.getElementById('Criterio-busqueda-inventario').value ="";
+            }
+            break;
+        }
+
+        case 3: {
+            if(!$('#controller-tab-eventos').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Noticias";
+                $('#controller-tab-catalogo').removeClass("active");
+                $('#controller-tab-blog').removeClass("active");
+                $('#controller-tab-pagina').removeClass("active");
+                $('#controller-tab-usuarios').removeClass("active");
+                $('#controller-tab-Venta').removeClass("active");
+                $('#controller-tab-inventario').removeClass("active");
                 $('#controller-tab-eventos').addClass("active");
             }
             break;
         }
 
-        case 3:{
+        case 4:{
             if(!$('#controller-tab-blog').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Blog";
                 $('#controller-tab-catalogo').removeClass("active");
@@ -366,12 +402,13 @@ function selectedTabsEfect(){
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
                 $('#controller-tab-Venta').removeClass("active");
+                $('#controller-tab-inventario').removeClass("active");
                 $('#controller-tab-blog').addClass("active");
             }
             break;
         }
 
-        case 4:{
+        case 5:{
             if(!$('#controller-tab-pagina').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Carrusel Principal y Semblanzas";
                 $('#controller-tab-catalogo').removeClass("active");
@@ -379,12 +416,13 @@ function selectedTabsEfect(){
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-usuarios').removeClass("active");
                 $('#controller-tab-Venta').removeClass("active");
+                $('#controller-tab-inventario').removeClass("active");
                 $('#controller-tab-pagina').addClass("active");
             }
             break;
         }
 
-        case 5:{
+        case 6:{
             if(!$('#controller-tab-usuarios').hasClass("active")){
                 document.getElementById("systemName").innerHTML = "Usuarios";
                 $('#controller-tab-catalogo').removeClass("active");
@@ -392,6 +430,7 @@ function selectedTabsEfect(){
                 $('#controller-tab-pagina').removeClass("active");
                 $('#controller-tab-blog').removeClass("active");
                 $('#controller-tab-Venta').removeClass("active");
+                $('#controller-tab-inventario').removeClass("active");
                 $('#controller-tab-usuarios').addClass("active");
             }
             break;
@@ -442,7 +481,6 @@ function selectedTabsEfectTabsPagina(){
 
 function selectedTabsEfectTabsEventos(){
     $('#tabs-Pagina-Eventos').tabs();
-
     $('#controller-tab-gestion-noticias').addClass("active"); 
         
     $('.nav-tabs-Pagina-Eventos').click(function(){
@@ -469,6 +507,67 @@ function selectedTabsEfectTabsEventos(){
     }  
    });
 }
+
+function selectedTabsEfectTabsVentas(){
+    $('#tabs-Pagina-Ventas').tabs();
+
+    $('#controller-tab-consulta-ventas').addClass("active"); 
+        
+    $('.nav-tabs-Pagina-Principal').click(function(){
+       
+    switch ($("#tabs-Pagina-Ventas").tabs('option','active')){
+
+        case 0: {
+            if(!$('#controller-tab-consulta-ventas').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Consulta Ventas";
+                $('#controller-tab-venta-manual').removeClass("active");
+                $('#controller-tab-consulta-ventas').addClass("active"); 
+            }
+            break;
+        }
+
+        case 1: {
+            if(!$('#controller-tab-venta-manual').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Ingreso manual de venta";
+                $('#controller-tab-consulta-ventas').removeClass("active");
+                $('#controller-tab-venta-manual').addClass("active");
+            }
+            break;
+        }        
+    }  
+   });
+}
+
+function selectedTabsEfectTabsInventario(){
+    $('#tabs-Pagina-inventario').tabs();
+
+    $('#controller-tab-entradas').addClass("active"); 
+        
+    $('.nav-tabs-Pagina-Principal').click(function(){
+       
+    switch ($("#tabs-Pagina-inventario").tabs('option','active')){
+
+        case 0: {
+            if(!$('#controller-tab-entradas').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Entradas de Libros";
+                $('#controller-tab-salidas').removeClass("active");
+                $('#controller-tab-entradas').addClass("active"); 
+            }
+            break;
+        }
+
+        case 1: {
+            if(!$('#controller-tab-salidas').hasClass("active")){
+                document.getElementById("systemName").innerHTML = "Devoluciones";
+                $('#controller-tab-entradas').removeClass("active");
+                $('#controller-tab-salidas').addClass("active");
+            }
+            break;
+        }        
+    }  
+   });
+}
+
 
 function mostrarNotificacion(mensaje,clase){
     const notificacion = document.createElement('div');
@@ -505,6 +604,18 @@ function buscarLibro(){
 
 function buscarVenta(){
     const busqueda = new RegExp(document.getElementById('Criterio-busqueda-venta').value, "i");
+    const registros = document.querySelectorAll('tbody tr');
+    registros.forEach(registro =>{
+        registro.style.display = 'none';
+        if(registro.childNodes[3].textContent.replace(/\s/g, " ").search(busqueda) != -1 ){
+            registro.style.display = 'table-row';
+            
+        }
+    });
+}
+
+function buscarVentaParaDevolucion(){
+    const busqueda = new RegExp(document.getElementById('Criterio-busqueda-devoluciones').value, "i");
     const registros = document.querySelectorAll('tbody tr');
     registros.forEach(registro =>{
         registro.style.display = 'none';
@@ -1008,6 +1119,58 @@ function deleteEvento(){
                         //console.log(xhr.responseText);
                         //var data=xhr.responseText;
                         //var jsonResponse = JSON.parse(data);
+
+                        location.assign('http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=3');
+                    }
+                }
+                //Enviar los datos
+                xhr.send(infoDeleteArchivo);
+
+                
+            } else {
+              swal("Se canceló la operación.");
+            }
+          });
+    });
+}
+
+function deleteVenta(){
+    $('.icon-delete-Venta').on('click', function(e){
+        swal({
+            title: "¿Hacer devolución?",
+            text: "Si realizas la devolucion de esta venta se actualizarán las existencias del libro y se eliminará la venta de la tabla de ventas.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+
+                const idVenta = e.target.parentNode.id;
+                const idLibro = e.target.id;
+                let cantidad = e.target.getAttribute('cantidad');
+                let cantidadActual = parseInt(document.getElementById("Libro"+idLibro).value);
+
+                const infoDeleteArchivo = new FormData();
+                infoDeleteArchivo.append('accion','deleteVenta');
+                infoDeleteArchivo.append('IDVENTA',idVenta);
+                infoDeleteArchivo.append('IDLIBRO',idLibro);
+                infoDeleteArchivo.append('CANTIDAD',cantidad);
+                infoDeleteArchivo.append('CANTIDADACTUAL',cantidadActual);
+
+                
+                //Es necesario hace un AJAX para agregar el registro a la BD
+                //Llamado a AJAX (Crear el objeto)
+                const xhr = new XMLHttpRequest();
+                //Abrir la conexion
+                xhr.open('POST', '../Admin/Proxy.php', true);
+                //ProcesarRespuesta
+                xhr.onload = function(){
+                    if(this.status === 200){  
+                        //Si esa petición regresa exitosamente entonces recargamos con AJAX el contenido de la BD
+                        // console.log(xhr.responseText);
+                        // var data=xhr.responseText;
+                        // var jsonResponse = JSON.parse(data);
 
                         location.assign('http://localhost/EditorialOtroTipo/View/Admin/AdminDeOtroTipo.php?r=3');
                     }

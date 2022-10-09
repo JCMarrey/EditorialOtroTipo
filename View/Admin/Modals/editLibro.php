@@ -32,9 +32,10 @@
             <input  type="text" name = "PESO" class="form-control" id="editL-Form-Peso">
             <label for="editL-Form-Precio" class="col-form-label">Precio:</label>
             <input  type="text" name = "PRECIO" class="form-control" id="editL-Form-Precio">
-            <label for="editL-Form-Costo" class="col-form-label">Costo:</label>
-            <input  type="text" name = "COSTO" class="form-control" id="editL-Form-Costo">
-
+            <!-- <label for="editL-Form-Costo" class="col-form-label">Existencia:</label> -->
+            <label for="editL-Form-Promocion" class="col-form-label">Porcentaje de descuento:</label>
+            <input  type="number" name = "PROMOCION" min="0" max="100"  class="form-control" id="editL-Form-Promocion">
+            <input  type="hidden" name = "CANTIDAD" min="1" class="form-control" id="editL-Form-Costo">
             <label for="editL-Form-Sinopsis" class="col-form-label">Sinopsis:</label>
             <input  type="file" name="archSinopsis" class="form-control" id="editL-Form-Sinopsis" accept=".doc,.docx,.txt">
             <label for="editL-Form-Imagen" class="col-form-label">Imagen:</label>

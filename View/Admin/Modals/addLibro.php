@@ -30,9 +30,10 @@
             <input  type="text" name = "PESO" placeholder="En Kg" class="form-control" id="addL-Form-Peso">
             <label for="addL-Form-Precio" class="col-form-label">Precio:</label>
             <input  type="text" name = "PRECIO" class="form-control" id="addL-Form-Precio">
-            <label for="addL-Form-Costo" class="col-form-label">Costo:</label>
-            <input  type="text" name = "COSTO" class="form-control" id="addL-Form-Costo">
-
+            <label for="addL-Form-Costo" class="col-form-label">Existencia:</label>
+            <input  type="number" name = "CANTIDAD" value="1" min="1" class="form-control" id="addL-Form-Costo">
+            <label for="addL-Form-Promocion" class="col-form-label">Porcentaje de descuento:</label>
+            <input  type="number" name = "PROMOCION" min="0" max="100" value="0" class="form-control" id="addL-Form-Promocion">
             <label for="addL-Form-Sinopsis" class="col-form-label">Sinopsis:</label>
             <input  type="file" name="archSinopsis" class="form-control" id="addL-Form-Sinopsis" accept=".doc,.docx,.txt">
             <label for="addL-Form-Imagen" class="col-form-label">Imagen:</label>
