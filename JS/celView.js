@@ -1,12 +1,6 @@
 'use strict'
 
 $(document).ready(function(){
-
-    // var anchop = $(window).width();
-        
-    // if(anchop <= 768){
-    //     $('#sideNav').attr('display', "block");
-    // }
     
     $(window).resize(function(){
         const ancho = $(window).width();

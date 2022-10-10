@@ -3,6 +3,10 @@
     .navBar{
         font-size: 1.6rem;
     }
+
+    .swiper-button-next, .swiper-button-prev {
+        margin-top: 20% !important;
+      }
 }
 
 @media (max-width: 1338px){
@@ -21,12 +25,18 @@
     .header-options{
         font-size: 1.2rem;
     }
+
+    .swiper-button-next, .swiper-button-prev {
+        margin-top: 18% !important;
+      }
 }
 
 @media (max-width: 1163px){
     .navItem{
         font-size: 1.4rem;
     }
+
+
 }
 
 @media (max-width: 1046px){
@@ -41,13 +51,26 @@
       .navItem{
         font-size: 1.2rem;
     }
+
+    .swiper-button-next, .swiper-button-prev {
+        margin-top: 24% !important;
+    }
+
+    .evento{
+        margin: 2rem 3rem;
+    }
 }
+
 
 @media (max-width: 864px){
     .logo{
         margin-left: 2rem;
         margin-right: 2rem;
       }
+      .info-evento {
+        width: 90%;
+        margin: 0px 3rem;
+    }
 }
 
 /*Visto Movil Menu de hamburguesa*/
@@ -79,7 +102,7 @@
     #closeSideNav{
         color: #CB123F;
         font-size: 1.6rem;
-        display: flex;
+        display: flex !important;
         justify-content: flex-end;
     }
 
@@ -145,6 +168,16 @@
         width: 91%;
     }
 
+    .swiper-button-next, .swiper-button-prev {
+        margin-top: 22% !important;
+    }
+    .swiper-pagination{
+        bottom: 45% !important;
+      }
+
+      .evento{
+        margin: 2rem 2rem;
+    }
 }
 
 @media (min-width: 768px){
@@ -162,6 +195,25 @@
 @media (max-width: 550px){
     .search-input {
         width: 80%;
+    }
+    .swiper-button-next, .swiper-button-prev {
+        margin-top: 35% !important;
+    }
+
+    .evento{
+        flex-direction: column;
+        align-items: center;
+        width: 88%;
+    }
+
+    .info-evento {
+        margin: 10px 3rem;
+    }
+}
+
+@media (max-width: 450px){
+    .swiper-button-next, .swiper-button-prev {
+        margin-top: 45% !important;
     }
 }
 
