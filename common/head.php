@@ -17,5 +17,5 @@
 
         <link rel="stylesheet" href="../common/responsive3.css">
 
-        <title>Editorial Otro Tipo 2</title>
+        <title>Editorial Otro Tipo</title>
 </head>

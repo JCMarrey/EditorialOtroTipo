@@ -1,4 +1,4 @@
-
+<script src="../JS/celView.js"></script>
 
 <header class = "header">    
         <a href="http://localhost/EditorialOtroTipo/View/paginaPrincipal.php">
@@ -40,11 +40,17 @@
             </div>
         </div>
 
+        <p id="sideNav" class="burguer-menu-icon">
+            <i class="fas fa-bars"></i>
+        </p>
+        
+
 </header>
 
     
-<div class="navBar">
+<div class="navBar sidenav">
         
+    <a href="javascript:void(0)" class="closebtn" id="closeSideNav" >&times;</a>
 
     <div class="navItem"><a href="/View/Quienes somos.php">Quienes somos</a></div>
     <div class="navItem"><a href="http://localhost/EditorialOtroTipo/View/catalogo.php">Catálogo</a></div>

@@ -51,43 +51,102 @@
 }
 
 /*Visto Movil Menu de hamburguesa*/
-@media (min-width: 768px){
-
-}
-
-/* cel view */
-.layer{
-    position: absolute ;
-    top: 0;
-    left: 0;
-    width: 100%;
+@media (max-width: 767px){
+/*CEL VIEW*/
+.sidenav {
     height: 100%;
-    z-index: 401 ;
-    min-height:100%;
-    background-size:cover;
-    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
-    transition: .5s;
-}
-
-.layerEsp{
-    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
-    transition: .5s;
-}
-
-.fakeLayer{
-    opacity: 0.7;
-}
-
-.burguer-menu-icon,
-.closebtn{
-    display: none;
-}
-
-.burguer-menu-icon{
-    font-size: 2.6rem;
-    color: #391C08;
-    margin: 0 2rem 0 0;
+    width: 0;
+    position: fixed;
     top: 0;
     right: 0;
+    background-color: white;
+    /* color: #CB123F; */
+    overflow-x: hidden;
+    transition: 1s ease;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-left: 0;
+    z-index: 401;
+    /* display: none; */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+    
+    }
+
+
+    #closeSideNav{
+        color: #CB123F;
+        font-size: 1.6rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .sidenav a,
+    .sidenav div{
+        transition: .5s ;
+        width: 100%;
+        text-align: start;
+        color: #CB123F;
+        font-size: 1.6rem;
+    }
+
+    .sidenav a:hover,
+    .sidenav div:hover{
+        background-color: #E6E6E6;
+    }
+    .layer{
+        position: absolute ;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 401 ;
+        min-height:100%;
+        background-size:cover;
+        box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+        transition: .5s;
+    }
+    
+    .layerEsp{
+        box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+        transition: .5s;
+    }
+    
+    .fakeLayer{
+        opacity: 0.7;
+    }
+    
+    .burguer-menu-icon{
+        font-size: 2.6rem;
+        color: #391C08;
+        margin: 0 2rem 0 0;
+        top: 0;
+        right: 0;
+        display: block;
+    }
+
+
+    
+    
 }
 
+@media (min-width: 768px){
+    .burguer-menu-icon,
+    .closebtn{
+        display: none;
+    }
+
+    .navBar{
+        opacity: 1;
+    }
+    
+}
+
+
+
+/* .sidenav {
+    
+    transition: all 1s ease 0s !important;
+} */
