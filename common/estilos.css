@@ -554,6 +554,15 @@
   
   /*Clases Rodrigo*/
   
+  .navBar{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--rojoPrincipal);
+    color: white;
+    padding: 1rem;
+    padding-left: 34px;
+  }
+
   .header{
     display: flex;
   }
@@ -566,7 +575,7 @@
   }
   
   .search-container{
-    margin: 9.5rem 2rem 7rem 0rem;
+    margin: 9.5rem 0rem 7rem 0rem !important;
     background-color: var(--searchBar);
     padding: 0.7rem;
     height: 4rem;
@@ -578,7 +587,7 @@
   
   .search-input{
     border: none;
-    width: 88%;
+    width: 91%;
     background-color: var(--searchBar);
   }
   
@@ -660,8 +669,7 @@
 
   .header-option{
     display: flex;
-    margin: 0 2rem;
-    padding: 0.7rem 3rem;
+    margin: 0 1rem;
     margin-top: 10px;
     height: 4rem;
     width: auto;
@@ -707,6 +715,7 @@
   
   .header-option > p{
     margin: 0 0.5rem;
+    text-align: center;
   }
   
   .header-option:hover{
@@ -728,20 +737,14 @@
     margin-right: 2rem;
   }
   
-  .navBar{
-    display: flex;
-    justify-content: space-evenly;
-    background-color: var(--rojoPrincipal);
-    color: white;
-    padding: 1rem;
-    padding-left: 34px;
-  }
-  
   .navItem{
     border-left: 1.7px solid white;
     margin-left: 1px;
     width: 100%;
+    display: flex;
     text-align: center;
+    justify-content: center;
+    align-items: center;
   }
   
   .navItem:first-of-type{
@@ -3247,3 +3250,7 @@ padding: 30px;
   margin-top: 2rem;
   font-size: 1.6rem;
 }
+
+/* .search-container{
+  margin: 0;
+} */

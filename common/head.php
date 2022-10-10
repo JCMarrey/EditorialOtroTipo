@@ -13,9 +13,9 @@
         <link rel="stylesheet" href="../common/Normalize.css">
         <link rel="stylesheet" href="../common/estilos.css">
         <script src="../JS/jquery-3.4.1.min.js"></script>
-        <script src="../JS/barraDeBusqueda.js"></script>
 
-        <link rel="stylesheet" href="../common/estilosJulieta.css">
+
+        <link rel="stylesheet" href="../common/responsive3.css">
 
         <title>Editorial Otro Tipo 2</title>
 </head>

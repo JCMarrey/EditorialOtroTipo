@@ -1,0 +1,93 @@
+
+@media (max-width: 1400px){
+    .navBar{
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 1338px){
+    .navBar{
+        font-size: 1.6rem;
+    }
+    .header-option1{
+        margin-left: 10% !important;
+        width: 150px;
+      }
+    
+    .header-option2{
+    margin-left: 10px;
+    }
+
+    .header-options{
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 1163px){
+    .navItem{
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 1046px){
+    .search-input{
+        width: 81%;
+      }
+      .logo{
+        margin-left: 4rem;
+        margin-right: 4rem;
+      }
+
+      .navItem{
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 864px){
+    .logo{
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
+}
+
+/*Visto Movil Menu de hamburguesa*/
+@media (min-width: 768px){
+
+}
+
+/* cel view */
+.layer{
+    position: absolute ;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 401 ;
+    min-height:100%;
+    background-size:cover;
+    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+    transition: .5s;
+}
+
+.layerEsp{
+    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+    transition: .5s;
+}
+
+.fakeLayer{
+    opacity: 0.7;
+}
+
+.burguer-menu-icon,
+.closebtn{
+    display: none;
+}
+
+.burguer-menu-icon{
+    font-size: 2.6rem;
+    color: #391C08;
+    margin: 0 2rem 0 0;
+    top: 0;
+    right: 0;
+}
+

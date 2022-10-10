@@ -557,7 +557,7 @@
   
   .logo{
     
-    margin: 6.8rem 9rem 6rem 7rem;
+    margin: 6.8rem 3rem 6rem 2rem;
     height: 10rem;
     width: 10rem;
   }
@@ -606,7 +606,7 @@
   
   .header-options{
     display: flex;
-    margin: 9rem 0.5rem;
+    /* margin: 9rem 0.5rem; */
     
     color: var(--rojoPrincipal);
   }
@@ -617,36 +617,24 @@
     display: flex;
     margin-top: 5px;
     padding-top: 12px;
-    margin-left: 15%;
+    /* margin-left: 15%; */
     color: #ffff;
     width: 175px;
-    padding-left: 27px;
+    /* padding-left: 27px; */
     border-radius: 35px;
     background-color: var(--rojoPrincipal);
     border: none;
-    margin-right: 35px;
+    margin-right: 20px;
   }
 
-  .header-option1 p{
-    padding-left: 5.5px;
-  }
+  /* .header-option1 p{
+     padding-left: 5.5px; 
+  } */
 
 
   /*clase header-option1 hover julieta*/
   .header-option1:hover{
-    display: flex;
-    margin-top: 5px;
-    margin-right: 35px;
-    padding-top: 12px;
-    margin-left: 15%;
     color: var(--rojoPrincipal);
-    width: 175px;
-    padding-left: 27px;
-    border-radius: 35px;
-    background-color: #ffff;
-    border-style: solid;
-    border-color: #CB123F ;
-    border-width: 1.3px;
     font-weight: 500;
   }
 
@@ -675,8 +663,8 @@
 
   .header-option{
     display: flex;
-    margin: 0 2rem;
-    padding: 0.7rem 3rem;
+    margin: 0rem;
+
     margin-top: 10px;
     height: 4rem;
     width: auto;
@@ -697,7 +685,7 @@
 
    .header-option3{
     display: flex;
-    margin: 0 2rem;
+    margin: 0rem;
     padding: 0.7rem 1rem;
     margin-top: 10px;
     height: 4rem;
