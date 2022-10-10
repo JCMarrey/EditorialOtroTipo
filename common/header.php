@@ -64,6 +64,34 @@
     <div class="navItem"><a href="">Blog</a></div>
 
 
+    
+
+    <div class="header-option show">
+        <i class="fas fa-shopping-cart icono-header"></i>
+        <a type="button" href="/EditorialOtroTipo/View/carrito.php"></a>
+        <p>Carrito</p>
+    </div>
+    <div class="header-option show">
+        <a  href ="Ubicacion.php">
+            <i class="fa fa-map-marked icono-header" aria-hidden="true"></i>
+        </a>
+        
+        <p>Ubicación</p>
+    </div>
+
+    <div class="header-option show">
+        <a  href ="Contacto.php">
+                <i class="fa  fa-user icono-header"></i>
+            </a>
+            <p>Contacto</p>
+    </div>
+
+    <div class="header-option show">
+        <i class="fa fa-calendar icono-header" aria-hidden="true"></i>
+        <p>Eventos y Noticias</p>
+    </div>
+
+
 </div>        
 
 
