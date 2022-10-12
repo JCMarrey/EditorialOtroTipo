@@ -5,7 +5,7 @@
             <img class="logo" src="../Icons/logo.svg" alt="Logo Editorial" width="500" height="600">
         </a>
     
-        <div class="search-container">
+        <div id="sc" class="search-container">
             <form action="../View/resultadoBusqueda.php" method="POST" enctype = "multipart/form-data">
                 <input type="text" placeholder="Buscar en catálogo" class="rounded search-input" name="titulo">
                 <button type="submit" class ="icon-search"><i class="fa fa-search"></i></button>
@@ -16,7 +16,7 @@
 
             <div class="header-option">
                 <i class="fas fa-shopping-cart icono-header"></i>
-                <a type="button" href="/EditorialOtroTipo/View/carrito.php"></a>
+                <a type="button" href="../View/carrito.php"></a>
                 <p>Carrito</p>
             </div>
             <div class="header-option">
@@ -68,27 +68,26 @@
 
     <div class="header-option show">
         <i class="fas fa-shopping-cart icono-header"></i>
-        <a type="button" href="/EditorialOtroTipo/View/carrito.php"></a>
-        <p>Carrito</p>
+        <a type="button" href="../View/carrito.php">Carrito</a>
+        
     </div>
     <div class="header-option show">
         <a  href ="Ubicacion.php">
             <i class="fa fa-map-marked icono-header" aria-hidden="true"></i>
+            Ubicación
         </a>
-        
-        <p>Ubicación</p>
     </div>
 
     <div class="header-option show">
         <a  href ="Contacto.php">
                 <i class="fa  fa-user icono-header"></i>
             </a>
-            <p>Contacto</p>
+            Contacto
     </div>
 
     <div class="header-option show">
         <i class="fa fa-calendar icono-header" aria-hidden="true"></i>
-        <p>Eventos y Noticias</p>
+        Eventos y Noticias
     </div>
 
 

@@ -36,7 +36,7 @@
 
             <div class="carousel-inner">
                 <?php
-                    require_once('Admin/Conexion.php');
+                    require_once('./Admin/Conexion.php');
                     $query = "SELECT Archivo FROM deotrotipo.media WHERE tipo = 'CARRUSEL';";
                     $resultado = mysqli_query($conexion,$query);
                     $contador=0;

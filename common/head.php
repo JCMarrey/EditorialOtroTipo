@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="../common/Normalize.css">
         <link rel="stylesheet" href="../common/estilos.css">
         <link rel="stylesheet" href="../common/estilosCarrito.css">
+        <link rel="stylesheet" href="../common/estiloscarrito.css">
         <script src="../JS/jquery-3.4.1.min.js"></script>
 
 

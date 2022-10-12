@@ -24,7 +24,7 @@ $(document).ready(function(){
     $('.sidenav').css('visibility', 'visible');
     $('.sidenav').css('transition', 'visibility 0s, opacity 0.5s linear');
     $('.sidenav').css('opacity', '1');
-    $('.contenedor, .footer, th, .active').addClass('layerEsp');
+    $('.contenedor, .footer, th, .active, html, body, #sc').addClass('layerEsp');
     $('.mapa, .imgFrame, p, h2, h3, h4, .contenedor3, .contenedor2, .contenedor-header, .c-esp').addClass('fakeLayer');
 
 
@@ -41,7 +41,7 @@ $(document).ready(function(){
 
 
         $(document.body).removeClass('layer');
-        $('.contenedor, .footer, th, .active').removeClass('layerEsp');
+        $('.contenedor, .footer, th, .active, html, body, #sc').removeClass('layerEsp');
         $('.mapa, .imgFrame, p, h2, h3, h4, .contenedor3, .contenedor2, .contenedor-header, .c-esp').removeClass('fakeLayer');
         
         
