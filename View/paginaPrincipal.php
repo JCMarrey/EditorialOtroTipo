@@ -199,6 +199,7 @@
 
       <!-- <script src="/JS/animaciones.js" type="text/javascript" defer></script>
       <script src="/JS/funciones.js" defer></script>
+      <script src="/JS/carritoCompra.js" defer></script>
       <script src="/JS/compra.js" defer></script>     
       <script src="/JS/jquery-3.4.1.min.js"></script> -->
 

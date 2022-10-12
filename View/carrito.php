@@ -23,7 +23,7 @@
                         
                         <div id="form1">
                             <input class="texto1" id="correo" type="email" id="fname" name="correo"
-                                placeholder="Correo para confirmar el pedido">
+                            placeholder="Correo para confirmar el pedido">
 
                             <input class="texto1" id="nombreCliente" type="text" id="fname" name="nombreCliente" placeholder="Nombre">
 
@@ -33,7 +33,7 @@
 
                             <!--<button id="botonEnviar" type="button" >Continuar</button>-->
                             <a href="#envio" type="button" id="botonEnviar">Continuar</a>
-
+                            
                         </div>
 
                        
@@ -85,12 +85,12 @@
                             </table>
 
                             <div>
-                                <a href="catalogo.php" class="btn  btn-lg btn-primary" tabindex="-1" role="button"
+                                <a href="/View/catalogo.php" class="btn  btn-lg btn-primary" tabindex="-1" role="button"
                                     aria-disabled="true">Seguir comprando</a>
                             </div>
                             <div>
                                 <a href="#" id="finalizar-compra" class="btn btn-lg btn-success" tabindex="-1"
-                                    role="button" aria-disabled="true">Finalizar Compra</a>
+                                    role="button" aria-disabled="true" style= "display:none">Finalizar Compra</a>
                             </div>
 
                         </div>
@@ -381,90 +381,59 @@
                                     <option value="Yucatan">Yucatán</option>
                                     <option value="Zacatecas">Zacatecas</option>
                                 </select>
-                    
-                         
 
                             <input class="texto2" type="text" id="cp" name="fname" placeholder="Código postal">
-                            <select class="texto4" id="metodoEnvio">
-                                    <option placeholder="Región">Método de envío</option>
-                                    <option value="Envío estandar">Envío estandar</option>
+                            <select class="texto4" id="metodoEnvio" value="Método de Envío">
+                                    <option value="DIA_SIGUIENTE">Envío Express</option>
+                                    <option value="STANDARD">Envío Estándar</option>
                             </select>
 
-                            <!--<button type="button" id="btnContinuarEnvio">Continuar</button>-->
-                            <a href="#form1" type="button" id="btnContinuarEnvio">Continuar</a>
+
+                            <div>
+                                <a href="#" id="btnCalcularEnvio" class="btn btn-lg btn-success" tabindex="-1"
+                                    role="button" aria-disabled="true">CalcularEnvío</a>
+                            </div>
+                           
                     </div>
 
                     <div id="pago">
-                        Selecciona tu método de pago, por favor.
-                        <p>
-                            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                Link with href
-                            </a>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Button with data-target
-                            </button>
-                        </p>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-
+                            <div id="metodosPago" style="display:none">
+                                <p>Seleccione su método de pago por favor:</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbPagoManual">
+                                    <label class="form-check-label" for="PagoManual">
+                                        Pago Manual
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbPagoPaypal" checked>
+                                    <label class="form-check-label" for="pagoPaypal">
+                                    PagoPaypal
+                                    </label>
+                                </div>
                             </div>
-                        </div>
 
-
-                        <div id="titulo">
-                            <!-- Replace "test" with your own sandbox Business account app client ID -->
-                            <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-                            <!-- Set up a container element for the button -->
-                            <div id="paypal-button-container"></div>
-                            <script>
-                                paypal.Buttons({
-                                    style: {
-                                        color: 'blue',
-                                        shpe: 'pill',
-                                        label: 'pay'
-                                    },
-                                    createOrder: (data, actions) => {
-                                        return actions.order.create({
-                                            purchase_units: [{
-                                                amount: {
-                                                    value: 500 // Can also reference a variable or function
-                                                }
-                                            }]
-                                        });
-                                    },
-                                    // Finalize the transaction after payer approval
-                                    onApprove: (data, actions) => {
-                                        return actions.order.capture().then(function (orderData) {
-                                            // Successful capture! For dev/demo purposes:
-                                            console.log('Capture result', orderData, JSON.stringify(
-                                                orderData, null, 2));
-                                            const transaction = orderData.purchase_units[0].payments
-                                                .captures[0];
-                                            alert(
-                                                `Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
-                                            // When ready to go live, remove the alert and show a success message within this page. For example:
-                                            // const element = document.getElementById('paypal-button-container');
-                                            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                                            // Or go to another URL:  actions.redirect('thank_you.html');
-                                        });
-                                    }
-                                }).render('#paypal-button-container');
-                            </script>
-                        </div>
-
+                            <div class = "opcionesPagos" id="opcionesPagos">
+                                    <div id="pagoPaypal" style="display:none">
+                                        <?php require_once("confPago.php"); ?> 
+                                    </div>
+                                    <div id="pagoManual" style="display:none">
+                                        <di>Al seleccionar esta opción </h2> <br> Puedes realizar el deposito o transferencia de tu compra a: <br> Santander <br> Titular: Editorial De Otro Tipo <br>  No. de cuenta: 65-50436327-6 <br>CLABE: 014180655043632767 <br>- Envía tu comprobante a contacto@deotrotipo.mx
+                                    </div>
+                            </div>
                     </div>
                 </div>    
             </div>       
         </div>        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="../JS/animaciones.js" type="text/javascript" defer></script>
-        <script src="../JS/funciones.js" defer></script>
-        <script src="../JS/compra.js" defer></script>
-        <script src="../JS/carritoCompra.js" defer></script>
-        <?php require_once("../common/footer.php"); ?>            
+        <script src="/JS/animaciones.js" type="text/javascript" defer></script>
+        <script src="/JS/funciones.js" defer></script>
+        <script src="/JS/compra.js" defer></script>
+        <script src="/JS/carritoCompra.js" defer></script>
+        <?php require_once("../common/footer.php"); ?>   
+         
+          
 </body>
 
 </html>

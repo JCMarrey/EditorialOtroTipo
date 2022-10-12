@@ -17,7 +17,7 @@ if($idLibro == ''){
     $sql_detalleLibro->execute([$idLibro]);
     //verificamos que exista al menos 1 elemento con ese ID:
     if($sql_detalleLibro->fetchColumn() >0){
-        $sql_detalleLibro= $con->prepare("SELECT * FROM deotrotipo.libro WHERE idLibro=? ");
+        $sql_detalleLibro= $con->prepare("SELECT Titulo, Precio, Imagen, Sinopsis, Autor, ISBN, Coleccion, Edicion, Paginas , Audio , Peso, Gandhi, Sotano, Porrua, CarlosFuentes, Amazon FROM deotrotipo.libro WHERE idLibro=? ");
         $sql_detalleLibro->execute([$idLibro]);
         $row = $sql_detalleLibro->fetch(PDO::FETCH_ASSOC);
 
@@ -33,10 +33,8 @@ if($idLibro == ''){
         $Audio = $row['Audio'];
         $Peso = $row['Peso'];
 
-        $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Libros/".$ISBN."/".$Sinopsis;
-
         $AuxTexto = "";
-        $contents=file_get_contents($carpetaDestino);
+        $contents=file_get_contents($Sinopsis);
         $lines=explode("\n",$contents);
         foreach($lines as $line){
          $AuxTexto = $AuxTexto . $line;
@@ -48,20 +46,12 @@ if($idLibro == ''){
         $Gandhi = $row['Gandhi'];
         $Sotano = $row['Sotano'];
 
-        $UAmazon = $row['UAmazon'];
-        $UPorrua = $row['UPorrua'];
-        $UCarlosFuentes = $row['UCarlosFuentes'];
-        $UGandhi = $row['UGandhi'];
-        $USotano = $row['USotano'];
-
-
-
         function evaluar($link){
             $estilos = ["Comprar","green"];
             if($link === NULL){
-                return  $estilos =["No disponible","BECABC","pointer-events: none;"];
+                return  $estilos =["No disponible","BECABC"];
             }else{
-                return $estilos = ["Comprar","green", ""];
+                return $estilos;
             }
         }
 
@@ -100,16 +90,16 @@ if($idLibro == ''){
    <div class="detallesLibro">
         <div class="asideIzq" id="lista-productos">
                     <div class="card-body">
-                        <img  class="rounded mx-auto d-block" src="<?php echo  "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>" > 
+                        <img  class="rounded mx-auto d-block" src="<?php echo  $row['Imagen']; ?>" > 
                     </div> 
-                      <img  style="display:none" class="card-img-top" src="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>"> 
+                      <img  style="display:none" class="card-img-top" src="<?php echo $row['Imagen']; ?>"> 
                       <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
                       <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
                       <p class="card-text" id="precio"  style="font-size: 4rem;" >$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
                       <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $Peso?></h2>
 
-                    <div>
-                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="../Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
+                      <div>
+                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
                         <ul id="idProducto" style="display:none";>
                           <li><?php echo $idLibro ?><li>
                         </ul>
@@ -140,7 +130,7 @@ if($idLibro == ''){
                             <?php echo $Autor ?>
                         </div>
                         <div>
-                            <img class="imgModal" src="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>" alt="...">
+                            <img class="imgModal" src="<?php echo $Imagen ?>" alt="...">
                         </div>
                         <div id="modalTitulo" style="padding-bottom: 30px; padding-top: 30px;">
                             <?php echo $Titulo ?>
@@ -156,7 +146,7 @@ if($idLibro == ''){
                             <tbody>
                                 <tr>
                                     <td id="iconoGandhi">
-                                        <img src="../Icons/logo-gandhi.jpg" alt = "... ">
+                                        <img src="/Icons/logo-gandhi.jpg" alt = "... ">
                                     </td>
                                 
                                     <td id="Gandhi">
@@ -164,12 +154,12 @@ if($idLibro == ''){
                                                 $cadena = evaluar($Gandhi);
                                                 implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $UGandhi ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>"  > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $Gandhi ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td id="iconoSotano">
-                                        <img src="../Icons/logo-sotano.jpg" alt="" >
+                                        <img src="/Icons/logo-sotano.jpg" alt="" >
                                     </td>
                                 
                                     <td id="Sotano">
@@ -177,24 +167,24 @@ if($idLibro == ''){
                                                 $cadena = evaluar($Sotano);
                                                 implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $USotano ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $Sotano ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td id="iconoPorrua">
-                                        <img src="../Icons/logo-porrua.jpg" alt="" >
+                                        <img src="/Icons/logo-porrua.jpg" alt="" >
                                     </td>
                                     <td id="Porrua">
                                         <?php 
                                                 $cadena = evaluar($Porrua);
                                                 implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $UPorrua ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $Porrua ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td id="iconoAmazon">
-                                        <img src="../Icons/logo-amazon.png" alt="" >
+                                        <img src="/Icons/logo-amazon.png" alt="" >
                                     </td>
                                     
                                     <td id="Amazon">
@@ -202,12 +192,12 @@ if($idLibro == ''){
                                             $cadena = evaluar($Amazon);
                                             implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $UAmazon ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $Amazon ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td id="iconoCarlosFuentes">
-                                        <img src="../Icons/logo-carlos-fuentes.png" alt="" >
+                                        <img src="/Icons/logo-carlos-fuentes.png" alt="" >
                                     </td>
                                     
                                     <td id="CarlosFuentes">
@@ -215,7 +205,7 @@ if($idLibro == ''){
                                                 $cadena = evaluar($CarlosFuentes);
                                                 implode(", ", $cadena);
                                         ?>
-                                        <a href="<?php echo $UCarlosFuentes ?>" tanget="_blank" class="btn  btn-lg btn-primary"  tabindex="-1"  aria-disabled="true" style=" <?php echo $cadena[2];?> background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                        <a href="<?php echo $CarlosFuentes ?>" tanget="_blank" class="btn  btn-lg btn-primary"  tabindex="-1"  aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -232,8 +222,8 @@ if($idLibro == ''){
             <div class="audio" id="audio">
                     <p> Narrativa del libro.... </p>
                     <audio controls>
-                        <source src="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$Audio ?>" type="audio/mpeg">
-                        <source src="<?php echo "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$Audio ?>" type="audio/wav">
+                        <source src="<?php echo $Audio ?>" type="audio/mpeg">
+                        <source src="<?php echo $Audio ?>" type="audio/wav">
                         Tu navegador no es compatible con el audio...
                     </audio>
             </div>
@@ -244,35 +234,35 @@ if($idLibro == ''){
                     <tbody>
                         <tr>
                             <td id="iconoAutor">
-                                <img class="imgLogo" src="../Icons/autor.svg" alt = "... ">
+                                <img class="imgLogo" src="/Icons/autor.svg" alt = "... ">
                             </td>
                             <td>Autor</td>
                             <td id="nombreAutor"><?php echo  $Autor?></td>
                         </tr>
                         <tr>
                             <td id="iconoISBN">
-                                <img class="imgLogo" src="../Icons/isbn.svg" alt="" >
+                                <img class="imgLogo" src="/Icons/isbn.svg" alt="" >
                             </td>
                             <td>ISBN</td>
                             <td id="numISBN"><?php echo  $ISBN ?></td>
                         </tr>
                         <tr>
                             <td id="iconoColeccion">
-                                <img class="imgLogo" src="../Icons/coleccion.svg" alt="" >
+                                <img class="imgLogo" src="/Icons/coleccion.svg" alt="" >
                             </td>
                             <td>Colección</td>
                             <td id="tipoColeccion"><?php echo $Coleccion?></td>
                         </tr>
                         <tr>
                             <td id="iconoNumEd">
-                                <img class="imgLogo" src="../Icons/noedicion.svg" alt="" >
+                                <img class="imgLogo" src="/Icons/noedicion.svg" alt="" >
                             </td>
                             <td>NúmeroDeEdición</td>
                             <td id="numEdicion"><?php  echo $Edicion ?></td>
                         </tr>
                         <tr>
                             <td id="iconoPags">
-                                <img class="imgLogo" src="../Icons/paginas.svg" alt="" >
+                                <img class="imgLogo" src="/Icons/paginas.svg" alt="" >
                             </td>
                             <td>Páginas</td>
                             <td id="numPags"><?php echo $Paginas ?></td>
@@ -284,9 +274,9 @@ if($idLibro == ''){
     </div>
    
 
-    <script src="../JS/animaciones.js" type="text/javascript"></script>
-    <script src="../JS/funciones.js"></script>          
-    <script src="../JS/jquery-3.4.1.min.js"></script>
+    <script src="/JS/animaciones.js" type="text/javascript"></script>
+    <script src="/JS/funciones.js"></script>          
+    <script src="/JS/jquery-3.4.1.min.js"></script>
     <?php require_once("../common/footer.php"); ?>
 </body>
 </html>
