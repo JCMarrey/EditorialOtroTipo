@@ -19,6 +19,7 @@
 
     <div id="paypal-button-container" style="display:block"></div>
     <script>
+          
            if(localStorage.getItem('pagos') === null ){
             pagos = [];
           }else{
@@ -30,7 +31,7 @@
           return actions.order.create({
             purchase_units: [{
               amount: {
-                value: '1.0' //pagos[2]// Can also reference a variable or function
+                value: pagos[2]// Can also reference a variable or function
               }
             }]
           });
@@ -51,7 +52,9 @@
               datosEnvioU = [transaction.update_time,transaction.id,transaction.status];
               localStorage.setItem('datosCompra',JSON.stringify(datosEnvioU));
               activarBotonFinalizarCompra();
+              clearstatcache();
             } 
+
 
           });
         }

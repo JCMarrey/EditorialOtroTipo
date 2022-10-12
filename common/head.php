@@ -13,13 +13,8 @@
         <link rel="stylesheet" href="../FontAwesome/css/all.css">
         
         <link rel="stylesheet" href="../common/Normalize.css">
+        <link rel="stylesheet" href="../common/estilocarrito.css">
         <link rel="stylesheet" href="../common/estilos.css">
-        <link rel="stylesheet" href="../common/estilosCarrito.css">
-        <link rel="stylesheet" href="../common/estiloscarrito.css">
-        <script src="../JS/jquery-3.4.1.min.js"></script>
-
-
-        <link rel="stylesheet" href="../common/responsive3.css">
-
         <title>Editorial Otro Tipo</title>
+      <script src="/JS/animaciones.js" type="text/javascript" defer></script>
 </head>

@@ -1,10 +1,28 @@
+
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="../FontAwesome/css/all.css">
 
-    <?php  require_once("../common/head.php"); ?>
-    <body>
+    <link rel="stylesheet" href="../common/Normalize.css">
+    <link rel="stylesheet" href="../common/estilos.css">
+    <link rel="stylesheet" href="../common/queriesJuan.css">
+    
 
-      <?php require_once("../common/header.php"); ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>Editorial Otro Tipo</title>
+</head>
+    <body>      
 
     <div id="loaders">
         <img id="progreso" src="/img/progreso.gif" width="200">
@@ -418,7 +436,7 @@
                                         <?php require_once("confPago.php"); ?> 
                                     </div>
                                     <div id="pagoManual" style="display:none">
-                                        <di>Al seleccionar esta opción </h2> <br> Puedes realizar el deposito o transferencia de tu compra a: <br> Santander <br> Titular: Editorial De Otro Tipo <br>  No. de cuenta: 65-50436327-6 <br>CLABE: 014180655043632767 <br>- Envía tu comprobante a contacto@deotrotipo.mx
+                                        <h2>Al seleccionar esta opción </h2> <br> Puedes realizar el deposito o transferencia de tu compra a: <br> Santander <br> Titular: Editorial De Otro Tipo <br>  No. de cuenta: 65-50436327-6 <br>CLABE: 014180655043632767 <br>- Envía tu comprobante a contacto@deotrotipo.mx
                                     </div>
                             </div>
                     </div>

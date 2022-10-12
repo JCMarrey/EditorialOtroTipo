@@ -297,11 +297,14 @@ function procesarCompra(e){
     }
 }
 
-
 function leerProductosLocalStorageCompra(){
     let productosLS;
     productosLS = obtenerProductosLocalStorage();
     productosLS.forEach(function(producto){
+        
+        var cantididad = parseInt (producto.cantidad);
+        var precio =    parseFloat (producto.precio);
+        var subtotal = cantididad*precio;
         console.log("producto...",producto.titulo);
         const row = document.createElement('tr');
         row.innerHTML=`
@@ -311,23 +314,23 @@ function leerProductosLocalStorageCompra(){
             <td>${producto.titulo}</td>
             <td>${producto.precio}</td>
              <td>
-                <a href="#" class="disminuir-cantidad fa-solid fa-circle-x" style="font-size:30px">-
+                <a href="#" class="disminuir-cantidad fa-solid fa-circle-x" style="font-size:15px; color: black"> -
                     <p style="display:none";  id="idCarritoP">${producto.id}</p>
                 </a>
             </td>          
+            
+            <td>
+               <input class="form-control cantidad" id="cantidadLibros min="1" value=${cantididad}>    
             </td>
             <td>
-               <input class="form-control cantidad" id="cantidadLibros min="1" value=${producto.cantidad}>    
-            <td>
-            <td>
-                <a href="#" class="aumentar-cantidad fa-solid fa-circle-x" style="font-size:30px">+
+                <a href="#" class="aumentar-cantidad fa-solid fa-circle-x" style="font-size:15px; color: black"> +
                     <p style="display:none";  id="idCarritoP">${producto.id}</p>
                 </a>
             </td>      
 
-            <td>${producto.cantidad*producto.precio}</td>
+            <td>${subtotal}</td>
             <td>
-                <a href="#" class="borrar-producto fa-solid fa-circle-x" style="font-size:30px" > X
+                <a href="#" class="borrar-producto fa-solid fa-circle-x" style="font-size:15px; color: black"> X
                     <p style="display:none";  id="idCarritoP">${producto.id}</p>
                 </a>
             </td>
