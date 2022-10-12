@@ -84,7 +84,9 @@ function leerDatosProductos(producto){
 }
 function insertarProductoCarrito(producto){
 
-    
+    var cantididad = parseInt (producto.cantidad);
+    var precio =    parseFloat (producto.precio);
+    var subtotal = cantididad*precio;
     const row = document.createElement('tr');
     row.innerHTML=`
             <td></td>
@@ -94,13 +96,7 @@ function insertarProductoCarrito(producto){
             <td>${producto.titulo}</td>
             <td>${producto.precio}</td>
             <td>${producto.cantidad}</td>
-            <td>${producto.precio*producto.cantidad}</td>
-            <td>
-                
-                    <i class="fa-solid fa-x">X</i>
-                    <p style="display:none"; id="idCarritoP">${producto.id}</p>
-                
-            </td>
+            <td>${subtotal}</td
 
     `; 
     listaProductos.appendChild(row);
@@ -180,7 +176,7 @@ function leerProductosLocalStorage(){
             <td id="cantidadLibros">${producto.cantidad}</td>
             <td>${producto.precio}</td>
             <td>
-                <a href="#" class="borrar-producto fas-fa-times.circle">X
+                <a href="#" class="borrar-producto fas-fa-times.circle">
                     <p style="display:none";  id="idCarritoP">${producto.id}</p>
                 </a>
             </td>

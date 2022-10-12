@@ -13,7 +13,8 @@
         <link rel="stylesheet" href="../FontAwesome/css/all.css">
         
         <link rel="stylesheet" href="../common/Normalize.css">
-        <link rel="stylesheet" href="../common/estilos.css">
         <link rel="stylesheet" href="../common/estilocarrito.css">
+        <link rel="stylesheet" href="../common/estilos.css">
         <title>Editorial Otro Tipo</title>
+      <script src="/JS/animaciones.js" type="text/javascript" defer></script>
 </head>

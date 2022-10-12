@@ -12,7 +12,6 @@
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
-                <th></th>
               </tr>
             </thead>
             <tbody></tbody>

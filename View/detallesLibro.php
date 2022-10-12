@@ -32,9 +32,10 @@ if($idLibro == ''){
         $Paginas = $row['Paginas'];
         $Audio = $row['Audio'];
         $Peso = $row['Peso'];
-
         $AuxTexto = "";
-        $contents=file_get_contents($Sinopsis);
+        $carpetaDestino = $_SERVER['DOCUMENT_ROOT']."/EditorialOtroTipo/Libros/".$ISBN."/".$Sinopsis;
+        $contents=file_get_contents($carpetaDestino);
+        echo 'la dirección es:'.$Sinopsis;
         $lines=explode("\n",$contents);
         foreach($lines as $line){
          $AuxTexto = $AuxTexto . $line;
@@ -45,6 +46,7 @@ if($idLibro == ''){
         $CarlosFuentes = $row['CarlosFuentes'];
         $Gandhi = $row['Gandhi'];
         $Sotano = $row['Sotano'];
+       
 
         function evaluar($link){
             $estilos = ["Comprar","green"];
@@ -77,6 +79,8 @@ if($idLibro == ''){
 
     <link rel="stylesheet" href="../common/Normalize.css">
     <link rel="stylesheet" href="../common/estilos.css">
+    <link rel="stylesheet" href="../common/queriesJuanVerDetalles.css">
+    
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -85,7 +89,6 @@ if($idLibro == ''){
 
 
 <body>
-<?php require_once("../common/header.php"); ?>
 <?php require_once("../common/carritoModal.php"); ?>
    <div class="detallesLibro">
         <div class="asideIzq" id="lista-productos">
@@ -99,7 +102,10 @@ if($idLibro == ''){
                       <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $Peso?></h2>
 
                       <div>
-                        <button class="btnS2 agregar-producto-c" type="button" onclick="Mostrar()"><img src="/Icons/carrito.svg" alt="..." style="width: 22px;" >Comprar</button>
+                        <button class="btnS2 agregar-producto-c" id="btnDetallesComprar"  type="button" onclick="Mostrar()" >
+                            <img id ="imgComprar" src="/Icons/carrito.svg" alt="..." style="width: 22px;" >
+                            Comprar
+                        </button>
                         <ul id="idProducto" style="display:none";>
                           <li><?php echo $idLibro ?><li>
                         </ul>
@@ -168,6 +174,7 @@ if($idLibro == ''){
                                                 implode(", ", $cadena);
                                         ?>
                                         <a href="<?php echo $Sotano ?>" class="btn  btn-lg btn-primary"  tabindex="-1" role="button" aria-disabled="true" style="background-color: <?php echo $cadena[1];?>" > <?php echo  $cadena[0]; ?></a>
+                                       
                                     </td>
                                 </tr>
                                 <tr>
@@ -217,11 +224,14 @@ if($idLibro == ''){
     </div>
     <div id="infoLibro">
             
-            <p id="textoPDF"><?php echo $AuxTexto ?></p>
+            <!--<p id="textoPDF"><?php/* echo $AuxTexto */?></p>-->
+            <p id="textoPDF">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde debitis dolorem ullam at, animi porro odit. Rem iste minus deleniti odit distinctio nemo quasi reiciendis error, autem, obcaecati, minima eveniet.    
+            Officia voluptatem sapiente delectus tempora esse aspernatur commodi tenetur sequi, animi laudantium obcaecati laborum dolore corporis iste exercitationem quae facere id et.></p>
           
             <div class="audio" id="audio">
                     <p> Narrativa del libro.... </p>
-                    <audio controls>
+                    <audio controls id="audiosC">
                         <source src="<?php echo $Audio ?>" type="audio/mpeg">
                         <source src="<?php echo $Audio ?>" type="audio/wav">
                         Tu navegador no es compatible con el audio...
@@ -277,7 +287,7 @@ if($idLibro == ''){
     <script src="/JS/animaciones.js" type="text/javascript"></script>
     <script src="/JS/funciones.js"></script>          
     <script src="/JS/jquery-3.4.1.min.js"></script>
-    <?php require_once("../common/footer.php"); ?>
+    
 </body>
 </html>
 
