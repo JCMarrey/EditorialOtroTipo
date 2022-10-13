@@ -16,12 +16,10 @@
   $sql_libros->execute();
   $result = $sql_libros->fetchAll(PDO::FETCH_ASSOC);
 }
-
   
 ?>
 <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,14 +36,22 @@
         
         <link rel="stylesheet" href="../common/Normalize.css">
         <link rel="stylesheet" href="../common/estilos.css">
+
+        
+   
+        <link rel="stylesheet" href="../common/responsive3.css">
         <link rel="stylesheet" href="../common/queriesJuan.css">
 
         <title>Editorial Otro Tipo</title>
-      <script src="/JS/animaciones.js" type="text/javascript" defer></script>
+        <script src="../JS/animaciones.js" type="text/javascript" defer></script>  
+        <script src="../JS/jquery-3.4.1.min.js"></script>  
+        <link rel="stylesheet" href="../jquery/jquery-ui.min.css">
+        <script src="../JS/celView.js"></script>
     </head>
+
     
     <body>
- 
+    <?php require_once("../common/header.php"); ?>
       <div class="containerProductos"  id="lista-productos">
         <div id="carrito">
           <div>

@@ -6,7 +6,7 @@
   </head>
   <body>
     <!-- Replace "test" with your own sandbox Business account app client ID -->
-    <script src="https://www.paypal.com/sdk/js?client-id=Ab-hQShOOyOmN3HqPITj6ttzrnWPReFYPIMSeji_hC1X23QAnZl_fYjPQ6n8lriMw0JOn3e3MR0FhtVA&commit=false"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AU0aGQ0AU9_WmJ61ilGeOiDQ5IYg-PUYXKlSYRg4npVwLtPr0XsQLVj7bXEbaZrfhl8EY5TuIPuUKM-n&commit=false"></script>
     <!-- Set up a container element for the button -->
 
 

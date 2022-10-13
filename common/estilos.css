@@ -2203,9 +2203,7 @@ padding: 30px;
   color: var(--rojoSecundario) !important;
 }
 
-.swiper-pagination{
-  bottom: 40% !important;
-}
+
 
 .swiper-pagination-bullet-active{
   background: var(--rojoSecundario) !important;
@@ -2306,3 +2304,4 @@ padding: 30px;
 /* .search-container{
   margin: 0;
 } */
+

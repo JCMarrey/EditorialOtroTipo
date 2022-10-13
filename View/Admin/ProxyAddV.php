@@ -22,6 +22,32 @@
             
             try{
 
+                $sql_obtenerCantidadLibro = $conexion->prepare("SELECT Cantidad FROM libro WHERE idLibro = ? ");
+                if($sql_obtenerCantidadLibro == false){
+                    echo 'hubo un error en obtener cantidad libro';
+                    return ['ok' => 'false'];
+                }
+                    
+                $sql_obtenerCantidadLibro->bind_param('i',$IdLibro);
+                $sql_obtenerCantidadLibro->execute();
+                $result = $sql_obtenerCantidadLibro->get_result();
+                $arreglo = $result->fetch_assoc(); 
+                $cantidadActual = $arreglo['Cantidad'];
+
+                
+
+                $sql_actualizarInventario = $conexion->prepare("UPDATE deotrotipo.libro SET Cantidad = ? WHERE (idLibro = ?);");
+                if($sql_actualizarInventario == false){
+                    echo 'hubo un error en actualizar inventario';
+                    return ['ok' => 'false'];
+                }else{
+                    $cantidadActual = $cantidadActual-$cantidadLibro;
+                    //ii == integer, integer.
+                    $sql_actualizarInventario->bind_param('ii', $cantidadActual, $IdLibro);
+                    $sql_actualizarInventario->execute();
+                    echo "\nregistro actualizado: la cantidad es: ".$cantidadActual;
+                }
+
                 $sql = "INSERT INTO `ventaj` (`IdVenta`, `IdLibro`, `IdPaypal`, `subtotal`, `precioEnvio`, `total`, `cantidadLibro`, `fechaPago`, `estado`) 
                                         VALUES ($IdVenta, $IdLibro, $IdPaypal, $subtotal, $precioEnvio, $total, $cantidadLibro, '$fechaPago', '$estado');";
                 if(mysqli_query($conexion, $sql)){

@@ -35,7 +35,7 @@
 
     
     //buscarlibro con "x" y actualizar su cantidad en la tabla inventario...
-    $sql_obtenerCantidadLibro = $conexion->prepare("SELECT AlmacenOficina FROM deotrotipo.inventario WHERE Libro_idLibro = ? ");
+    $sql_obtenerCantidadLibro = $conexion->prepare("SELECT Cantidad FROM libro WHERE idLibro = ? ");
     if($sql_obtenerCantidadLibro == false){
         echo 'hubo un error en obtener cantidad libro';
         return ['ok' => 'false'];
@@ -54,7 +54,7 @@
     //----------------------------------------------------------
       //actualizar
     
-    $sql_actualizarInventario = $conexion->prepare("UPDATE deotrotipo.inventario SET AlmacenOficina = ? WHERE (Libro_idLibro = ?);");
+    $sql_actualizarInventario = $conexion->prepare("UPDATE deotrotipo.libro SET Cantidad = ? WHERE (idLibro = ?);");
     if($sql_actualizarInventario == false){
         echo 'hubo un error en actualizar inventario';
         return ['ok' => 'false'];

@@ -252,7 +252,7 @@ function procesarCompra(e){
             time : 4000,
             showConfirmButton: true
           }).then(function(){
-            window.location ="/View/Catalogo.php";
+            window.location ="../View/Catalogo.php";
           });
     }else if(nombreCliente.value === '' || correo.value === ''){
         swal.fire({
@@ -267,7 +267,7 @@ function procesarCompra(e){
         cargandoGif.style.display = 'block';
 
         const enviado = document.createElement('img');
-        enviado.src = '/img/cargando.gif';
+        enviado.src = '../img/cargando.gif';
         enviado.style.display = 'block';
         enviado.width = '150';
 
@@ -284,12 +284,14 @@ function procesarCompra(e){
                 if(botonM.style.display == 'block'){
                     console.log("procesar sólo pago con déposito");
                     guardarDatosBDManual();
+                    window.location ="../View/catalogo.php";
                 }
                 if(botonP.style.display == 'block'){
                     console.log("procesar pagoPaypal");
                     guardarDatosBDPaypal();
+                    window.location ="../View/catalogo.php";
                 }
-                window.location ="/View/catalogo.php";
+                
 
             },2000)
         },3000)
