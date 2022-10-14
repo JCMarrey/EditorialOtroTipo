@@ -15,28 +15,19 @@
 
     <link rel="stylesheet" href="../common/Normalize.css">
     <link rel="stylesheet" href="../common/estilos.css">
+    <link rel="stylesheet" href="../common/queriesJuan.css">
     
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-            
-        <script src="../JS/celView.js"></script>
-        <link rel="stylesheet" href="../common/responsive3.css">
-        <link rel="stylesheet" href="../common/queriesJuan.css">
-
-        <title>Editorial Otro Tipo</title>
-        <script src="/JS/animaciones.js" type="text/javascript" defer></script>  
-        <script src="/JS/jquery-3.4.1.min.js"></script>  
-        <link rel="stylesheet" href="../jquery/jquery-ui.min.css">
-
     <title>Editorial Otro Tipo</title>
 </head>
-<body>      
-    <?php require_once("../common/header.php"); ?>
-    <div id="loaders">
-        <img id="progreso" src="/img/progreso.gif" width="200">
-    </div>
+    <body>      
 
+    <div id="loaders">
+        <img id="progreso" src="../img/progreso.gif" width="200">
+    </div>
+  
         <div class="section">
                 <div class="grid">
 
@@ -112,7 +103,7 @@
                             </table>
 
                             <div>
-                                <a href="/View/catalogo.php" class="btn  btn-lg btn-primary" tabindex="-1" role="button"
+                                <a  id="btnSeguirComprando" href="/View/catalogo.php" class="btn  btn-lg btn-primary" tabindex="-1" role="button"
                                     aria-disabled="true">Seguir comprando</a>
                             </div>
                             <div>
@@ -389,7 +380,7 @@
                                     <option value="Guerrero">Guerrero</option>
                                     <option value="Hidalgo">Hidalgo</option>
                                     <option value="Jalisco">Jalisco</option>
-                                    <option value="México">México</option>
+                                    <option value="EstadoDeMexico">Estado de México</option>
                                     <option value="Michoacan">Michoacan</option>
                                     <option value="Morelos">Morelos</option>
                                     <option value="Nayarit">Nayarit</option>
@@ -454,10 +445,10 @@
         </div>        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="/JS/animaciones.js" type="text/javascript" defer></script>
-        <script src="/JS/funciones.js" defer></script>
-        <script src="/JS/compra.js" defer></script>
-        <script src="/JS/carritoCompra.js" defer></script>
+        <script src="../JS/animaciones.js" type="text/javascript" defer></script>
+        <script src="../JS/funciones.js" defer></script>
+        <script src="../JS/compra.js" defer></script>
+        <script src="../JS/carritoCompra.js" defer></script>
         <?php require_once("../common/footer.php"); ?>   
          
           

@@ -2,6 +2,18 @@
     display: none;
 }
 
+@media (min-width: 1401px){    
+    .swiper-pagination {
+      bottom: 50% !important;
+  }
+}
+
+@media (min-width: 1800px){    
+  .swiper-pagination {
+    bottom: 60% !important;
+}
+}
+
 @media (max-width: 1400px){
     .navBar{
         font-size: 1.6rem;
@@ -73,6 +85,24 @@
       .info-evento {
         width: 90%;
         margin: 0px 3rem;
+    }
+    .fuente-pacifico{
+        font-size: 2.4rem !important;
+    }
+    .subtituloE{
+        font-size: 1.8rem;
+    }
+    .texto{
+        font-size: 1.5rem;
+        line-height: 3rem;
+        text-align: center;
+        overflow: auto;
+    }
+    .imgC{
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        object-fit: cover;
+        position: static;
     }
 }
 
@@ -259,7 +289,7 @@
         flex-direction: column;
         align-items: center;
         font-size: 1rem;
-        margin-top: 20rem;
+        margin-top: 36rem;
     }
 }
 
@@ -310,3 +340,10 @@
 #cuadroleer1{
     height: inherit;
 }
+
+.swiper-pagination {
+    bottom: 45% !important;
+}
+
+
+

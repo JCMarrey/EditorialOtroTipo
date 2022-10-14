@@ -11,8 +11,13 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <link rel="stylesheet" href="../FontAwesome/css/all.css">
+        <script src="../JS/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="../jquery/jquery-ui.min.css">
         
         <link rel="stylesheet" href="../common/Normalize.css">
+
+        <link rel="stylesheet" href="../common/estilosCarrito.css">
+
         <link rel="stylesheet" href="../common/estilocarrito.css">
         <link rel="stylesheet" href="../common/estilos.css">
         
@@ -21,5 +26,7 @@
         <link rel="stylesheet" href="../common/responsive3.css">
 
         <title>Editorial Otro Tipo</title>
-      <script src="/JS/animaciones.js" type="text/javascript" defer></script>
+      <script src="../JS/animaciones.js" type="text/javascript" defer></script>
+      <script src="../JS/celView.js"></script>
+
 </head>

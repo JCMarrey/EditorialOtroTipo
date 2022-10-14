@@ -105,7 +105,7 @@ require '../phpMailer/src/Exception.php';
         throw new Exception($mail->ErrorInfo);
         
       }
-      header("Location: /View/enviado.php", TRUE, 301);
+      header("Location: ../View/enviado.php", TRUE, 301);
       exit();
  
       //Flasher::success(sprintf('Mensaje enviado con éxito a %s', $para));

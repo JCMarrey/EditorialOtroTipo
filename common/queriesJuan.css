@@ -1137,3 +1137,11 @@ a {
     
 }
 
+#btnCalcularEnvio,
+#btnSeguirComprando{
+  margin: 2rem !important;
+}
+
+.footer{
+  margin-top: 70rem;
+}

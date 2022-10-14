@@ -505,6 +505,11 @@
                         <li id="controller-tab-Videos-Main" class="nav-item">
                             <a class="nav-link" href="#tab-Videos-Main">Videos</a>
                         </li>
+                        
+                        <li id="controller-tab-Convocatoria" class="nav-item">
+                            <a class="nav-link" href="#tab-Convocatoria">Convocatoria</a>
+                        </li>
+
 
                         </ul>
 
@@ -564,6 +569,21 @@
                                 <input id="btn-edit-Video2" type="submit" class="btn btn-success edit-Video">
                             </form>
                         </div>
+
+                        <div id="tab-Convocatoria">
+                            <form class="form-bg" action="ProxyAddC.php" method="POST" enctype = "multipart/form-data">
+                                <label for="addL-Form-Titulo" class="col-form-label">Titulo:</label>
+                                <input  type="text" name = "TITULO" class="form-control" id="addC-Form-Titulo">
+                                <label for="addC-Form-Titulo" class="col-form-label">SubTitulo:</label>
+                                <input  type="text" name = "SUBTITULO" class="form-control" id="addC-Form-subTitulo">
+                                <label for="addC-Form-Sinopsis" class="col-form-label">Descripción:</label>
+                                <input  type="file" name="archdesc" class="form-control" id="addC-Form-Sinopsis" accept=".doc,.docx,.txt">
+                                <label for="addC-Form-Imagen" class="col-form-label">Imagen:</label>
+                                <input  type="file" name="archImagen" class="form-control" id="addC-Form-Imagen" accept="image/*">
+                                <input class="btn btn-success btn-form" type="submit" value="Actualizar Convocatoria">
+                            </form>
+                        </div>
+
                     </div>
 
                 </div>
