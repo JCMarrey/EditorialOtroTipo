@@ -32,7 +32,6 @@
         echo 'registro inserado con éxito';
     }
     //$conexion->close();
-
     
     //buscarlibro con "x" y actualizar su cantidad en la tabla inventario...
     $sql_obtenerCantidadLibro = $conexion->prepare("SELECT AlmacenOficina FROM deotrotipo.inventario WHERE Libro_idLibro = ? ");
@@ -49,7 +48,6 @@
     echo "\n idLibro: ".$idLibro;
         //echo "\n".$cantidad+3;
         //print_r($cantidad);
-
 
     //----------------------------------------------------------
       //actualizar

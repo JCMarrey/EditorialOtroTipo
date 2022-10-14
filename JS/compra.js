@@ -284,12 +284,14 @@ function procesarCompra(e){
                 if(botonM.style.display == 'block'){
                     console.log("procesar sólo pago con déposito");
                     guardarDatosBDManual();
+                    window.location ="/View/catalogo.php";
                 }
                 if(botonP.style.display == 'block'){
                     console.log("procesar pagoPaypal");
                     guardarDatosBDPaypal();
+                    window.location ="/View/catalogo.php";
                 }
-                window.location ="/View/catalogo.php";
+               
 
             },2000)
         },3000)

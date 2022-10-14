@@ -73,13 +73,8 @@ function leerDatosProductos(producto){
     });
     localStorage.setItem('productos',JSON.stringify(librosLS));
 
-    if(auxLibro === infoProducto.id){
         //console.log("cantidadLibro",infoProducto.cantidad);
         insertarProductoCarrito(infoProducto);
-        //leerProductosLocalStorage();
-    }else{
-        insertarProductoCarrito(infoProducto);
-    }
     
 }
 function insertarProductoCarrito(producto){
@@ -87,6 +82,8 @@ function insertarProductoCarrito(producto){
     var cantididad = parseInt (producto.cantidad);
     var precio =    parseFloat (producto.precio);
     var subtotal = cantididad*precio;
+    console.log(subtotal);
+
     const row = document.createElement('tr');
     row.innerHTML=`
             <td></td>

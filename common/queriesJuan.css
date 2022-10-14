@@ -163,10 +163,13 @@ a{
       margin-block: 1rem;
     }
     
-.card-body{
-      padding: 1.25rem;
+    .card-body {
+      padding: -6.75rem;
       flex: 1 1 auto;
-}
+      width: 20rem;
+      margin-left: 2rem;
+      margin-top: -1rem;
+  }
 
 .card-body img{
   width: 55%;
@@ -221,23 +224,20 @@ a{
   padding-top: 0.5rem;
 }
 
-    
-.btnS2{
-      color: rgb(255, 255, 255);
-      background-color: #3D97CB;
-      border-color: #3D97CB;
-      border-style: solid;
-      border-radius: 2.18rem;
-      margin-left: 0.18rem;
-      padding-right: 1em;
-      padding-left: 1em;
-      font-size: 0.97em;
-      margin-top: 6px;
-      padding-top: 7px;
-      padding-bottom: 5px;
-      
+.btnS2 {
+  color: rgb(255, 255, 255);
+  background-color: #3D97CB;
+  border-color: #3D97CB;
+  border-style: solid;
+  border-radius: 2.18rem;
+  margin-left: 1.18rem;
+  padding-right: 2em;
+  padding-left: 1em;
+  font-size: 0.97em;
+  margin-top: -4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
-
     #carrito{
       margin-top: 0;
       /* height: 100%; */
@@ -610,10 +610,7 @@ a{
        height: 100%;
        width: 100%;
       }
-      
-
-
-
+    
       /*catalogo*/
 
       .catalogoP{
@@ -632,12 +629,12 @@ a{
     }
        
     .figure .card-img-top {
-        width: 10rem;
-        height: 12rem;
-        margin-right: 0.5rem;
-        transition: all 500ms ease-out;
-    }
-   
+      width: 10rem;
+      height: 12rem;
+      margin-right: 0.5rem;
+      transition: all 500ms ease-out;
+      margin-left: -4rem;
+  }
        #nombreLibro{
          text-align: center;
          font-size: 10px;
@@ -708,7 +705,59 @@ a{
     margin-left: -65rem;
     height: 126% !important;
    }
+   .card-body {
+    padding: -6.75rem;
+    flex: 1 1 auto;
+    width: 20rem;
+    margin-left: -1rem;
 }
+.figure {
+  position: relative;
+  height: 18rem;
+  width: 17rem;
+  overflow: hidden;
+  cursor: pointer;
+  margin-left: 3rem;
+}
+}
+
+@media (max-width: 768) {
+  .catalogoP {
+    grid-column: 1/10;
+    grid-row: 5/16;
+    margin-left: 3rem;
+}
+a {
+  font-size: 12px;
+}
+
+#btnReproducirAudio{
+  margin-left: 5rem;
+}
+.btnS2 {
+  color: rgb(255, 255, 255);
+  background-color: #3D97CB;
+  border-color: #3D97CB;
+  border-style: solid;
+  border-radius: 2.18rem;
+  margin-left: 0.18rem;
+  padding-right: 0em;
+  padding-left: 0em;
+  font-size: 0.97em;
+  margin-top: -4px;
+  padding-top: 4px;
+  padding-bottom: 1px;
+}
+
+.card-body {
+  padding: -6.75rem;
+  flex: 1 1 auto;
+  width: 20rem;
+
+}
+
+}
+
 
 @media  (max-width: 600px) {
         body{
@@ -836,11 +885,12 @@ a{
         font-size: small;
     }
     #vaciar-carrito, #procesar-pedido {
-        width: 7rem;
-        font-size: small;
-        margin-left: auto;
-        margin-right: 1rem;
-    }
+      width: 6rem;
+      font-size: 1rem;
+      margin-left: auto;
+      /* margin-right: -1rem; */
+      margin-left: 12rem;
+  }
     .filtros {
         grid-column: 6/16;
         grid-row: 2/14;
@@ -856,6 +906,12 @@ a{
         grid-row: 5/16;
         margin-left: 7rem;
     }
+    #carrito {
+      margin-top: 0;
+      margin-left: -11rem;
+      height: 126% !important;
+      width: 43rem;
+  }
 
 }
 

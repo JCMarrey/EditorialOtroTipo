@@ -15,15 +15,24 @@
 
     <link rel="stylesheet" href="../common/Normalize.css">
     <link rel="stylesheet" href="../common/estilos.css">
-    <link rel="stylesheet" href="../common/queriesJuan.css">
     
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+            
+        <script src="../JS/celView.js"></script>
+        <link rel="stylesheet" href="../common/responsive3.css">
+        <link rel="stylesheet" href="../common/queriesJuan.css">
+
+        <title>Editorial Otro Tipo</title>
+        <script src="/JS/animaciones.js" type="text/javascript" defer></script>  
+        <script src="/JS/jquery-3.4.1.min.js"></script>  
+        <link rel="stylesheet" href="../jquery/jquery-ui.min.css">
+
     <title>Editorial Otro Tipo</title>
 </head>
-    <body>      
-
+<body>      
+    <?php require_once("../common/header.php"); ?>
     <div id="loaders">
         <img id="progreso" src="/img/progreso.gif" width="200">
     </div>

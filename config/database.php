@@ -4,7 +4,7 @@
         private $hostname = "localhost";
         private $database = "deotrotipo";
         private $username = "root";
-        private $password = "";
+        private $password = "123456789";
         private $charset = "utf8";
         private $conect;
    

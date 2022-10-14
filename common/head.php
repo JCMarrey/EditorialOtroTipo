@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="../common/Normalize.css">
         <link rel="stylesheet" href="../common/estilocarrito.css">
         <link rel="stylesheet" href="../common/estilos.css">
+        
+        
+        <script src="../JS/celView.js"></script>
+        <link rel="stylesheet" href="../common/responsive3.css">
+
         <title>Editorial Otro Tipo</title>
       <script src="/JS/animaciones.js" type="text/javascript" defer></script>
 </head>
