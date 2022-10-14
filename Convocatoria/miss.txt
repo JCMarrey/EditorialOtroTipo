@@ -1,0 +1,6 @@
+Falta que cuando se edite un libro del catálogo se eliminen los archivos anteriores y guarden los nuevos
+ademas falta cambiar los nombres de los archivos tipo
+ISBN-PORTADA.png
+ISBN-SINOPSIS.txt
+ISBN-CAP1.pdf
+ISBN-AUDIO.mp3

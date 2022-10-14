@@ -14,8 +14,6 @@
 }
 }
 
-
-
 @media (max-width: 1400px){
     .navBar{
         font-size: 1.6rem;
@@ -87,6 +85,24 @@
       .info-evento {
         width: 90%;
         margin: 0px 3rem;
+    }
+    .fuente-pacifico{
+        font-size: 2.4rem !important;
+    }
+    .subtituloE{
+        font-size: 1.8rem;
+    }
+    .texto{
+        font-size: 1.5rem;
+        line-height: 3rem;
+        text-align: center;
+        overflow: auto;
+    }
+    .imgC{
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        object-fit: cover;
+        position: static;
     }
 }
 
