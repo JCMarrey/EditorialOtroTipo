@@ -58,6 +58,13 @@ function cargarEventos(){
         const botonP = document.getElementById('paypal-button-container');
         botonP.style.display = 'block';
 
+        //mandar por ajax los datos del DOM.
+        const total = document.getElementById('totalEnvio').text; 
+        console.log("Usted tiene que pagarrrr:",total);
+
+        const totalEnvio = document.getElementById('totalEnvio').innerHTML; 
+        console.log("Usted tiene que pagarrrr:",totalEnvio);
+
         const botonCompra = document.getElementById('finalizar-compra');
         botonCompra.style.display = 'none';
 
@@ -256,9 +263,9 @@ function calcularTotal(cotizacionEnvio,e){
         var costoEnvio = Number(cotizacionEnvio.amount_local);
         let subtotal = datosEnvio();
         let total = costoEnvio + subtotal;
-        document.getElementById('subtotal').innerHTML = "$/ "+ subtotal;
-        document.getElementById('costoEnvio').innerHTML = "$/  "+ costoEnvio;
-        document.getElementById('totalEnvio').innerHTML = "$/ "+total;
+        document.getElementById('subtotal').innerHTML =  subtotal;
+        document.getElementById('costoEnvio').innerHTML =  costoEnvio;
+        document.getElementById('totalEnvio').innerHTML = total;
 
         let pagos = [subtotal,costoEnvio,total];
 
@@ -270,15 +277,34 @@ function calcularTotal(cotizacionEnvio,e){
 
         const botonP = document.getElementById('pagoPaypal');
         botonP.style.display = 'block';
+
+        const totalPago = document.getElementById('totalEnvio').innerHTML;
+    
+
+        //mandar por AJAX el total..
+
+        /*$.post('confPago.php',{
+
+            totalPago:totalPago
+        },
+        function(data,estado){
+            if(data!=null){
+                alert("datos envíados...enviandoo"+data+"\nEstado: " + estado);
+            }else{
+                alert("error en el proceso...");
+            }
+        });    
+        */
+        console.log("Usted tiene que pagar:",totalPago);
        
 }
 function calcularTotalSinEnvio(){
         let costoEnvio = 0 ;
         let subtotal  = datosEnvio();
         let total = costoEnvio + subtotal;
-        document.getElementById('subtotal').innerHTML = "$/ "+ subtotal;
-        document.getElementById('costoEnvio').innerHTML = "$/  "+ 0 ;
-        document.getElementById('totalEnvio').innerHTML = "$/ "+ total;
+        document.getElementById('subtotal').innerHTML =  subtotal;
+        document.getElementById('costoEnvio').innerHTML =  0 ;
+        document.getElementById('totalEnvio').innerHTML =  total;
 }
 
 

@@ -81,21 +81,21 @@
                                 <tbody></tbody>
 
                                 <tr>
-                                    <th colspan="4" scope="col" class="text-right">Subtotal :</th>
+                                    <th colspan="4" scope="col" class="text-right">Subtotal : $</th>
                                     <th scope="col">
                                         <p id="subtotal"></p>
                                     </th>
 
                                 </tr>
                                 <tr>
-                                    <th colspan="4" scope="col" class="text-right">CostoEnvío :</th>
+                                    <th colspan="4" scope="col" class="text-right">CostoEnvío : $</th>
                                     <th scope="col">
                                         <p id="costoEnvio"></p>
                                     </th>
 
                                 </tr>
                                 <tr>
-                                    <th colspan="4" scope="col" class="text-right">TOTAL :</th>
+                                    <th colspan="4" scope="col" class="text-right">TOTAL : $</th>
                                     <th scope="col">
                                         <p id="totalEnvio"></p>
                                     </th>
@@ -104,7 +104,8 @@
 
                             <div>
                                 <a  id="btnSeguirComprando" href="/View/catalogo.php" class="btn  btn-lg btn-primary" tabindex="-1" role="button"
-                                    aria-disabled="true">Seguir comprando</a>
+                                    aria-disabled="true">Seguir comprando
+                                </a>
                             </div>
                             <div>
                                 <a href="#" id="finalizar-compra" class="btn btn-lg btn-success" tabindex="-1"

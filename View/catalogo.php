@@ -176,9 +176,9 @@
                       <img  style="display:none" class="card-img-top" src="<?php echo  "/EditorialOtroTipo/Libros/".$row['ISBN']."/".$row['Imagen']; ?>"> 
                       <h5 class="card-title" id="nombreLibro"> <?php echo $row ['Titulo']; ?> </h5>
                       <p classs="card-text" id="autor"><?php echo $row['Autor']?></p>
-                      <p class="card-text" id="precio"  style="display:none;">$<span> <?php echo number_format($row['Precio'],2,'.',','); ?> </span></p>
-                      <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $row['Peso']?></h2>
                       
+                      <h2 class="card-text" id="pesoLibro" style="display:none;"><?php echo $row['Peso']?></h2>
+                      <p class="card-text" id="precio"  style="display:none;">$<span> <?php echo $row['Precio']; ?> </span></p>
                       <div class="d-grid gap-2 d-md-block" style="margin-bottom: 1rem;">                    
                         <!--<button class="btnS1"  type="button" id="btnLeerF"><a style="text-decoration: none;" target="_blank" href="/sinopsis/cuarta de forros Amar en otro idioma.pdf">Leer un fragmento</a></button>-->
                         

@@ -61,7 +61,7 @@ function leerDatosProductos(producto){
     //verificar sí el libro existe
     let librosLS = obtenerProductosLocalStorage();
     let auxLibro;
-    infoProducto.precio = parseFloat(infoProducto.precio.replace(',', '.'));
+    infoProducto.precio = parseFloat(infoProducto.precio);
     console.log("precio leido: "+infoProducto.precio);
     console.log("precio leido: "+typeof infoProducto.precio);
     librosLS.forEach(function(libroLS,index){
@@ -101,7 +101,6 @@ function insertarProductoCarrito(producto){
     listaProductos.appendChild(row);
     guardarProductosLocalStorage(producto);
 }   
-
 
 function eliminarProducto(e){
     let producto, productoID;
